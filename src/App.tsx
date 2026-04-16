@@ -1,16 +1,15 @@
-import Button from "./component/Button";
+import { BrowserRouter } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
+import { antdTheme } from './theme/theme';
+import AppRoutes from './routes/AppRoutes';
 
 function App() {
   return (
-    <Button
-      height={40}
-      borderRadius={8}
-      fullWidth
-      fontSize={14}
-      fontWeight={700}
-    >
-      Dashboard
-    </Button>
+    <ConfigProvider theme={antdTheme}>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </ConfigProvider>
   );
 }
 

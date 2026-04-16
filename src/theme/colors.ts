@@ -1,6 +1,6 @@
 // src/theme/colors.ts
 
-export const colors = {
+export const Colors = {
   primary: "#4880FF",
   secondary: "#8B5CF6",
 
