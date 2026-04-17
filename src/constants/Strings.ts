@@ -9,7 +9,7 @@ export const ERROR_MESSAGES = {
 
 export const LOGIN_TEXT = {
   LOGIN: "Login",
-  SIGNUP: "Sign Up",
+  SIGN_UP: "Sign Up",
   SIGNIN: "Sign In",
   FORGOT_PASSWORD: "Forgot Password?",
   LOGIN_TO_YOUR_ACCOUNT: "Login to Your Account",
@@ -27,5 +27,8 @@ export const GLOBAL_TEXT = {
   EMAIL: "Email address",
   PASSWORD: "Password",
   USER_NAME: "Username",
-
+  FULL_NAME: "Full Name",
+  ENTER_YOUR_FULL_NAME: "Enter your full name",
+  ENTER_YOUR_EMAIL: "Enter your email address",
+  CONFIRM_PASSWORD: "Confirm Password",
 };

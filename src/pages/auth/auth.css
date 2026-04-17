@@ -10,7 +10,6 @@
   background-color: #4880FF;
 }
 
-
 .auth-form-wrapper {
   position: relative;
   z-index: 2;
@@ -58,11 +57,13 @@
   }
 }
 
-.auth-inner {
-  max-width: 450px;
-  margin: 0 auto;
-  width: 100%;
 
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .auth-inner {
+    max-width: 450px;
+  }
 }
 
 .auth-bg {
@@ -79,5 +80,15 @@
     display: block;
     border-top-left-radius: 60px;
     border-bottom-left-radius: 60px;
+  }
+}
+
+text {
+  font-size: 20px;
+  font-family: 'Nunito Sans', system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.06px;
+  font-weight: 400;
+  @media (max-width: 1024px) {
+    font-size: 20px;
   }
 }

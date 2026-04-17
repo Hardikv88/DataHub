@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Checkbox, Typography } from "antd";
+import { Checkbox} from "antd";
 import { useNavigate, Link } from "react-router-dom";
 import Input from "../../components/common/Input";
 import Button from "../../components/common/Button";
 import { Colors } from "../../theme/colors";
 import "./auth.css";
+import Text from "../../components/common/Text";
+import { GLOBAL_TEXT, LOGIN_TEXT } from "../../constants/Strings";
 
-const { Title, Text } = Typography;
 
 const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -25,26 +26,20 @@ const Login: React.FC = () => {
     <div className="auth-container">
       <div className="auth-form-wrapper">
         <div className="auth-inner">
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <Title
-              level={2}
-              style={{
-                color: Colors.heading,
-                marginBottom: 8,
-                fontWeight: 800,
-              }}
-            >
-              Login to Account
-            </Title>
-            <Text style={{ color: Colors.text, fontSize: 16 }}>
-              Please enter your email and password to continue
+          <div style={{ textAlign: "center", marginBottom: 40}}>
+            <Text variant="heading">
+              {LOGIN_TEXT.LOGIN_TO_YOUR_ACCOUNT}
+            </Text>
+            <div style={{ height: 8}} />
+            <Text variant="subText">
+              {LOGIN_TEXT.PLEASE_ENTER_YOUR_EMAIL_AND_PASSWORD}
             </Text>
           </div>
 
           <form onSubmit={handleLogin}>
             <Input
-              label="Email address"
-              placeholder="esteban_schiller@gmail.com"
+              label={GLOBAL_TEXT.EMAIL}
+              placeholder={GLOBAL_TEXT.ENTER_YOUR_EMAIL}
               type="email"
               required
             />
@@ -56,17 +51,10 @@ const Login: React.FC = () => {
                 marginBottom: 8,
               }}
             >
-              <label
-                style={{ fontWeight: 600, color: Colors.heading, fontSize: 14 }}
-              >
-                Password
-              </label>
-              <Link
-                to="/forgot-password"
-                style={{ color: Colors.text, fontSize: 14 }}
-              >
-                Forget Password?
-              </Link>
+              <Text variant="text" >
+                {GLOBAL_TEXT.PASSWORD}
+              </Text >
+              <Text variant="hintText" >{LOGIN_TEXT.FORGOT_PASSWORD}</Text>
             </div>
             <Input
               placeholder="••••••••"
@@ -82,8 +70,10 @@ const Login: React.FC = () => {
                 marginBottom: 24,
               }}
             >
-              <Checkbox style={{ color: Colors.text }}>
-                Remember Password
+              <Checkbox >
+                <Text variant="hintText">
+                 {LOGIN_TEXT.REMEMBER_PASSWORD}
+              </Text>
               </Checkbox>
             </div>
 
@@ -97,14 +87,15 @@ const Login: React.FC = () => {
             </Button>
 
             <div style={{ textAlign: "center" }}>
-              <Text style={{ color: Colors.text }}>
-                Don't have an account?{" "}
+              <Text variant="hintText">
+                {LOGIN_TEXT.DONT_HAVE_AN_ACCOUNT}
               </Text>
               <Link
                 to="/register"
-                style={{ color: Colors.primary, fontWeight: 600 }}
+                className="text"
+                style={{ color: Colors.primary }}
               >
-                Create Account
+                {LOGIN_TEXT.CREATE_AN_ACCOUNT}
               </Link>
             </div>
           </form>
