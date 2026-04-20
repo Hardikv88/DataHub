@@ -7,8 +7,9 @@ export const Colors = {
   bg: "#F9FAFB",
   white: "#FFFFFF",
 
-  text: "#6B7280",
-  heading: "#111827",
+  text: "#202224",
+  hint:"#20222499",
+  heading: "#202224",
 
   border: "#E5E7EB",
 

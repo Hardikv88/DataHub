@@ -9,7 +9,7 @@ export const ERROR_MESSAGES = {
 
 export const LOGIN_TEXT = {
   LOGIN: "Login",
-  SIGNUP: "Sign Up",
+  SIGN_UP: "Sign Up",
   SIGNIN: "Sign In",
   FORGOT_PASSWORD: "Forgot Password?",
   LOGIN_TO_YOUR_ACCOUNT: "Login to Your Account",
@@ -21,11 +21,16 @@ export const LOGIN_TEXT = {
   CREATE_A_ACCOUNT_CONTINUE: "Create a account to continue",
   I_ACCEPT_TERMS_AND_CONDITIONS: "I accept terms and conditions",
   ALREADY_HAVE_AN_ACCOUNT: "Already have an account?",
+  EMAIL_IS_REQUIRED: "Email is required",
+  PASSWORD_IS_REQUIRED: "Password is required",
 };
 
 export const GLOBAL_TEXT = {
   EMAIL: "Email address",
   PASSWORD: "Password",
   USER_NAME: "Username",
-
+  FULL_NAME: "Full Name",
+  ENTER_YOUR_FULL_NAME: "Enter your full name",
+  ENTER_YOUR_EMAIL: "Enter your email address",
+  CONFIRM_PASSWORD: "Confirm Password",
 };
