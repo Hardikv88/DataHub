@@ -21,6 +21,8 @@ export const LOGIN_TEXT = {
   CREATE_A_ACCOUNT_CONTINUE: "Create a account to continue",
   I_ACCEPT_TERMS_AND_CONDITIONS: "I accept terms and conditions",
   ALREADY_HAVE_AN_ACCOUNT: "Already have an account?",
+  EMAIL_IS_REQUIRED: "Email is required",
+  PASSWORD_IS_REQUIRED: "Password is required",
 };
 
 export const GLOBAL_TEXT = {
