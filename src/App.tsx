@@ -1,15 +1,26 @@
 import { BrowserRouter } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import { antdTheme } from './theme/theme';
+import { getAntdTheme } from './theme/theme';
 import AppRoutes from './routes/AppRoutes';
+import { ThemeProvider, useThemeContext } from './theme/ThemeContext';
 
-function App() {
+function AppContent() {
+  const { isDarkMode } = useThemeContext();
+  
   return (
-    <ConfigProvider theme={antdTheme}>
+    <ConfigProvider theme={getAntdTheme(isDarkMode)}>
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
     </ConfigProvider>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

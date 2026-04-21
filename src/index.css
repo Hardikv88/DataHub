@@ -1,113 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
+
 :root {
---text: #6b7280;           /* secondary text */
-  --text-h: #111827;        /* primary heading */
-
-  /* BACKGROUND */
-  --bg: #f9fafb;            /* main background */
-  --card-bg: #ffffff;       /* cards */
-  --sidebar-bg: #ffffff;
-
-  /* BORDER */
-  --border: #e5e7eb;
-
-  /* PRIMARY (Purple from Figma) */
-  --accent: #4880FF;
-  --accent-hover: #4f46e5;
-
-  /* ACCENT BACKGROUND */
-  --accent-bg: rgba(91, 92, 226, 0.1);
-  --accent-border: rgba(91, 92, 226, 0.4);
-
-  /* STATUS COLORS */
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --info: #3b82f6;
-
-  /* UI ELEMENTS */
-  --input-bg: #ffffff;
-  --hover-bg: #f3f4f6;
-
-  /* SHADOW */
-  --shadow:
-    rgba(0, 0, 0, 0.05) 0px 4px 10px,
-    rgba(0, 0, 0, 0.03) 0px 2px 4px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-  --text-h: #f9fafb;
-
-  /* BACKGROUND */
-  --bg: #111827;
-  --card-bg: #1f2937;
-  --sidebar-bg: #1f2937;
-
-  /* BORDER */
-  --border: #374151;
-
-  /* PRIMARY */
-  --accent: #4880FF;
-  --accent-hover: #7c3aed;
+  /* LIGHT VARIABLES (Defaults) */
+  --text: #202224;
+  --text-h: #202224;
+  --bg: #F5F6FA;
+  --card-bg: #FFFFFF;
+  --sidebar-bg: #FFFFFF;
+  --border: #E5E7EB;
   
-
-  /* ACCENT BACKGROUND */
-  --accent-bg: rgba(139, 92, 246, 0.15);
-  --accent-border: rgba(139, 92, 246, 0.5);
-
-  /* STATUS COLORS */
-  --success: #4ade80;
-  --warning: #fbbf24;
-  --danger: #f87171;
-  --info: #60a5fa;
-
-  /* UI ELEMENTS */
-  --input-bg: #1f2937;
-  --hover-bg: #374151;
-
-  /* SHADOW */
-  --shadow:
-    rgba(0, 0, 0, 0.4) 0px 10px 20px,
-    rgba(0, 0, 0, 0.25) 0px 4px 8px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+  --accent: #4880FF;
+  --accent-hover: #3A69D8;
+  --accent-bg: rgba(72, 128, 255, 0.1);
+  --success: #00B69B;
+  --warning: #FF9F43;
+  --danger: #EF4444;
+  --info: #3B82F6;
+  --white: #FFFFFF;
+  
+  --shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  font-family: 'Nunito Sans', system-ui, -apple-system, sans-serif;
 }
 
-#root {
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+html.dark {
+  /* DARK VARIABLES */
+  --text: #FFFFFF;
+  --text-h: #FFFFFF;
+  --bg: #1B2431;
+  --card-bg: #273142;
+  --sidebar-bg: #273142;
+  --border: #313D4F;
+  --shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 body {
   margin: 0;
+  padding: 0;
+  color: var(--text);
+  background-color: var(--bg);
+  transition: background-color 0.3s ease, color 0.3s ease;
   font-family: 'Nunito Sans', system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.2px;
 }
 
+#root {
+  min-height: 100vh;
+  display: flexflex;
+  flex-direction: column;
+}
+
+/* Custom Utilities for dashboard padding and layout */
+.dashboard-heading {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text-h);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
