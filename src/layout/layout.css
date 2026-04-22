@@ -1,0 +1,44 @@
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  height: 55px;
+  padding: 0 12px;
+  border-bottom: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.sidebar-header.expanded {
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+.sidebar-header.collapsed {
+  justify-content: center;
+}
+
+.toggle-btn {
+  margin-right: 4px;
+  padding: 6px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.toggle-btn:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.logo-accent {
+  color: #1890ff; /* Ant Design primary */
+}
