@@ -47,4 +47,6 @@ export const GLOBAL_TEXT = {
   STATUS: "status",
   LOGOUT: "Logout",
   PROFILE: "Profile",
+  SALES_DETAILS: "Sales Details",
+  RECENT_ORDERS: "Recent Orders",
 };
