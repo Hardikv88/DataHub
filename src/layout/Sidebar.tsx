@@ -4,6 +4,7 @@ import {
   DashboardOutlined,
   AppstoreOutlined,
   TeamOutlined,
+  HeartOutlined,
   ShoppingCartOutlined,
   SettingOutlined,
   LineChartOutlined,
@@ -29,7 +30,7 @@ const NAVIGATION: NavigationItem[] = [
     icon: <DashboardOutlined />,
   },
   { name: GLOBAL_TEXT.PRODUCTS, path: "/products", icon: <AppstoreOutlined /> },
-  { name: GLOBAL_TEXT.CUSTOMERS, path: "/customers", icon: <TeamOutlined /> },
+  { name: GLOBAL_TEXT.WISH_LIST, path: "/wishlist", icon: <HeartOutlined /> },
   { name: GLOBAL_TEXT.ORDERS, path: "/orders", icon: <ShoppingCartOutlined /> },
   {
     name: GLOBAL_TEXT.ANALYTICS,

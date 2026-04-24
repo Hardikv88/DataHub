@@ -1,0 +1,106 @@
+
+/* ─── Pagination ─── */
+.products-pagination {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 24px;
+}
+
+.products-pagination .ant-pagination-item {
+  border-radius: 8px;
+  border-color: var(--border);
+  background: var(--card-bg);
+}
+
+.products-pagination .ant-pagination-item a {
+  color: var(--text);
+}
+
+.products-pagination .ant-pagination-item-active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.products-pagination .ant-pagination-item-active a {
+  color: #FFFFFF;
+}
+
+.products-pagination .ant-pagination-prev .ant-pagination-item-link,
+.products-pagination .ant-pagination-next .ant-pagination-item-link {
+  border-radius: 8px;
+  border-color: var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+/* ─── Products Responsive ─── */
+@media (max-width: 1200px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .banner-image {
+    height: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .banner-image {
+    height: 140px;
+  }
+
+  .product-card-btn span {
+    display: none;
+  }
+
+  .product-card-btn {
+    padding: 12px 14px;
+  }
+}
+
+.ant-pagination-item {
+  min-width: 44px;     /* 👈 width */
+  height: 44px;        /* 👈 height */
+  line-height: 44px;   /* 👈 vertical center */
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+.ant-pagination-item-active {
+  background: #0d9488; /* teal-600 */
+  border-color: #0d9488;
+}
+
+.ant-pagination-item-active a {
+  color: #fff;
+}
+
+.dark .ant-pagination-item {
+  background: transparent;
+  border-color: #444;
+}
+
+.dark .ant-pagination-item a {
+  color: #fff;
+}
+
+.custom-empty {
+  margin-bottom: 0px;
+  display: contents;
+  display: flex;
+  flex-direction: column;   /* stack icon + text */
+  align-items: center;      /* horizontal center */
+  justify-content: center;  /* vertical center */
+  text-align: center;       /* center text */
+  gap: 8px;     
+}
