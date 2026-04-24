@@ -1,20 +1,22 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../storage/Store";
-import { removeItem } from "../../storage/AddProducts";
 import { ProductCard } from "../../components/common/ProductCard";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import { HeartOutlined } from "@ant-design/icons";
 import { GLOBAL_TEXT } from "../../constants/Strings";
+import { removeWishItem } from "../../storage/WishList";
 
-export const Orders: React.FC = () => {
-  const cartItems = useSelector((state: RootState) => state.addItem);
+export const WishList: React.FC = () => {
+  const wishListItems = useSelector((state: RootState) => state.WishListItem);
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleClick = (id: number) => {
-    dispatch(removeItem(id));
+  const handleClick = (id: number) => {};
+
+  const btnWishListClick = (id: number) => {
+    dispatch(removeWishItem(id));
   };
 
-  if (cartItems.items.length === 0) {
+  if (wishListItems.items.length === 0) {
     return (
       <div
         style={{
@@ -25,12 +27,14 @@ export const Orders: React.FC = () => {
         }}
       >
         <div className="custom-empty">
-          <ShoppingCartOutlined style={{ fontSize: 48, color: "#6366f1" }} />
+          <HeartOutlined style={{ fontSize: 48, color: "#6366f1" }} />
 
           <span style={{ fontSize: 16, fontWeight: 700 }}>
-            {GLOBAL_TEXT.YOUR_CART_IS_EMPTY}
+            {GLOBAL_TEXT.YOUR_FAVOURITE_IS_EMPTY}
           </span>
-          <span>{GLOBAL_TEXT.BROWSE_PRODUCTS_TO_ADD_ITEMS_TO_YOUR_CART}</span>
+          <span>
+            {GLOBAL_TEXT.BROWSE_PRODUCTS_TO_ADD_ITEMS_TO_YOUR_FAVOURITE}
+          </span>
         </div>
       </div>
     );
@@ -38,14 +42,15 @@ export const Orders: React.FC = () => {
 
   return (
     <div>
-      <h1 className="dashboard-heading">{GLOBAL_TEXT.ORDERS}</h1>
+      <h1 className="dashboard-heading">{GLOBAL_TEXT.WISH_LIST}</h1>
       <div className="products-grid">
-        {cartItems.items.map((product) => (
+        {wishListItems.items.map((product) => (
           <ProductCard
             key={product.id}
             Product={product}
             isVisibleCart={true}
             btnCallBack={() => handleClick(product.id)}
+            btnWishList={() => btnWishListClick(product.id)}
           />
         ))}
       </div>

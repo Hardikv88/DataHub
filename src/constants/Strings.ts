@@ -36,6 +36,7 @@ export const GLOBAL_TEXT = {
   DASHBOARD: "Dashboard",
   PRODUCTS: "Products",
   CUSTOMERS: "Customers",
+  WISH_LIST: "Wish List",
   ORDERS: "Orders",
   ANALYTICS: "Analytics",
   SETTINGS: "Settings",
@@ -49,4 +50,8 @@ export const GLOBAL_TEXT = {
   PROFILE: "Profile",
   SALES_DETAILS: "Sales Details",
   RECENT_ORDERS: "Recent Orders",
+  YOUR_CART_IS_EMPTY: "Your cart is empty",
+  YOUR_FAVOURITE_IS_EMPTY: "Your favourite is empty",
+  BROWSE_PRODUCTS_TO_ADD_ITEMS_TO_YOUR_CART: "Browse products to add items to your cart",
+   BROWSE_PRODUCTS_TO_ADD_ITEMS_TO_YOUR_FAVOURITE: "Browse products to add items to your favourite",
 };
