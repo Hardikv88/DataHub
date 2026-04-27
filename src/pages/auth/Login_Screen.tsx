@@ -23,12 +23,6 @@ const Login: React.FC = () => {
   const handleSubmit = () => {
     const { email, password } = formData;
 
-    console.log(
-      "Submitting form with data:",
-      formData.email,
-      formData.password,
-    );
-
     // Simple validation
     if (!email) {
       alert(LOGIN_TEXT.EMAIL_IS_REQUIRED);

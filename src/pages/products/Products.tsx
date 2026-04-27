@@ -36,11 +36,7 @@ export const Products: React.FC = () => {
   const getProducts = async () => {
     try {
       setLoading(true);
-      const response = await apiHelper
-        .get<ProductResponseModal>("/products?limit=194")
-        .catch((err) => {
-          console.log("Errr", err.message);
-        });
+      const response = await apiHelper.get<ProductResponseModal>("/products?limit=194")
       setProductsData(response.data.products);
       setLoading(false);
     } catch (error) {
