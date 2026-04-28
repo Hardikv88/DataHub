@@ -37,6 +37,7 @@ const NAVIGATION: NavigationItem[] = [
     path: "/analytics",
     icon: <LineChartOutlined />,
   },
+  { name: "Users", path: "/users", icon: <TeamOutlined /> },
   { name: GLOBAL_TEXT.SETTINGS, path: "/settings", icon: <SettingOutlined /> },
 ];
 

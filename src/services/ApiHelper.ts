@@ -6,7 +6,7 @@ import type {
 } from "axios";
 
 class ApiHelper {
-  private axiosInstance: AxiosInstance;
+  axiosInstance: AxiosInstance;
   constructor() {
     this.axiosInstance = axios.create({
       baseURL: import.meta.env.VITE_BASE_URL, // 👉 Change your base URL

@@ -5,17 +5,17 @@ import {
   HeartFilled,
   DeleteOutlined,
 } from "@ant-design/icons";
-import { Button, Rate } from "antd";
+import { Rate } from "antd";
 import "../style/common.css";
 import type { Product } from "../../modals/ProductResponseModal";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../storage/Store";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Button from "./Button";
 
 type ProductCardProps = {
   readonly Product: Product;
-  readonly isVisibleCart: Boolean;
-  readonly isFavourite: Boolean;
+  readonly isVisibleCart: boolean;
   readonly btnCallBack?: () => void;
   readonly btnWishList?: () => void;
 };
@@ -28,18 +28,62 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const product = Product;
   const selectItems = useSelector((state: RootState) => state.addItem.items);
-  const selectWishItems = useSelector((state: RootState) => state.WishListItem.items);
-  const isFavourite = selectWishItems.find((cardItems) => cardItems.id == product.id);
+  const selectWishItems = useSelector(
+    (state: RootState) => state.WishListItem.items,
+  );
+  const isFavourite = selectWishItems.some(
+    (cardItems) => cardItems.id == product.id,
+  );
+  const isInCart = selectItems.some((cardItems) => cardItems.id == product.id);
   const navigate = useNavigate();
 
   const cardClick = () => {
     console.log("Click card view ");
-    navigate(`/products/${product.id}`)
+    navigate(`/products/${product.id}`);
+  };
+
+  let cartButton;
+  if (isVisibleCart) {
+    cartButton = (
+      <button
+        className="product-card-btn"
+        onClick={(e) => {
+          e.stopPropagation();
+          btnCallBack?.();
+        }}
+      >
+        <DeleteOutlined style={{ fontSize: 18 }} />
+      </button>
+    );
+  } else if (isInCart) {
+    cartButton = (
+     
+       <Button bgColor="var(--accent-bg)" icon={<ShoppingCartOutlined />} onClick={(e) => {
+          e.stopPropagation();
+          btnCallBack?.();
+        }}>Add to Cart</Button>
+    );
+  } else {
+    cartButton = (
+      <Button className="product-card-btn" icon={<ShoppingCartOutlined />} onClick={(e) => {
+          e.stopPropagation();
+          btnCallBack?.();
+        }}>Add to Cart</Button>
+    );
   }
 
-
   return (
-    <div className="product-card" onClick={() => cardClick()}>
+    <button
+      className="product-card"
+      onClick={() => cardClick()}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          cardClick();
+          e.preventDefault();
+        }
+      }}
+      type="button"
+    >
       <div className="product-card-image-wrapper">
         <img
           src={product.thumbnail}
@@ -48,21 +92,30 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         />
 
         <Button
-          onClick={btnWishList}
+          onClick={(e) => {
+            e.stopPropagation();
+            btnWishList?.();
+          }}
           type="text"
           shape="circle"
+          height="25"
+          bgColor="var(--accent-bg)"
           className="product-card-category"
           icon={
-            isFavourite ? <HeartFilled
-              style={{
-                fontSize: 20,
-                color: "#ff4d4f",
-              }}
-            /> : <HeartOutlined
-              style={{
-                fontSize: 20,
-              }}
-            />
+            isFavourite ? (
+              <HeartFilled
+                style={{
+                  fontSize: 18,
+                  color: "#ff4d4f",
+                }}
+              />
+            ) : (
+              <HeartOutlined
+                style={{
+                  fontSize: 18,
+                }}
+              />
+            )
           }
         />
 
@@ -79,31 +132,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <span className="product-card-price">
             ${product.price.toFixed(2)}
           </span>
-          {isVisibleCart ? (
-            <button className="product-card-btn" onClick={btnCallBack}>
-              <DeleteOutlined style={{ fontSize: 18 }} />
-            </button>
-          ) : selectItems.find((cardItems) => cardItems.id == product.id) ? (
-            <button
-              className="product-card-disable-btn"
-              aria-label="Add to cart"
-              onClick={btnCallBack}
-            >
-              <ShoppingCartOutlined />
-              <span>Add to Cart</span>
-            </button>
-          ) : (
-            <button
-              className="product-card-btn"
-              aria-label="Add to cart"
-              onClick={btnCallBack}
-            >
-              <ShoppingCartOutlined />
-              <span>Add to Cart</span>
-            </button>
-          )}
+          {cartButton}
         </div>
       </div>
-    </div>
+    </button>
   );
 };

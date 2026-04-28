@@ -5,6 +5,7 @@ import { ProductCard } from "../../components/common/ProductCard";
 import { HeartOutlined } from "@ant-design/icons";
 import { GLOBAL_TEXT } from "../../constants/Strings";
 import { removeWishItem } from "../../storage/WishList";
+import "../../pages/products/style/products.css"
 
 export const WishList: React.FC = () => {
   const wishListItems = useSelector((state: RootState) => state.WishListItem);
@@ -41,7 +42,7 @@ export const WishList: React.FC = () => {
   }
 
   return (
-    <div>
+    <div >
       <h1 className="dashboard-heading">{GLOBAL_TEXT.WISH_LIST}</h1>
       <div className="products-grid">
         {wishListItems.items.map((product) => (

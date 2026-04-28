@@ -11,6 +11,8 @@ import { Settings } from "../pages/settings/Settings";
 import { Analytics } from "../pages/analytics/Analytics";
 import { WishList } from "../pages/wishlist/WishList";
 import { ProductDetails } from "../pages/products/ProductDetails";
+import UserList from "../pages/users/UserList";
+import UserDetails from "../pages/users/UserDetails";
 
 const AppRoutes = () => {
   return (
@@ -44,6 +46,8 @@ const AppRoutes = () => {
           <Route path="/settings" element={<Settings />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/products/:id" element={<ProductDetails />} />
+          <Route path="/users" element={<UserList />} />
+          <Route path="/users/:id" element={<UserDetails />} />
         </Route>
       </Route>
     </Routes>
