@@ -5,12 +5,13 @@ import {
   HeartFilled,
   DeleteOutlined,
 } from "@ant-design/icons";
-import { Button, Rate } from "antd";
+import { Rate } from "antd";
 import "../style/common.css";
 import type { Product } from "../../modals/ProductResponseModal";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../storage/Store";
 import { useNavigate } from "react-router-dom";
+import Button from "./Button";
 
 type ProductCardProps = {
   readonly Product: Product;
@@ -56,31 +57,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     );
   } else if (isInCart) {
     cartButton = (
-      <button
-        className="product-card-disable-btn"
-        aria-label="Add to cart"
-        onClick={(e) => {
+     
+       <Button bgColor="var(--accent-bg)" icon={<ShoppingCartOutlined />} onClick={(e) => {
           e.stopPropagation();
           btnCallBack?.();
-        }}
-      >
-        <ShoppingCartOutlined />
-        <span>Add to Cart</span>
-      </button>
+        }}>Add to Cart</Button>
     );
   } else {
     cartButton = (
-      <button
-        className="product-card-btn"
-        aria-label="Add to cart"
-        onClick={(e) => {
+      <Button className="product-card-btn" icon={<ShoppingCartOutlined />} onClick={(e) => {
           e.stopPropagation();
           btnCallBack?.();
-        }}
-      >
-        <ShoppingCartOutlined />
-        <span>Add to Cart</span>
-      </button>
+        }}>Add to Cart</Button>
     );
   }
 
@@ -110,19 +98,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           }}
           type="text"
           shape="circle"
+          height="25"
+          bgColor="var(--accent-bg)"
           className="product-card-category"
           icon={
             isFavourite ? (
               <HeartFilled
                 style={{
-                  fontSize: 20,
+                  fontSize: 18,
                   color: "#ff4d4f",
                 }}
               />
             ) : (
               <HeartOutlined
                 style={{
-                  fontSize: 20,
+                  fontSize: 18,
                 }}
               />
             )

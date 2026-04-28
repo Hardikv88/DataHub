@@ -53,6 +53,7 @@ export const GLOBAL_TEXT = {
   YOUR_CART_IS_EMPTY: "Your cart is empty",
   YOUR_FAVOURITE_IS_EMPTY: "Your favourite is empty",
   BROWSE_PRODUCTS_TO_ADD_ITEMS_TO_YOUR_CART: "Browse products to add items to your cart",
+  BROWSE_PRODUCTS_TO_ADD_ITEMS_TO_YOUR_FAVOURITE: "Browse products to add items to your favourite",
   PRODUCT_INFORMATION: "Product Information",
   CUSTOMER_REVIEWS: "Customer Reviews",
   REMOVE_FROM_CART: "Remove from Cart",
@@ -60,4 +61,6 @@ export const GLOBAL_TEXT = {
   IN_STOCK: "In Stock",
   OUT_OF_STOCK: "Out of Stock",
   DESCRIPTION: "Description",
+  TEAM_MEMBERS: "Team Members",
+  ADD_NEW_MEMBER: "Add New Member",
 };

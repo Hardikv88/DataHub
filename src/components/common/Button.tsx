@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactNode } from "react";
 import { Button as AntButton } from "antd";
 import type { ButtonProps as AntButtonProps } from "antd";
 import { Colors } from "../../theme/colors";
@@ -9,6 +9,8 @@ export interface ButtonProps extends AntButtonProps {
   height?: number | string;
   width?: number | string;
   fullWidth?: boolean;
+  icon?: ReactNode;
+  iconPosition?: "start" | "end";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -19,11 +21,15 @@ const Button: React.FC<ButtonProps> = ({
   fullWidth,
   style,
   type,
+  icon,
+  iconPosition = "start",
+  children,
   ...props
 }) => {
   return (
     <AntButton
       type={type}
+      icon={iconPosition === "start" ? icon : undefined}
       style={{
         backgroundColor:
           type === "link" ? "transparent" : bgColor || Colors.primary,
@@ -39,7 +45,10 @@ const Button: React.FC<ButtonProps> = ({
         ...style,
       }}
       {...props}
-    />
+      >
+      {iconPosition === "end" && icon}
+      {children}
+    </AntButton>
   );
 };
 
