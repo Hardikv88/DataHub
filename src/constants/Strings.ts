@@ -63,4 +63,5 @@ export const GLOBAL_TEXT = {
   DESCRIPTION: "Description",
   TEAM_MEMBERS: "Team Members",
   ADD_NEW_MEMBER: "Add New Member",
+  POSTS: "Posts",
 };

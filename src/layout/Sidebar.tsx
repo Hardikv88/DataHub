@@ -8,6 +8,7 @@ import {
   ShoppingCartOutlined,
   SettingOutlined,
   LineChartOutlined,
+  FileTextOutlined,
 } from "@ant-design/icons";
 import { Layout } from "antd";
 import { useThemeContext } from "../theme/ThemeContext";
@@ -32,12 +33,14 @@ const NAVIGATION: NavigationItem[] = [
   { name: GLOBAL_TEXT.PRODUCTS, path: "/products", icon: <AppstoreOutlined /> },
   { name: GLOBAL_TEXT.WISH_LIST, path: "/wishlist", icon: <HeartOutlined /> },
   { name: GLOBAL_TEXT.ORDERS, path: "/orders", icon: <ShoppingCartOutlined /> },
+  
+  { name: "Users", path: "/users", icon: <TeamOutlined /> },
+  { name: "Posts", path: "/posts", icon: <FileTextOutlined /> },
   {
     name: GLOBAL_TEXT.ANALYTICS,
     path: "/analytics",
     icon: <LineChartOutlined />,
   },
-  { name: "Users", path: "/users", icon: <TeamOutlined /> },
   { name: GLOBAL_TEXT.SETTINGS, path: "/settings", icon: <SettingOutlined /> },
 ];
 
