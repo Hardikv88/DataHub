@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
-import { fetchPosts, searchPosts } from '../../services/postService';
+import { fetchPosts, searchPosts, fetchPostById } from '../../services/postService';
 import type { Post } from '../../modals/post';
 
 interface PostState {
   posts: Post[];
+  selectedPost: Post | null;
   loading: boolean;
   error: string | null;
   total: number;
@@ -14,6 +15,7 @@ interface PostState {
 
 const initialState: PostState = {
   posts: [],
+  selectedPost: null,
   loading: false,
   error: null,
   total: 0,
@@ -46,6 +48,18 @@ export const searchAllPosts = createAsyncThunk(
   }
 );
 
+export const loadPostById = createAsyncThunk(
+  'posts/loadPostById',
+  async (id: string | number, { rejectWithValue }) => {
+    try {
+      const data = await fetchPostById(id);
+      return data;
+    } catch (error: any) {
+      return rejectWithValue(error.message || 'Failed to fetch post');
+    }
+  }
+);
+
 const postSlice = createSlice({
   name: 'posts',
   initialState,
@@ -60,6 +74,9 @@ const postSlice = createSlice({
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload;
     },
+    clearSelectedPost: (state) => {
+      state.selectedPost = null;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -89,10 +106,22 @@ const postSlice = createSlice({
       .addCase(searchAllPosts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
+      })
+      .addCase(loadPostById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(loadPostById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.selectedPost = action.payload;
+      })
+      .addCase(loadPostById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
       });
   },
 });
 
-export const { setCurrentPage, setPageSize, setSearchQuery } = postSlice.actions;
+export const { setCurrentPage, setPageSize, setSearchQuery, clearSelectedPost } = postSlice.actions;
 
 export default postSlice.reducer;

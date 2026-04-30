@@ -14,6 +14,7 @@ import { ProductDetails } from "../pages/products/ProductDetails";
 import UserList from "../pages/users/UserList";
 import UserDetails from "../pages/users/UserDetails";
 import Posts from "../pages/posts/Posts";
+import PostDetails from "../pages/posts/PostDetails";
 
 const AppRoutes = () => {
   return (
@@ -50,6 +51,7 @@ const AppRoutes = () => {
           <Route path="/users" element={<UserList />} />
           <Route path="/users/:id" element={<UserDetails />} />
           <Route path="/posts" element={<Posts />} />
+          <Route path="/posts/:id" element={<PostDetails />} />
         </Route>
       </Route>
     </Routes>

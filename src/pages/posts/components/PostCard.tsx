@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, Typography, Tag, Space, Flex, Tooltip } from 'antd';
 import { 
   LikeOutlined, 
@@ -17,10 +18,12 @@ interface PostCardProps {
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
   const { isDarkMode } = useThemeContext();
+  const navigate = useNavigate();
 
   return (
     <Card 
       hoverable 
+      onClick={() => navigate(`/posts/${post.id}`)}
       style={{ 
         height: '100%', 
         borderRadius: 12,
