@@ -76,6 +76,10 @@ const postSlice = createSlice({
     },
     clearSelectedPost: (state) => {
       state.selectedPost = null;
+    },
+    addPostToList: (state, action: PayloadAction<Post>) => {
+      state.posts = [action.payload, ...state.posts];
+      state.total += 1;
     }
   },
   extraReducers: (builder) => {
@@ -122,6 +126,6 @@ const postSlice = createSlice({
   },
 });
 
-export const { setCurrentPage, setPageSize, setSearchQuery, clearSelectedPost } = postSlice.actions;
+export const { setCurrentPage, setPageSize, setSearchQuery, clearSelectedPost, addPostToList } = postSlice.actions;
 
 export default postSlice.reducer;

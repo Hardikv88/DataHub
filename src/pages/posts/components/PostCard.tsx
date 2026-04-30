@@ -68,13 +68,13 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           <Tooltip title="Likes">
             <Space size={4}>
               <LikeOutlined style={{ color: '#52c41a' }} />
-              <Text style={{ color: isDarkMode ? '#d9d9d9' : '#000000' }}>{post.reactions.likes}</Text>
+              <Text style={{ color: isDarkMode ? '#d9d9d9' : '#000000' }}>{post.reactions?.likes || 0}</Text>
             </Space>
           </Tooltip>
           <Tooltip title="Dislikes">
             <Space size={4}>
               <DislikeOutlined style={{ color: '#ff4d4f' }} />
-              <Text style={{ color: isDarkMode ? '#d9d9d9' : '#000000' }}>{post.reactions.dislikes}</Text>
+              <Text style={{ color: isDarkMode ? '#d9d9d9' : '#000000' }}>{post.reactions?.dislikes || 0}</Text>
             </Space>
           </Tooltip>
         </Space>
@@ -82,7 +82,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         <Tooltip title="Views">
           <Space size={4}>
             <EyeOutlined style={{ color: '#1677ff' }} />
-            <Text style={{ color: isDarkMode ? '#d9d9d9' : '#000000' }}>{post.views}</Text>
+            <Text style={{ color: isDarkMode ? '#d9d9d9' : '#000000' }}>{post.views || 0}</Text>
           </Space>
         </Tooltip>
       </Flex>

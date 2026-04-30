@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { 
   Row, 
   Col, 
@@ -6,7 +6,6 @@ import {
   Pagination, 
   Skeleton, 
   Empty, 
-  message,
   Flex
 } from 'antd';
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
@@ -17,12 +16,14 @@ import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
 import { useThemeContext } from '../../theme/ThemeContext';
 import { GLOBAL_TEXT } from '../../constants/Strings';
+import CreatePostModal from './components/CreatePostModal';
 
 const { Title } = Typography;
 
 const Posts: React.FC = () => {
   const dispatch = useAppDispatch();
   const { isDarkMode } = useThemeContext();
+  const [modalVisible, setModalVisible] = useState(false);
   const { 
     posts, 
     loading, 
@@ -58,8 +59,7 @@ const Posts: React.FC = () => {
   };
 
   const handleAddPost = () => {
-    console.log('Add Post clicked');
-    message.info('Add Post feature coming soon!');
+    setModalVisible(true);
   };
 
   return (
@@ -71,12 +71,13 @@ const Posts: React.FC = () => {
         <Title level={2} style={{ margin: 0, color: isDarkMode ? '#ffffff' : '#000000' }}>
           {GLOBAL_TEXT.POSTS}
         </Title>
+        <Flex gap="middle" align="center">
           <Input 
             placeholder="Search posts..." 
             prefix={<SearchOutlined />} 
             value={searchQuery}
             onChange={handleSearch}
-            style={{ width: 350 }}
+            style={{ width: 350, marginTop: 16 }}
           />
           <Button 
             type="primary" 
@@ -88,6 +89,7 @@ const Posts: React.FC = () => {
             Add Post
           </Button>
         </Flex>
+      </Flex>
     
 
       {/* Posts List Body */}
@@ -116,9 +118,7 @@ const Posts: React.FC = () => {
               </Col>
             )}
           </Row>
-
-          {/* Pagination */}
-          {!loading && posts.length > 0 && !searchQuery && (
+      {!loading && posts.length > 0 && !searchQuery && (
              <div className="products-pagination">
               <Pagination
                 size="large"
@@ -132,6 +132,11 @@ const Posts: React.FC = () => {
           )}
         </>
       )}
+
+      <CreatePostModal 
+        visible={modalVisible} 
+        onCancel={() => setModalVisible(false)} 
+      />
     </div>
   );
 };

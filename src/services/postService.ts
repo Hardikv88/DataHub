@@ -26,3 +26,12 @@ export const fetchPostById = async (id: number | string): Promise<Post> => {
   const response = await apiHelper.get<Post>(`/posts/${id}`);
   return response.data;
 };
+
+export const createPost = async (payload: Partial<Post>): Promise<Post> => {
+  const response = await apiHelper.post<Post>(`/posts/add`, payload);
+  return {
+    ...response.data,
+    reactions: response.data.reactions || { likes: 0, dislikes: 0 },
+    views: response.data.views || 0,
+  };
+};

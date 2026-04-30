@@ -15,7 +15,6 @@ import {
   Flex,
 } from "antd";
 import {
-  ArrowLeftOutlined,
   LikeOutlined,
   DislikeOutlined,
   EyeOutlined,
@@ -146,7 +145,7 @@ const PostDetails: React.FC = () => {
                     </Text>
                     <Space>
                       <LikeOutlined style={{ color: "#52c41a" }} />
-                      <Text strong>{selectedPost.reactions.likes}</Text>
+                      <Text strong>{selectedPost.reactions?.likes || 0}</Text>
                     </Space>
                   </Space>
                 </Col>
@@ -157,7 +156,7 @@ const PostDetails: React.FC = () => {
                     </Text>
                     <Space>
                       <DislikeOutlined style={{ color: "#ff4d4f" }} />
-                      <Text strong>{selectedPost.reactions.dislikes}</Text>
+                      <Text strong>{selectedPost.reactions?.dislikes || 0}</Text>
                     </Space>
                   </Space>
                 </Col>
@@ -168,7 +167,7 @@ const PostDetails: React.FC = () => {
                     </Text>
                     <Space>
                       <EyeOutlined style={{ color: "#1677ff" }} />
-                      <Text strong>{selectedPost.views}</Text>
+                      <Text strong>{selectedPost.views || 0}</Text>
                     </Space>
                   </Space>
                 </Col>
