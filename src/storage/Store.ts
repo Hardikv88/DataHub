@@ -14,6 +14,7 @@ import {
 import addCardItem from './AddProducts';
 import WishListItem from './WishList';
 import userReducer from '../pages/users/userSlice';
+import postReducer from '../pages/posts/postSlice';
 
 // Custom storage adapter to bypass Vite's ESM/CJS interop issues with redux-persist
 const customStorage = {
@@ -41,6 +42,7 @@ const rootReducer = combineReducers({
     addItem:addCardItem,
     WishListItem:WishListItem,
     users: userReducer,
+    posts: postReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

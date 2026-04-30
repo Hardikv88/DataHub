@@ -71,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
       </div>
 
       {/* Search */}
-      <div className="header-search">
+      {/* <div className="header-search">
         <AntInput
           placeholder="Search..."
           prefix={<SearchOutlined style={{ color: "var(--text-secondary)" }} />}
@@ -83,7 +83,7 @@ export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
             border: "none",
           }}
         />
-      </div>
+      </div> */}
 
       {/* Actions */}
       <div className="header-actions">

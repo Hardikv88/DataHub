@@ -5,7 +5,6 @@ import {
   Descriptions,
   Avatar,
   Tag,
-  Divider,
   Typography,
   Skeleton,
   Button,
@@ -14,7 +13,6 @@ import {
   Col,
   Space,
 } from "antd";
-import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { loadUserById, clearCurrentUser } from "./userSlice";
 import Breadcrumb from "antd/es/breadcrumb/Breadcrumb";
@@ -224,7 +222,7 @@ const UserDetails: React.FC = () => {
           >
             <Descriptions
               column={1}
-              labelStyle={{ color: "var(--ant-color-text-secondary)" }}
+              labelStyle={{color: "var(--ant-color-text-secondary)"}}
             >
               <Descriptions.Item label="Card Type">
                 {currentUser.bank.cardType}

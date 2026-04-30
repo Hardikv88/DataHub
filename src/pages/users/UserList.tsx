@@ -49,7 +49,6 @@ const UserList: React.FC = () => {
         selectedRole && selectedRole !== "all"
           ? user.role === selectedRole
           : true;
-      console.log("matchesRole", matchesRole);
       return matchesSearch && matchesRole;
     });
   }, [users, searchTerm, selectedRole]);
@@ -102,7 +101,7 @@ const UserList: React.FC = () => {
             value={selectedRole}
             onChange={(val) => dispatch(setSelectedRole(val))}
             options={[
-              { value: "all", label: "all" },
+              { value: "all", label: "All" },
               { value: "admin", label: "Admin" },
               { value: "moderator", label: "Moderator" },
               { value: "user", label: "User" },
