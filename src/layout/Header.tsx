@@ -1,8 +1,7 @@
 import React from "react";
-import { Layout, Input as AntInput, Avatar, Dropdown, Badge } from "antd";
+import { Layout, Input as Avatar, Dropdown, Badge } from "antd";
 import type { MenuProps } from "antd";
 import {
-  SearchOutlined,
   BellOutlined,
   UserOutlined,
   SettingOutlined,
@@ -14,6 +13,7 @@ import {
 import { useThemeContext } from "../theme/ThemeContext";
 import { useAuth } from "../hooks/useAuth";
 import { GLOBAL_TEXT } from "../constants/Strings";
+import { useNavigate } from "react-router-dom";
 
 const { Header: AntHeader } = Layout;
 
@@ -24,6 +24,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
   const { isDarkMode, toggleTheme } = useThemeContext();
   const { logout, user } = useAuth();
+  const navigate = useNavigate();
 
   const greeting = getGreeting();
 
@@ -43,6 +44,7 @@ export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
     {
       key: "2",
       label: GLOBAL_TEXT.SETTINGS,
+      onClick: () => navigate("/settings"),
       icon: <SettingOutlined />,
     },
     { type: "divider" },
@@ -100,7 +102,9 @@ export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
         </button>
 
         <Badge count={3} size="small">
-          <BellOutlined style={{ fontSize: 20, color: "var(--text)", cursor: "pointer" }} />
+          <BellOutlined
+            style={{ fontSize: 20, color: "var(--text)", cursor: "pointer" }}
+          />
         </Badge>
 
         <Dropdown menu={{ items: userMenu }} placement="bottomRight" arrow>

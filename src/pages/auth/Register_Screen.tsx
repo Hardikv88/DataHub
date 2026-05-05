@@ -40,12 +40,14 @@ const Register: React.FC = () => {
 
   return (
     <div className="auth-container">
-      <div className="auth-form-wrapper" style={{width: "100%", }}>
-        <div className="auth-inner" style={{width: "100%", }}>
+      <div className="auth-form-wrapper" style={{ width: "100%" }}>
+        <div className="auth-inner" style={{ width: "100%" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <Text variant="heading">{LOGIN_TEXT.CREATE_AN_ACCOUNT}</Text>
             <div style={{ height: 8 }} />
-            <Text variant="subText">{LOGIN_TEXT.CREATE_A_ACCOUNT_CONTINUE}</Text>
+            <Text variant="subText">
+              {LOGIN_TEXT.CREATE_A_ACCOUNT_CONTINUE}
+            </Text>
           </div>
 
           <form onSubmit={handleRegister}>
@@ -99,7 +101,9 @@ const Register: React.FC = () => {
               }}
             >
               <Checkbox required style={{ color: Colors.text }}>
-                <Text variant="hintText">{LOGIN_TEXT.I_ACCEPT_TERMS_AND_CONDITIONS} </Text>
+                <Text variant="hintText">
+                  {LOGIN_TEXT.I_ACCEPT_TERMS_AND_CONDITIONS}{" "}
+                </Text>
               </Checkbox>
             </div>
 
@@ -113,11 +117,10 @@ const Register: React.FC = () => {
             </Button>
 
             <div style={{ textAlign: "center" }}>
-              <Text variant="hintText">{LOGIN_TEXT.ALREADY_HAVE_AN_ACCOUNT}</Text>
-              <Link
-                to="/login"
-                style={{ color: Colors.primary, fontWeight: 600 }}
-              >
+              <Text variant="hintText">
+                {LOGIN_TEXT.ALREADY_HAVE_AN_ACCOUNT}
+              </Text>
+              <Link to="/" style={{ color: Colors.primary, fontWeight: 600 }}>
                 Login
               </Link>
             </div>

@@ -21,7 +21,7 @@ const AppRoutes = () => {
     <Routes>
       {/* ✅ Public Route */}
       <Route
-        path="/login"
+        path="/"
         element={
           <PublicRoute>
             <Login />
