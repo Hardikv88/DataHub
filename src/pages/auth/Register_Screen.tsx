@@ -121,7 +121,7 @@ const Register: React.FC = () => {
                 {LOGIN_TEXT.ALREADY_HAVE_AN_ACCOUNT}
               </Text>
               <Link to="/" style={{ color: Colors.primary, fontWeight: 600 }}>
-                Login
+                {LOGIN_TEXT.LOGIN}
               </Link>
             </div>
           </form>

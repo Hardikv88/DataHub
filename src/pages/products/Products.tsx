@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../storage/Store";
 import { addItem } from "../../storage/AddProducts";
 import { removeWishItem, wishItem } from "../../storage/WishList";
+import { GLOBAL_TEXT } from "../../constants/Strings";
 
 const PAGE_SIZE = 6;
 
@@ -46,20 +47,15 @@ export const Products: React.FC = () => {
   };
 
   const onPageChange = (n: number) => {
-    console.log(n);
     setCurrentPage(n);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleClick = (data: Product) => {
-    console.log(data);
     dispatch(addItem(data));
   };
 
   const btnWishListClick = (data: Product) => {
-    console.log(data);
-
-    console.log(data);
     if (selectWishItems.find((cardItems) => cardItems.id == data.id)) {
       dispatch(removeWishItem(data.id));
     } else {
@@ -69,7 +65,7 @@ export const Products: React.FC = () => {
 
   return (
     <div className="products-page">
-      <h1 className="dashboard-heading">Products</h1>
+      <h1 className="dashboard-heading">{GLOBAL_TEXT.PRODUCTS}</h1>
 
       {/* Banner Carousel */}
       <BannerCarousel />

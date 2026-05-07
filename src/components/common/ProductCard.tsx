@@ -57,7 +57,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     );
   } else if (isInCart) {
     cartButton = (
-     
        <Button bgColor="var(--accent-bg)" icon={<ShoppingCartOutlined />} onClick={(e) => {
           e.stopPropagation();
           btnCallBack?.();
@@ -90,7 +89,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           alt={product.title}
           className="product-card-image"
         />
-
         <Button
           onClick={(e) => {
             e.stopPropagation();

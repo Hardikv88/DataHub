@@ -16,6 +16,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { loadUserById, clearCurrentUser } from "./userSlice";
 import Breadcrumb from "antd/es/breadcrumb/Breadcrumb";
+import { GLOBAL_TEXT } from "../../constants/Strings";
 
 const { Title, Text } = Typography;
 
@@ -125,7 +126,7 @@ const UserDetails: React.FC = () => {
         {/* Left Column */}
         <Col xs={24} md={12}>
           <Card
-            title="Personal Information"
+            title={GLOBAL_TEXT.PERSONAL_INFORMATION}
             bordered={false}
             style={{ borderRadius: 12, height: "100%" }}
           >
@@ -133,25 +134,25 @@ const UserDetails: React.FC = () => {
               column={1}
               labelStyle={{ color: "var(--ant-color-text-secondary)" }}
             >
-              <Descriptions.Item label="Email">
+              <Descriptions.Item label={GLOBAL_TEXT.EMAIL}>
                 {currentUser.email}
               </Descriptions.Item>
-              <Descriptions.Item label="Phone">
+              <Descriptions.Item label={GLOBAL_TEXT.PHONE}>
                 {currentUser.phone}
               </Descriptions.Item>
-              <Descriptions.Item label="Age">
+              <Descriptions.Item label={GLOBAL_TEXT.AGE}>
                 {currentUser.age}
               </Descriptions.Item>
               <Descriptions.Item
-                label="Gender"
+                label={GLOBAL_TEXT.GENDER}
                 style={{ textTransform: "capitalize" }}
               >
                 {currentUser.gender}
               </Descriptions.Item>
-              <Descriptions.Item label="Birth Date">
+              <Descriptions.Item label={GLOBAL_TEXT.BIRTH_DATE}>
                 {currentUser.birthDate}
               </Descriptions.Item>
-              <Descriptions.Item label="University">
+              <Descriptions.Item label={GLOBAL_TEXT.UNIVERSITY}>
                 {currentUser.university}
               </Descriptions.Item>
             </Descriptions>
@@ -161,7 +162,7 @@ const UserDetails: React.FC = () => {
         {/* Right Column */}
         <Col xs={24} md={12}>
           <Card
-            title="Company Information"
+            title={GLOBAL_TEXT.COMPANY_INFORMATION}
             bordered={false}
             style={{ borderRadius: 12, height: "100%" }}
           >
@@ -169,16 +170,16 @@ const UserDetails: React.FC = () => {
               column={1}
               labelStyle={{ color: "var(--ant-color-text-secondary)" }}
             >
-              <Descriptions.Item label="Company Name">
+              <Descriptions.Item label={GLOBAL_TEXT.COMPANY_NAME}>
                 {currentUser.company.name}
               </Descriptions.Item>
-              <Descriptions.Item label="Department">
+              <Descriptions.Item label={GLOBAL_TEXT.DEPARTMENT}>
                 {currentUser.company.department}
               </Descriptions.Item>
-              <Descriptions.Item label="Title">
+              <Descriptions.Item label={GLOBAL_TEXT.TITLE}>
                 {currentUser.company.title}
               </Descriptions.Item>
-              <Descriptions.Item label="Company Address">
+              <Descriptions.Item label={GLOBAL_TEXT.COMPANY_ADDRESS}>
                 {currentUser.company.address.address},{" "}
                 {currentUser.company.address.city},{" "}
                 {currentUser.company.address.stateCode}{" "}
@@ -190,24 +191,24 @@ const UserDetails: React.FC = () => {
 
         {/* Full Width Column */}
         <Col span={24}>
-          <Card title="Location" bordered={false} style={{ borderRadius: 12 }}>
+          <Card title={GLOBAL_TEXT.LOCATION} bordered={false} style={{ borderRadius: 12 }}>
             <Descriptions
               column={{ xs: 1, sm: 2, md: 3 }}
               labelStyle={{ color: "var(--ant-color-text-secondary)" }}
             >
-              <Descriptions.Item label="Address">
+              <Descriptions.Item label={GLOBAL_TEXT.ADDRESS}>
                 {currentUser.address.address}
               </Descriptions.Item>
-              <Descriptions.Item label="City">
+              <Descriptions.Item label={GLOBAL_TEXT.CITY}>
                 {currentUser.address.city}
               </Descriptions.Item>
-              <Descriptions.Item label="State">
+              <Descriptions.Item label={GLOBAL_TEXT.STATE}>
                 {currentUser.address.state}
               </Descriptions.Item>
-              <Descriptions.Item label="Postal Code">
+              <Descriptions.Item label={GLOBAL_TEXT.POSTAL_CODE}>
                 {currentUser.address.postalCode}
               </Descriptions.Item>
-              <Descriptions.Item label="Country">
+              <Descriptions.Item label={GLOBAL_TEXT.COUNTRY}>
                 {currentUser.address.country}
               </Descriptions.Item>
             </Descriptions>
@@ -216,7 +217,7 @@ const UserDetails: React.FC = () => {
 
         <Col xs={24} md={12}>
           <Card
-            title="Bank Information"
+            title={GLOBAL_TEXT.BANK_INFORMATION}
             bordered={false}
             style={{ borderRadius: 12, height: "100%" }}
           >
@@ -224,16 +225,16 @@ const UserDetails: React.FC = () => {
               column={1}
               labelStyle={{color: "var(--ant-color-text-secondary)"}}
             >
-              <Descriptions.Item label="Card Type">
+              <Descriptions.Item label={GLOBAL_TEXT.CARD_TYPE}>
                 {currentUser.bank.cardType}
               </Descriptions.Item>
-              <Descriptions.Item label="Card Number">
+              <Descriptions.Item label={GLOBAL_TEXT.CARD_NUMBER}>
                 {maskCardNumber(currentUser.bank.cardNumber)}
               </Descriptions.Item>
-              <Descriptions.Item label="Expiry">
+              <Descriptions.Item label={GLOBAL_TEXT.EXPIRY}>
                 {currentUser.bank.cardExpire}
               </Descriptions.Item>
-              <Descriptions.Item label="Currency">
+              <Descriptions.Item label={GLOBAL_TEXT.CURRENCY}>
                 {currentUser.bank.currency}
               </Descriptions.Item>
             </Descriptions>
@@ -242,7 +243,7 @@ const UserDetails: React.FC = () => {
 
         <Col xs={24} md={12}>
           <Card
-            title="Crypto Information"
+            title={GLOBAL_TEXT.CRYPTO_INFORMATION}
             bordered={false}
             style={{ borderRadius: 12, height: "100%" }}
           >
@@ -250,14 +251,14 @@ const UserDetails: React.FC = () => {
               column={1}
               labelStyle={{ color: "var(--ant-color-text-secondary)" }}
             >
-              <Descriptions.Item label="Coin">
+              <Descriptions.Item label={GLOBAL_TEXT.COIN}>
                 {currentUser.crypto.coin}
               </Descriptions.Item>
-              <Descriptions.Item label="Network">
+              <Descriptions.Item label={GLOBAL_TEXT.NETWORK}>
                 {currentUser.crypto.network}
               </Descriptions.Item>
               <Descriptions.Item
-                label="Wallet Address"
+                label={GLOBAL_TEXT.WALLET_ADDRESS}
                 style={{ wordBreak: "break-all" }}
               >
                 {currentUser.crypto.wallet}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Input as Avatar, Dropdown, Badge } from "antd";
+import { Layout, Avatar, Dropdown, Badge } from "antd";
 import type { MenuProps } from "antd";
 import {
   BellOutlined,

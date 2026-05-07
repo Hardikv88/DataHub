@@ -86,7 +86,7 @@ const Posts: React.FC = () => {
             height={40}
             width={140}
           >
-            Add Post
+            {GLOBAL_TEXT.ADD_POST}
           </Button>
         </Flex>
       </Flex>
