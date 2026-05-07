@@ -3,6 +3,7 @@ import { Input as AntInput } from 'antd';
 import type { InputProps as AntInputProps } from 'antd';
 import { Colors } from '../../theme/colors';
 import Text from "../../components/common/Text";
+import { useThemeContext } from '../../theme/ThemeContext';
 
 export interface InputProps extends AntInputProps {
   label?: string;
@@ -10,6 +11,10 @@ export interface InputProps extends AntInputProps {
 }
 
 const Input: React.FC<InputProps> = ({ label, validationError, type, style, ...props }) => {
+  const { isDarkMode } = useThemeContext();
+  const bgColor = isDarkMode ? Colors.bgDark : Colors.bgLight;
+  const textColor = isDarkMode ? Colors.textDark : Colors.textLight;
+
   return (
     <div style={{ marginBottom: 16}}>
       {label && (
@@ -21,7 +26,7 @@ const Input: React.FC<InputProps> = ({ label, validationError, type, style, ...p
         <AntInput.Password 
           size="large" 
           className='text'
-          style={{ height: 48, borderRadius: 8, backgroundColor: Colors.bg, ...style }} 
+          style={{ height: 48, borderRadius: 8, backgroundColor: bgColor, color: textColor, ...style }} 
           {...props} 
         />
       ) : (
@@ -29,7 +34,7 @@ const Input: React.FC<InputProps> = ({ label, validationError, type, style, ...p
           size="large" 
           className='text'
           type={type} 
-          style={{ height: 48, borderRadius: 8, backgroundColor: Colors.bg, ...style }} 
+          style={{ height: 48, borderRadius: 8, backgroundColor: bgColor, color: textColor, ...style }} 
           {...props} 
         />
       )}

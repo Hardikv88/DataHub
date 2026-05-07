@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Typography, List, Checkbox } from 'antd';
 import { useThemeContext } from '../../theme/ThemeContext';
+import { GLOBAL_TEXT } from '../../constants/Strings';
 
 const { Title } = Typography;
 
@@ -14,7 +15,7 @@ const IngredientsList: React.FC<IngredientsListProps> = ({ ingredients }) => {
   return (
     <Card 
       className="ingredients-section"
-      title={<Title level={3} style={{ margin: 0 }}>Ingredients</Title>}
+      title={<Title level={3} style={{ margin: 0 }}>{GLOBAL_TEXT.INGREDIENTS}</Title>}
       style={{ 
         borderRadius: 12, 
         height: '100%',

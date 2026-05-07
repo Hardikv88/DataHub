@@ -1,8 +1,9 @@
 import React from 'react';
 import { Row, Col, Card, Typography, Space } from 'antd';
-import { ClockCircleOutlined, UserOutlined, FireOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined, UserOutlined, FireOutlined, GlobalOutlined } from '@ant-design/icons';
 import type { Recipe } from '../../modals/recipe';
 import { useThemeContext } from '../../theme/ThemeContext';
+import { GLOBAL_TEXT } from '../../constants/Strings';
 
 const { Text, Title } = Typography;
 
@@ -15,22 +16,22 @@ const RecipeInfo: React.FC<RecipeInfoProps> = ({ recipe }) => {
 
   const infoItems = [
     {
-      title: 'Prep Time',
+      title: GLOBAL_TEXT.PREP_TIME,
       value: `${recipe.prepTimeMinutes} min`,
       icon: <ClockCircleOutlined style={{ color: '#faad14', fontSize: 24 }} />,
     },
     {
-      title: 'Cook Time',
+      title: GLOBAL_TEXT.COOK_TIME,
       value: `${recipe.cookTimeMinutes} min`,
       icon: <ClockCircleOutlined style={{ color: '#ff4d4f', fontSize: 24 }} />,
     },
     {
-      title: 'Servings',
+      title: GLOBAL_TEXT.SERVINGS,
       value: recipe.servings,
       icon: <UserOutlined style={{ color: '#1677ff', fontSize: 24 }} />,
     },
     {
-      title: 'Calories',
+      title: GLOBAL_TEXT.CALORIES,
       value: `${recipe.caloriesPerServing} kcal`,
       icon: <FireOutlined style={{ color: '#52c41a', fontSize: 24 }} />,
     },

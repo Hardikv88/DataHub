@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Typography, List, Space } from 'antd';
 import { useThemeContext } from '../../theme/ThemeContext';
+import { GLOBAL_TEXT } from '../../constants/Strings';
 
 const { Title, Paragraph } = Typography;
 
@@ -14,7 +15,7 @@ const InstructionsList: React.FC<InstructionsListProps> = ({ instructions }) => 
   return (
     <Card 
       className="instructions-section"
-      title={<Title level={3} style={{ margin: 0 }}>Instructions</Title>}
+      title={<Title level={3} style={{ margin: 0 }}>{GLOBAL_TEXT.INSTRUCTIONS}</Title>}
       style={{ 
         borderRadius: 12,
         background: isDarkMode ? '#1f1f1f' : '#ffffff',
