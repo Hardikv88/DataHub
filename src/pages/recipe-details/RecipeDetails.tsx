@@ -64,7 +64,6 @@ const RecipeDetails: React.FC = () => {
         <>
           <RecipeHero recipe={selectedRecipe} />
           <RecipeInfo recipe={selectedRecipe} />
-          
           <Row gutter={[32, 32]}>
             <Col xs={24} lg={8}>
               <IngredientsList ingredients={selectedRecipe.ingredients} />
