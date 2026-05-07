@@ -47,7 +47,7 @@ export const ProductDetails: React.FC = () => {
         const data = await productService.getProductById(id);
         setProduct(data);
       } catch (err) {
-        setError("Failed to fetch product details. Please try again.");
+        ("Failed to fetch product details. Please try again.");
       } finally {
         setLoading(false);
       }

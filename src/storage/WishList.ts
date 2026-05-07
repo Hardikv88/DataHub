@@ -15,8 +15,8 @@ const WishListItem = createSlice({
   initialState,
   reducers: {
     wishItem: (state, action: PayloadAction<Product>) => {
-        console.log('itemPsuh',action.payload);
-        state.items.push(action.payload)
+      
+      state.items.push(action.payload)
     },
     removeWishItem: (state, action: PayloadAction<number>) => {
       // we'll remove item by id

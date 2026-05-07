@@ -15,13 +15,15 @@ import UserList from "../pages/users/UserList";
 import UserDetails from "../pages/users/UserDetails";
 import Posts from "../pages/posts/Posts";
 import PostDetails from "../pages/posts/PostDetails";
+import Recipes from "../pages/recipes/Recipes";
+import RecipeDetails from "../pages/recipe-details/RecipeDetails";
 
 const AppRoutes = () => {
   return (
     <Routes>
       {/* ✅ Public Route */}
       <Route
-        path="/login"
+        path="/"
         element={
           <PublicRoute>
             <Login />
@@ -52,6 +54,8 @@ const AppRoutes = () => {
           <Route path="/users/:id" element={<UserDetails />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/posts/:id" element={<PostDetails />} />
+          <Route path="/recipes" element={<Recipes />} />
+          <Route path="/recipes/:id" element={<RecipeDetails />} />
         </Route>
       </Route>
     </Routes>

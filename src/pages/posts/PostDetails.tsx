@@ -13,6 +13,7 @@ import {
   Result,
   Divider,
   Flex,
+  message
 } from "antd";
 import {
   LikeOutlined,
@@ -23,7 +24,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { loadPostById, clearSelectedPost } from "./postSlice";
 import { useThemeContext } from "../../theme/ThemeContext";
-import { message } from "antd";
+
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -33,9 +34,7 @@ const PostDetails: React.FC = () => {
   const dispatch = useAppDispatch();
   const { isDarkMode } = useThemeContext();
 
-  const { selectedPost, loading, error } = useAppSelector(
-    (state) => state.posts,
-  );
+  const { selectedPost, loading, error } = useAppSelector((state) => state.posts);
 
   useEffect(() => {
     if (id) {
@@ -83,8 +82,6 @@ const PostDetails: React.FC = () => {
         ]}
       />
 
-      
-
       {loading ? (
         <Card style={{ borderRadius: 12 }}>
           <Skeleton active paragraph={{ rows: 10 }} />
@@ -112,17 +109,18 @@ const PostDetails: React.FC = () => {
               <Text type="secondary" style={{ fontSize: 12 }}>
                 Post ID: {selectedPost.id}
               </Text>
-
               <div style={{ marginTop: 12 }}>
                 {selectedPost.tags.map((tag) => (
-                  <Tag key={tag} color="blue" style={{ borderRadius: 4 }}>
+                  <Tag
+                    key={tag}
+                    color="blue"
+                    style={{ borderRadius: 4, marginRight: 6 }}
+                  >
                     {tag}
                   </Tag>
                 ))}
               </div>
-
               <Divider />
-
               <Paragraph style={{ fontSize: 16, lineHeight: 1.8 }}>
                 {selectedPost.body}
               </Paragraph>
@@ -156,7 +154,9 @@ const PostDetails: React.FC = () => {
                     </Text>
                     <Space>
                       <DislikeOutlined style={{ color: "#ff4d4f" }} />
-                      <Text strong>{selectedPost.reactions?.dislikes || 0}</Text>
+                      <Text strong>
+                        {selectedPost.reactions?.dislikes || 0}
+                      </Text>
                     </Space>
                   </Space>
                 </Col>

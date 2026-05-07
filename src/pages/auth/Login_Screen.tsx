@@ -41,16 +41,14 @@ const Login: React.FC = () => {
   const getLoginUser = async (email: string, password: string) => {
     try {
       setLoading(true);
-      const response = await apiHelper
-        .post<LoginResponseModel>("/auth/login", {
-          username: email,
-          password: password,
-        })
-        .catch((err) => {
-          console.log("Errr", err.message);
-        });
-      login(response.data);
-      setToken(response.data.accessToken); // Store entire user data (including tokens) securely
+      const response = await apiHelper.post<LoginResponseModel>("/auth/login", {
+        username: email,
+        password: password,
+      });
+      if (response && response.data) {
+        login(response.data);
+        setToken(response.data.token);
+      }
       setLoading(false);
     } catch (error) {
       setLoading(false);

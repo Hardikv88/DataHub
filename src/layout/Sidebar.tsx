@@ -9,6 +9,7 @@ import {
   SettingOutlined,
   LineChartOutlined,
   FileTextOutlined,
+  FireOutlined,
 } from "@ant-design/icons";
 import { Layout } from "antd";
 import { useThemeContext } from "../theme/ThemeContext";
@@ -36,6 +37,7 @@ const NAVIGATION: NavigationItem[] = [
   
   { name: "Users", path: "/users", icon: <TeamOutlined /> },
   { name: "Posts", path: "/posts", icon: <FileTextOutlined /> },
+  { name: "Recipes", path: "/recipes", icon: <FireOutlined /> },
   {
     name: GLOBAL_TEXT.ANALYTICS,
     path: "/analytics",

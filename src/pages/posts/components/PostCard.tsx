@@ -56,7 +56,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         <Space size={[0, 8]} wrap>
           <TagOutlined style={{ marginRight: 4, color: '#1677ff' }} />
           {post.tags.map(tag => (
-            <Tag key={tag} color="blue" style={{ borderRadius: 4 }}>
+            <Tag key={tag} color="blue" style={{ borderRadius: 4,marginRight: 6 }}>
               {tag}
             </Tag>
           ))}

@@ -6,6 +6,6 @@ export type LoginResponseModel = {
   lastName: string
   gender: string
   image: string
-  // accessToken: string
-  // refreshToken: string
+  token: string
+  refreshToken: string
 }

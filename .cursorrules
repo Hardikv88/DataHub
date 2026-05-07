@@ -1,0 +1,75 @@
+# Project Rules & Coding Standards
+
+This project follows a specific set of architectural and coding standards to ensure consistency, scalability, and high-quality UI/UX. All AI-generated code must adhere to these rules.
+
+## 🚀 Project Stack
+- **Framework**: React.js
+- **Language**: TypeScript
+- **UI Library**: Ant Design (v5+)
+- **Routing**: React Router v6
+- **State Management**: Redux Toolkit (for complex state) & Context API (for theme/auth)
+- **Styling**: Vanilla CSS / Ant Design overrides (NO Tailwind CSS)
+
+---
+
+## 🛠 1. General Rules
+- **TypeScript Only**: All files must use `.ts` or `.tsx` extensions. No `.js` or `.jsx`.
+- **Functional Components**: Use functional components with `React.FC` typing. Avoid class components.
+- **Hooks**: Use standard and custom hooks for all state and side effects.
+- **No Inline Styles**: Use external CSS files or Ant Design's `style` prop for dynamic values only.
+- **Global Strings**: Never hardcode UI text directly inside components. Use `src/constants/Strings.ts` and the `GLOBAL_TEXT` object for all static text, labels, and messages.
+- **Scalable Architecture**: Keep code modular and decoupled.
+
+## 🎨 2. UI & Theme Rules
+- **Ant Design**: Exclusively use Ant Design components.
+- **Theme Support**: Full support for **Light** and **Dark** modes via `ThemeContext`.
+- **Theme-Aware UI**: Components must dynamically update based on `isDarkMode`.
+  - Use existing `colors.ts` and `typography.ts` variables.
+  - Never hardcode color strings (e.g., "#ffffff").
+- **Responsive Design**: Mobile-first approach. Ensure cards, tables, and layouts stack or adjust correctly.
+
+## 📂 3. Folder Structure
+- `src/assets/`: Static assets like images and global CSS.
+- `src/components/common/`: Reusable, atomic UI components.
+- `src/components/[feature]/`: Feature-specific components (e.g., `recipes/RecipeCard.tsx`).
+- `src/pages/`: Main screen components.
+- `src/services/`: API interaction layer.
+- `src/storage/`: Redux store, slices, and persistent config.
+- `src/theme/`: Colors, typography, and theme provider.
+- `src/routes/`: Centralized route definitions.
+- `src/modals/`: (Or `types/`) TypeScript interface definitions.
+
+## 🔌 4. API & Data Handling
+- **Service Layer**: All API calls must reside in `src/services/`.
+- **Async/Await**: Use `async/await` with `try/catch` blocks.
+- **Normalization**: Transform API responses into clean UI models in the service layer if needed.
+- **State Feedback**: Always handle `loading` and `error` states.
+- **No Direct Calls**: Never call APIs directly inside JSX or page components; use services or Redux thunks.
+
+## 🧩 5. Component Development
+- **Naming**: `PascalCase` for components/files, `camelCase` for variables/functions.
+- **Props**: Always define TypeScript interfaces for component props.
+- **Cleanup**: Use `useEffect` cleanup functions for subscriptions or timers.
+- **Reusability**: If a component is used in more than one place, move it to `components/common/`.
+
+## 🚦 6. Routing & Navigation
+- Centralize all routes in `src/routes/AppRoutes.tsx`.
+- Use dynamic routing for details pages (e.g., `/recipes/:id`).
+- Use `useNavigate` for programmatic navigation and `NavLink` for sidebar links.
+
+## 📝 7. Forms, Modals & Lists
+- **Forms**: Use Ant Design `Form` with validation rules.
+- **Modals**: Use Ant Design `Modal`. Reset forms and states on `onCancel` or success.
+- **Tables/Lists**: Implement pagination and handle `Empty` states.
+
+---
+
+## 🔤 8. Global Strings Management
+- **Single Source of Truth**: All UI strings, labels, placeholders, and notification messages must be stored in `src/constants/Strings.ts`.
+- **Naming**: Use `camelCase` for keys and group them logically (e.g., `GLOBAL_TEXT.auth.login`).
+- **Usage**:
+  - ✅ Correct: `<Button>{GLOBAL_TEXT.addNewMember}</Button>`
+  - ❌ Incorrect: `<Button>Add New Member</Button>`
+- **Dynamic Text**: Use helper functions for text with variables: `welcomeUser: (name: string) => \`Welcome \${name}\``.
+- **Validation & Toasts**: Store all form validation messages and toast notifications in `Strings.ts`.
+- **Localization Ready**: Maintain a structure that easily supports future i18n implementation.
