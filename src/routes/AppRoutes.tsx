@@ -17,6 +17,7 @@ import Posts from "../pages/posts/Posts";
 import PostDetails from "../pages/posts/PostDetails";
 import Recipes from "../pages/recipes/Recipes";
 import RecipeDetails from "../pages/recipe-details/RecipeDetails";
+import Todos from "../pages/todos/Todos";
 
 const AppRoutes = () => {
   return (
@@ -56,6 +57,7 @@ const AppRoutes = () => {
           <Route path="/posts/:id" element={<PostDetails />} />
           <Route path="/recipes" element={<Recipes />} />
           <Route path="/recipes/:id" element={<RecipeDetails />} />
+          <Route path="/todos" element={<Todos />} />
         </Route>
       </Route>
     </Routes>

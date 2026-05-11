@@ -10,12 +10,12 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-
 import addCardItem from './AddProducts';
 import WishListItem from './WishList';
 import userReducer from '../pages/users/userSlice';
 import postReducer from '../pages/posts/postSlice';
 import recipeReducer from '../pages/recipes/recipeSlice';
+import todoReducer from '../pages/todos/todoSlice';
 
 // Custom storage adapter to bypass Vite's ESM/CJS interop issues with redux-persist
 const customStorage = {
@@ -38,17 +38,16 @@ const persistConfig = {
   // whitelist:['addItem ']
 }
  
-
 const rootReducer = combineReducers({
     addItem:addCardItem,
     WishListItem:WishListItem,
     users: userReducer,
     posts: postReducer,
     recipes: recipeReducer,
+    todos: todoReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
- 
 
 export const store = configureStore({
   reducer: persistedReducer,

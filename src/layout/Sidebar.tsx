@@ -10,6 +10,7 @@ import {
   LineChartOutlined,
   FileTextOutlined,
   FireOutlined,
+  CheckSquareOutlined,
 } from "@ant-design/icons";
 import { Layout } from "antd";
 import { useThemeContext } from "../theme/ThemeContext";
@@ -35,9 +36,10 @@ const NAVIGATION: NavigationItem[] = [
   { name: GLOBAL_TEXT.WISH_LIST, path: "/wishlist", icon: <HeartOutlined /> },
   { name: GLOBAL_TEXT.ORDERS, path: "/orders", icon: <ShoppingCartOutlined /> },
   
-  { name: "Users", path: "/users", icon: <TeamOutlined /> },
-  { name: "Posts", path: "/posts", icon: <FileTextOutlined /> },
-  { name: "Recipes", path: "/recipes", icon: <FireOutlined /> },
+  { name: GLOBAL_TEXT.TEAM_MEMBERS, path: "/users", icon: <TeamOutlined /> },
+  { name: GLOBAL_TEXT.POSTS, path: "/posts", icon: <FileTextOutlined /> },
+  { name: GLOBAL_TEXT.RECIPES, path: "/recipes", icon: <FireOutlined /> },
+  { name: GLOBAL_TEXT.TODOS, path: "/todos", icon: <CheckSquareOutlined /> },
   {
     name: GLOBAL_TEXT.ANALYTICS,
     path: "/analytics",
