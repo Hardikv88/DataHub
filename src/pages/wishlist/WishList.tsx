@@ -11,7 +11,7 @@ export const WishList: React.FC = () => {
   const wishListItems = useSelector((state: RootState) => state.WishListItem);
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleClick = (id: number) => {};
+  const handleClick = (_id: number) => {};
 
   const btnWishListClick = (id: number) => {
     dispatch(removeWishItem(id));

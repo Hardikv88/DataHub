@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Card, Typography, Space } from 'antd';
-import { ClockCircleOutlined, UserOutlined, FireOutlined, GlobalOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined, UserOutlined, FireOutlined } from '@ant-design/icons';
 import type { Recipe } from '../../modals/recipe';
 import { useThemeContext } from '../../theme/ThemeContext';
 import { GLOBAL_TEXT } from '../../constants/Strings';

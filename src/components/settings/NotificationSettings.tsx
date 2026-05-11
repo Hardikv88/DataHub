@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Switch, List, Button, message, Typography } from 'antd';
+import { Switch, List, Button, message, Typography } from 'antd';
 import { GLOBAL_TEXT } from '../../constants/Strings';
 import { useThemeContext } from '../../theme/ThemeContext';
 

@@ -31,13 +31,13 @@ export const Settings: React.FC = () => {
 
   const handleLogout = () => {
     confirm({
-      title: "Are you sure you want to logout?",
+      title: GLOBAL_TEXT.ARE_YOU_SURE_YOU_WANT_TO_LOGOUT,
       icon: <ExclamationCircleOutlined />,
-      content: "You will need to login again to access your account.",
+      content: GLOBAL_TEXT.YOU_WILL_NEED_TO_LOGIN_AGAIN,
       onOk() {
         localStorage.clear();
         message.success("Logged out successfully");
-        navigate("/login");
+        navigate("/");
       },
     });
   };
@@ -65,7 +65,6 @@ export const Settings: React.FC = () => {
       key: "profile",
       label: (
         <span>
-         
           {GLOBAL_TEXT.PROFILE_SETTINGS}
         </span>
       ),
@@ -116,16 +115,13 @@ export const Settings: React.FC = () => {
           background: isDarkMode ? "#1f1f1f" : "#ffffff",
           border: `1px solid ${isDarkMode ? "#303030" : "#f0f0f0"}`,
         }}
-        styles={{ body: { padding: "24px" } }}
-      >
+        styles={{ body: { padding: "24px" } }}>
         <Tabs
           defaultActiveKey="profile"
           tabPosition="left"
           items={tabItems}
           style={{ minHeight: 800 }}
-          className="settings-tabs"
-        />
-
+          className="settings-tabs"/>
         <Divider />
 
         <div className="danger-zone" style={{ marginTop: 24 }}>
@@ -148,7 +144,7 @@ export const Settings: React.FC = () => {
                   gap: 16,
                 }}
               >
-                <div>
+              <div>
                   <Text
                     strong
                     style={{
@@ -188,7 +184,7 @@ export const Settings: React.FC = () => {
                   >
                     {GLOBAL_TEXT.DELETE_ACCOUNT}
                   </Text>
-                  <Text type="secondary">P
+                  <Text type="secondary">
                     {GLOBAL_TEXT.PERMANENTLY_DELETE_YOUR_ACCOUNT}
                   </Text>
                 </div>
@@ -197,11 +193,11 @@ export const Settings: React.FC = () => {
                   danger
                   icon={<DeleteOutlined />}
                   onClick={handleDeleteAccount}
-                >
-                  {GLOBAL_TEXT.DELETE_ACCOUNT}
+                >{GLOBAL_TEXT.DELETE_ACCOUNT}
                 </Button>
               </div>
             </Space>
+            
           </Card>
         </div>
       </Card>

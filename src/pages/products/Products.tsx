@@ -17,7 +17,7 @@ import { GLOBAL_TEXT } from "../../constants/Strings";
 const PAGE_SIZE = 6;
 
 export const Products: React.FC = () => {
-  const [isLoading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [productsData, setProductsData] = useState<Product[] | []>([]);
   const totalProducts = productsData.length;
   const totalPages = Math.ceil(totalProducts / PAGE_SIZE);
