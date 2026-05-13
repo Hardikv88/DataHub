@@ -5,7 +5,6 @@ import { addQuoteLocal } from '../../pages/quotes/quoteSlice';
 import type { Quote } from '../../services/quoteService';
 import { useThemeContext } from '../../theme/ThemeContext';
 import { GLOBAL_TEXT } from '../../constants/Strings';
-
 const { TextArea } = Input;
 
 interface AddQuoteModalProps {
@@ -43,7 +42,7 @@ const AddQuoteModal: React.FC<AddQuoteModalProps> = ({ visible, onCancel }) => {
       destroyOnClose
       style={{ borderRadius: 16 }}
       styles={{
-        header: { 
+        header: {
           borderBottom: `1px solid ${isDarkMode ? '#303030' : '#f0f0f0'}`,
           paddingBottom: 16,
           marginBottom: 16
@@ -62,16 +61,16 @@ const AddQuoteModal: React.FC<AddQuoteModalProps> = ({ visible, onCancel }) => {
       >
         <Form.Item
           name="quote"
-          label={<span style={{ color: isDarkMode ? '#ffffff' : '#000000' }}>Quote Text</span>}
+          label={<span style={{ color: isDarkMode ? '#ffffff' : '#000000' }}>{GLOBAL_TEXT.QUOTE_TEXT}</span>}
           rules={[
-            { required: true, message: 'Please enter the quote text' },
-            { min: 10, message: 'Quote must be at least 10 characters long' }
+            { required: true, message: GLOBAL_TEXT.PLEASE_ENTER_THE_QUOTE_TEXT },
+            { min: 10, message: GLOBAL_TEXT.QUOTE_MIN_LENGTH }
           ]}
         >
-          <TextArea 
-            rows={4} 
-            placeholder="Enter the quote here..." 
-            style={{ 
+          <TextArea
+            rows={4}
+            placeholder={GLOBAL_TEXT.ENTER_QUOTE_TEXT}
+            style={{
               borderRadius: 8,
               background: isDarkMode ? '#141414' : '#ffffff',
               borderColor: isDarkMode ? '#434343' : '#d9d9d9',
@@ -82,12 +81,12 @@ const AddQuoteModal: React.FC<AddQuoteModalProps> = ({ visible, onCancel }) => {
 
         <Form.Item
           name="author"
-          label={<span style={{ color: isDarkMode ? '#ffffff' : '#000000' }}>Author Name</span>}
-          rules={[{ required: true, message: 'Please enter the author name' }]}
+          label={<span style={{ color: isDarkMode ? '#ffffff' : '#000000' }}>{GLOBAL_TEXT.AUTHOR_NAME}</span>}
+          rules={[{ required: true, message: GLOBAL_TEXT.PLEASE_ENTER_THE_AUTHOR_NAME }]}
         >
-          <Input 
-            placeholder="Enter author name" 
-            style={{ 
+          <Input
+            placeholder={GLOBAL_TEXT.ENTER_AUTHOR_NAME}
+            style={{
               borderRadius: 8,
               background: isDarkMode ? '#141414' : '#ffffff',
               borderColor: isDarkMode ? '#434343' : '#d9d9d9',

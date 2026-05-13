@@ -144,5 +144,12 @@ export const GLOBAL_TEXT = {
   TOTAL_QUOTES: "Total Quotes",
   ADD_NEW_QUOTE: "Add New Quote",
   CANCEL: "Cancel",
+  QUOTE_TEXT: "Quote Text",
+  AUTHOR_NAME: "Author Name",
+  ENTER_AUTHOR_NAME: "Enter author name",
+  PLEASE_ENTER_THE_AUTHOR_NAME: "Please enter the author name",
+  PLEASE_ENTER_THE_QUOTE_TEXT: "Please enter the quote text",
+  QUOTE_MIN_LENGTH: "Quote must be at least 10 characters long",
+  ENTER_QUOTE_TEXT: "Enter the quote here...",
 };
 
