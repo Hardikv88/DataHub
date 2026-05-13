@@ -73,3 +73,18 @@ This project follows a specific set of architectural and coding standards to ens
 - **Dynamic Text**: Use helper functions for text with variables: `welcomeUser: (name: string) => \`Welcome \${name}\``.
 - **Validation & Toasts**: Store all form validation messages and toast notifications in `Strings.ts`.
 - **Localization Ready**: Maintain a structure that easily supports future i18n implementation.
+
+---
+
+## 🤖 9. Universal AI Agent Rules
+- **Mandatory History Logging**: EVERY task, conversation, or modification undertaken by ANY AI Agent (including Antigravity, Cursor, Gemini, or any other agent manager) MUST be automatically logged in `HISTORY.md`.
+- **Log Format**: Each entry must include the following fields:
+    - **Date**: [YYYY-MM-DD]
+    - **Time**: [HH:MM AM/PM]
+    - **Agent Name**: [e.g., Antigravity, Cursor, etc.]
+    - **Task Title**: [Brief title of the task]
+    - **Prompt**: [The user's core request/prompt]
+    - **Response Summary**: [Summary of changes and actions taken]
+    - **Status**: [Pending / Completed / Failed]
+- **Maintenance**: Entries must be maintained in reverse chronological order (newest at the top).
+- **Completion Criteria**: No task is considered complete until it has been logged in `HISTORY.md` in the above format.
