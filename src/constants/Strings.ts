@@ -139,4 +139,10 @@ export const GLOBAL_TEXT = {
   PENDING: "Pending",
   ADD_TODO: "Add Todo",
   TODO_DETAILS: "Todo Details",
+  QUOTES: "Quotes",
+  ADD_QUOTE: "Add Quote",
+  TOTAL_QUOTES: "Total Quotes",
+  ADD_NEW_QUOTE: "Add New Quote",
+  CANCEL: "Cancel",
 };
+

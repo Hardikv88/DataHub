@@ -16,6 +16,8 @@ import userReducer from '../pages/users/userSlice';
 import postReducer from '../pages/posts/postSlice';
 import recipeReducer from '../pages/recipes/recipeSlice';
 import todoReducer from '../pages/todos/todoSlice';
+import quoteReducer from '../pages/quotes/quoteSlice';
+
 
 // Custom storage adapter to bypass Vite's ESM/CJS interop issues with redux-persist
 const customStorage = {
@@ -45,6 +47,7 @@ const rootReducer = combineReducers({
     posts: postReducer,
     recipes: recipeReducer,
     todos: todoReducer,
+    quotes: quoteReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

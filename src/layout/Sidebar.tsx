@@ -12,6 +12,7 @@ import {
   FireOutlined,
   CheckSquareOutlined,
 } from "@ant-design/icons";
+
 import { Layout } from "antd";
 import { useThemeContext } from "../theme/ThemeContext";
 import { GLOBAL_TEXT } from "../constants/Strings";
@@ -40,6 +41,7 @@ const NAVIGATION: NavigationItem[] = [
   { name: GLOBAL_TEXT.POSTS, path: "/posts", icon: <FileTextOutlined /> },
   { name: GLOBAL_TEXT.RECIPES, path: "/recipes", icon: <FireOutlined /> },
   { name: GLOBAL_TEXT.TODOS, path: "/todos", icon: <CheckSquareOutlined /> },
+  { name: GLOBAL_TEXT.QUOTES, path: "/quotes", icon: <CheckSquareOutlined /> },
   {
     name: GLOBAL_TEXT.ANALYTICS,
     path: "/analytics",

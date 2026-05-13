@@ -40,3 +40,18 @@ src/
 - [ ] API service implemented.
 - [ ] Routing integrated.
 - [ ] No console warnings/errors.
+
+---
+
+## 🤖 Universal AI Agent Rules
+- **Mandatory History Logging**: EVERY task, conversation, or modification undertaken by ANY AI Agent (Antigravity, Cursor, Gemini, etc.) MUST be automatically logged in `HISTORY.md`.
+- **Log Format**:
+    - **Date**: [YYYY-MM-DD]
+    - **Time**: [HH:MM AM/PM]
+    - **Agent Name**: [e.g., Antigravity, Cursor, etc.]
+    - **Task Title**: [Brief title of the task]
+    - **Prompt**: [The user's core request/prompt]
+    - **Response Summary**: [Summary of changes and actions taken]
+    - **Status**: [Pending / Completed / Failed]
+- **Maintenance**: Entries must be maintained in reverse chronological order (newest at the top).
+- **Completion Criteria**: No task is considered complete until it has been logged in `HISTORY.md` in the specified format.
