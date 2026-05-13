@@ -77,6 +77,7 @@ This project follows a specific set of architectural and coding standards to ens
 ---
 
 ## 🤖 9. Universal AI Agent Rules
+- **Mandatory History Logging**: EVERY task, conversation, or modification undertaken by ANY AI Agent (including Antigravity, Cursor, Gemini, or any other agent manager) MUST be automatically logged in `HISTORY.md`.
 - **Log Format**: Each entry must include the following fields:
     - **Date**: [YYYY-MM-DD]
     - **Time**: [HH:MM AM/PM]
