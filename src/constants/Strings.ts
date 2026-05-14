@@ -151,5 +151,15 @@ export const GLOBAL_TEXT = {
   PLEASE_ENTER_THE_QUOTE_TEXT: "Please enter the quote text",
   QUOTE_MIN_LENGTH: "Quote must be at least 10 characters long",
   ENTER_QUOTE_TEXT: "Enter the quote here...",
+  SUBTOTAL: "Subtotal",
+  GST_TAX: "GST/Tax charges",
+  PLATFORM_CHARGES: "Platform Charges",
+  DELIVERY_CHARGES: "Delivery Charges",
+  DISCOUNT_COUPON: "Discount Coupon",
+  TOTAL_PAYABLE: "Total Payable Amount",
+  SECURE_PAYMENT: "Secure Payment",
+  PROCEED_TO_BUY: "Proceed to Buy",
+  VIEW_DETAILS: "View Details",
+  HIDE_DETAILS: "Hide Details",
 };
 
