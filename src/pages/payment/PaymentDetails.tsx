@@ -27,6 +27,7 @@ export const PaymentDetails: React.FC = () => {
   const [saveDetails, setSaveDetails] = useState(true);
   const [recurring, setRecurring] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -99,7 +100,12 @@ export const PaymentDetails: React.FC = () => {
 
   const handleConfirmOrder = () => {
     if (validateForm()) {
-      setIsSubmitted(true);
+      setIsProcessing(true);
+      // Simulate processing delay for premium feel
+      setTimeout(() => {
+        setIsProcessing(false);
+        setIsSubmitted(true);
+      }, 1500);
     }
   };
 
@@ -108,15 +114,33 @@ export const PaymentDetails: React.FC = () => {
       <div className="payment-page-wrapper">
         <div className="success-container">
           <div className="success-card">
-            <div className="success-icon">
-              <CheckCircleFilled />
+            {/* Animated Particles */}
+            <div className="particles-container">
+              <div className="particle p1"></div>
+              <div className="particle p2"></div>
+              <div className="particle p3"></div>
+              <div className="particle p4"></div>
             </div>
+
+            {/* GPay Success Animation */}
+            <div className="success-animation-wrapper">
+              <div className="ripple ripple-1"></div>
+              <div className="ripple ripple-2"></div>
+              <div className="checkmark-circle">
+                <svg className="checkmark-svg" viewBox="0 0 52 52">
+                  <path d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                </svg>
+              </div>
+            </div>
+
             <h1>Order Confirmed!</h1>
             <p>Your payment of <strong>${totalPayable.toFixed(2)}</strong> has been processed successfully.</p>
+            
             <div className="order-number-box">
               <span>Order Number</span>
-              <strong>#DH-{Math.floor(Math.random() * 1000000)}</strong>
+              <strong>#DH-{Math.floor(100000 + Math.random() * 900000)}</strong>
             </div>
+
             <div className="success-actions">
               <button className="confirm-order-btn" onClick={() => navigate("/dashboard")}>
                 Go to Dashboard
@@ -352,8 +376,12 @@ export const PaymentDetails: React.FC = () => {
               <span className="top-up-value">${totalPayable.toFixed(2)}</span>
             </div>
 
-            <button className="confirm-order-btn" onClick={handleConfirmOrder}>
-              Confirm your order
+            <button 
+              className={`confirm-order-btn ${isProcessing ? 'processing' : ''}`} 
+              onClick={handleConfirmOrder}
+              disabled={isProcessing}
+            >
+              {isProcessing ? "Processing Transaction..." : "Confirm your order"}
             </button>
           </div>
 
