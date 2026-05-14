@@ -67,3 +67,28 @@ This file maintains a complete record of all tasks performed by all AI Agents.
     - Updated `PROJECT_GUIDELINES.md` to reinforce the history logging requirement.
     - Created `HISTORY.md` to serve as the central log for all future agent tasks.
 - **Status**: Completed ✅
+
+---
+
+## [2026-05-14 11:35 AM] - Enforce Prompt Logging For Every Agent Task
+- **Agent Name**: GPT-5.4
+- **Task Title**: Enforce Prompt Logging For Every Agent Task
+- **Prompt**: "if anyask take agent add log in `/Users/hardikv/Desktop/flutter_project/DataHub/HISTORY.md`  and also Use `/Users/hardikv/Desktop/flutter_project/DataHub/agent/PromptLoggingAgentRules.md` and log in `/Users/hardikv/Desktop/flutter_project/DataHub/HISTORY.md` file"
+- **Response Summary**:
+    - Confirmed that every future agent task should be logged in `HISTORY.md`.
+    - Used `agent/PromptLoggingAgentRules.md` as the logging rule reference.
+    - Appended this instruction as a new history entry in `HISTORY.md`.
+- **Status**: Completed ✅
+
+---
+
+## [2026-05-14 02:18 PM] - Implement Expand/Collapse for Invoice Footer
+- **Agent Name**: Gemini-3-Flash-Preview
+- **Task Title**: Implement Expand/Collapse for Invoice Footer
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/pages/orders/Orders.tsx` Invoice & Payment footer section expand/collapse design UI and Subtotal, GST/Tax, Platform charges, Delivery charges, Discount coupon columns"
+- **Response Summary**:
+    - Added `isExpanded` state to `Orders.tsx` to handle footer collapse/expand.
+    - Integrated `UpOutlined` and `DownOutlined` icons for the toggle UI.
+    - Added `VIEW_DETAILS` and `HIDE_DETAILS` to `Strings.ts`.
+    - Modified `index.css` to add smooth transitions, animations, and responsive grid handling for the collapsible invoice details section.
+- **Status**: Completed ✅
