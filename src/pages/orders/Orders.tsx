@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import type { AppDispatch, RootState } from "../../storage/Store";
 import { removeItem } from "../../storage/AddProducts";
 import { ProductCard } from "../../components/common/ProductCard";
@@ -9,6 +10,7 @@ import { GLOBAL_TEXT } from "../../constants/Strings";
 export const Orders: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.addItem);
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -18,11 +20,20 @@ export const Orders: React.FC = () => {
 
   const handleProceed = () => {
     setIsLoading(true);
-    // Simulate payment process
+    // Simulate minor delay then redirect with data
     setTimeout(() => {
       setIsLoading(false);
-      alert("Payment process initiated!");
-    }, 2000);
+      navigate("/checkout", {
+        state: {
+          subtotal,
+          gst,
+          platformCharges,
+          deliveryCharges,
+          discount,
+          totalPayable
+        }
+      });
+    }, 800);
   };
 
   // Calculations

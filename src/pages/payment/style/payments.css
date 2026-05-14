@@ -1,0 +1,603 @@
+/* ─── Payment Details Page ─── */
+.payment-page-wrapper {
+  background-color: var(--bg);
+  min-height: 100vh;
+  padding: 40px 24px;
+  transition: all 0.3s ease;
+}
+
+.payment-content-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.payment-form-section {
+  flex: 1.5;
+}
+
+.payment-summary-section {
+  flex: 1;
+  position: sticky;
+  top: 100px;
+}
+
+/* Checkout Steps */
+.checkout-steps {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.step.active {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.step.completed {
+  color: var(--success);
+}
+
+.step-separator {
+  width: 16px;
+  height: 1px;
+  background-color: var(--border);
+}
+
+/* Payment Card */
+.payment-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.payment-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-h);
+}
+
+.form-group {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.optional-tag {
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+.payment-input {
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  outline: none;
+  background-color: var(--card-bg);
+  color: var(--text);
+}
+
+.payment-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+/* Method Selector */
+.method-grid {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.method-item {
+  flex: 1;
+  height: 60px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  padding: 10px;
+  background-color: var(--card-bg);
+}
+
+.method-item img {
+  max-height: 24px;
+  max-width: 100%;
+  object-fit: contain;
+  /* Add brightness filter for dark mode if logos are too dark */
+}
+
+html.dark .method-item img {
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.method-item.active {
+  border-color: var(--accent);
+  background-color: var(--accent-bg);
+}
+
+.select-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  color: var(--accent);
+  background: var(--card-bg);
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+/* Card Details */
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.flex-2 { flex: 2; }
+.flex-1 { flex: 1; }
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon .payment-input {
+  width: 100%;
+  padding-right: 45px;
+}
+
+.input-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  font-size: 18px;
+}
+
+.text-center { text-align: center; }
+
+.info-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--accent);
+  margin: 16px 0 24px 0;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-h);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.checkbox-group input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--accent);
+}
+
+/* Recurring Section */
+.recurring-section {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.recurring-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.recurring-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.recommended-badge {
+  background-color: var(--accent-bg);
+  color: var(--accent);
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.toggle-switch {
+  width: 48px;
+  height: 24px;
+  background-color: var(--border);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-switch.active {
+  background-color: var(--accent);
+}
+
+.switch-handle {
+  width: 18px;
+  height: 18px;
+  background: var(--white);
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: all 0.3s ease;
+}
+
+.toggle-switch.active .switch-handle {
+  left: 27px;
+}
+
+.recurring-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.recurring-controls {
+  display: flex;
+  gap: 24px;
+}
+
+.recurring-controls.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.select-placeholder {
+  padding: 12px 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.return-link {
+  margin-top: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Summary Section */
+.summary-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+}
+
+.summary-card h3 {
+  margin-bottom: 32px;
+  color: var(--text-h);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.summary-amount {
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.summary-divider {
+  height: 1px;
+  background-color: var(--border);
+  margin: 24px 0;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.total-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.total-label {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-h);
+}
+
+.vat-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.total-amount-large {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-h);
+}
+
+.top-up-preview {
+  background-color: var(--accent-bg);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border: 1px solid var(--accent);
+}
+
+.top-up-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-up-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.top-up-sub {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 14px;
+}
+
+.top-up-value {
+  font-weight: 800;
+  color: var(--accent);
+  font-size: 16px;
+}
+
+.confirm-order-btn {
+  width: 100%;
+  background-color: var(--accent);
+  color: var(--white);
+  border: none;
+  padding: 18px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.confirm-order-btn:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--accent-bg);
+}
+
+/* Testimonial Box */
+.testimonial-box {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.testimonial-box p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: var(--accent-bg);
+  color: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.author-title {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.payment-input.error {
+  border-color: var(--danger);
+}
+
+.error-text {
+  color: var(--danger);
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* Success Screen */
+.success-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 150px);
+}
+
+.success-card {
+  background: var(--card-bg);
+  padding: 48px;
+  border-radius: 24px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.success-icon {
+  font-size: 80px;
+  color: var(--success);
+  margin-bottom: 24px;
+}
+
+.success-card h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-h);
+  margin-bottom: 16px;
+}
+
+.success-card p {
+  color: var(--text-secondary);
+  font-size: 16px;
+  margin-bottom: 32px;
+}
+
+.order-number-box {
+  background: var(--bg);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 32px;
+  border: 1px dashed var(--border);
+}
+
+.order-number-box span {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.order-number-box strong {
+  font-size: 20px;
+  color: var(--accent);
+}
+
+.success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.success-actions .confirm-order-btn {
+  max-width: 300px;
+}
+
+/* ─── Responsive Adjustments for Payment ─── */
+@media (max-width: 992px) {
+  .payment-content-container {
+    flex-direction: column;
+  }
+  
+  .payment-summary-section {
+    position: static;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .payment-page-wrapper {
+    padding: 20px 16px;
+  }
+
+  .payment-card, .summary-card {
+    padding: 20px;
+  }
+
+  .method-grid {
+    flex-wrap: wrap;
+  }
+
+  .method-item {
+    flex: 0 0 calc(50% - 6px);
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .recurring-controls {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .total-amount-large {
+    font-size: 24px;
+  }
+}
