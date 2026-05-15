@@ -11,6 +11,7 @@ import { Settings } from "../pages/settings/Settings";
 import { Analytics } from "../pages/analytics/Analytics";
 import { WishList } from "../pages/wishlist/WishList";
 import { ProductDetails } from "../pages/products/ProductDetails";
+import { PaymentDetails } from "../pages/payment/PaymentDetails";
 import UserList from "../pages/users/UserList";
 import UserDetails from "../pages/users/UserDetails";
 import Posts from "../pages/posts/Posts";
@@ -53,6 +54,7 @@ const AppRoutes = () => {
           <Route path="/settings" element={<Settings />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/products/:id" element={<ProductDetails />} />
+          <Route path="/checkout" element={<PaymentDetails />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/users/:id" element={<UserDetails />} />
           <Route path="/posts" element={<Posts />} />

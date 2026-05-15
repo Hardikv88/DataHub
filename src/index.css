@@ -387,26 +387,7 @@ a {
   box-shadow: none;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .payment-action {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 16px;
-  }
-  
-  .proceed-btn {
-    width: 100%;
-  }
 
-  .invoice-footer {
-    padding: 16px;
-  }
-
-  .invoice-details {
-    grid-template-columns: 1fr;
-  }
-}
 
 .header-greeting {
   display: flex;
