@@ -8,8 +8,8 @@ import {
   ClockCircleOutlined,
   CheckOutlined,
 } from "@ant-design/icons";
-import { GLOBAL_TEXT } from "../../constants/Strings";
 import { useThemeContext } from "../../theme/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const { Text, Title } = Typography;
 
@@ -23,11 +23,11 @@ export interface NotificationItem {
   type: "info" | "success" | "warning" | "error";
 }
 
-const mockNotifications: NotificationItem[] = [
+const getMockNotifications = (): NotificationItem[] => [
   {
     id: "1",
-    title: "Order Successful",
-    description: "Your order #12345 has been placed successfully.",
+    title: "NOTIFICATION_ORDER_SUCCESSFUL",
+    description: "NOTIFICATION_ORDER_SUCCESSFUL_DESC",
     time: "10:30 AM",
     date: "2026-05-15",
     isRead: false,
@@ -35,44 +35,19 @@ const mockNotifications: NotificationItem[] = [
   },
   {
     id: "2",
-    title: "New Message",
-    description: "You have received a new message from Admin.",
+    title: "NOTIFICATION_NEW_MESSAGE",
+    description: "NOTIFICATION_NEW_MESSAGE_DESC",
     time: "09:15 AM",
     date: "2026-05-15",
     isRead: false,
     type: "info",
   },
-  {
-    id: "3",
-    title: "System Update",
-    description: "Scheduled maintenance will occur at 12:00 AM.",
-    time: "08:00 PM",
-    date: "2026-05-14",
-    isRead: true,
-    type: "warning",
-  },
-  {
-    id: "4",
-    title: "Payment Failed",
-    description: "Your payment for order #12344 was declined.",
-    time: "05:45 PM",
-    date: "2026-05-14",
-    isRead: true,
-    type: "error",
-  },
-  {
-    id: "5",
-    title: "Profile Updated",
-    description: "Your profile information has been updated successfully.",
-    time: "02:20 PM",
-    date: "2026-05-13",
-    isRead: true,
-    type: "success",
-  },
 ];
 
 export const NotificationList: React.FC = () => {
   const { isDarkMode } = useThemeContext();
+  const { t } = useTranslation();
+  const mockNotifications = getMockNotifications();
 
   const getIcon = (type: string) => {
     switch (type) {
@@ -106,10 +81,10 @@ export const NotificationList: React.FC = () => {
         }}
       >
         <Title level={5} style={{ margin: 0, color: isDarkMode ? "#ffffff" : "#000000" }}>
-          {GLOBAL_TEXT.NOTIFICATIONS}
+          {t("NOTIFICATIONS")}
         </Title>
         <Button type="link" size="small" style={{ padding: 0 }}>
-          {GLOBAL_TEXT.MARK_ALL_AS_READ}
+          {t("MARK_ALL_AS_READ")}
         </Button>
       </div>
 
@@ -156,7 +131,7 @@ export const NotificationList: React.FC = () => {
                 title={
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                     <Text strong style={{ color: isDarkMode ? "#ffffff" : "#000000", fontSize: "14px" }}>
-                      {item.title}
+                      {t(item.title)}
                     </Text>
                     {!item.isRead && (
                       <CheckOutlined style={{ fontSize: "12px", color: "#1890ff" }} />
@@ -174,7 +149,7 @@ export const NotificationList: React.FC = () => {
                         color: isDarkMode ? "rgba(255, 255, 255, 0.65)" : "rgba(0, 0, 0, 0.45)",
                       }}
                     >
-                      {item.description}
+                      {t(item.description)}
                     </Text>
                     <Space size="small" style={{ fontSize: "11px", color: "var(--text-secondary)" }}>
                       <ClockCircleOutlined style={{ fontSize: "10px" }} />
@@ -198,7 +173,7 @@ export const NotificationList: React.FC = () => {
         }}
       >
         <Button type="text" block style={{ color: "#1890ff" }}>
-          {GLOBAL_TEXT.VIEW_ALL_NOTIFICATIONS}
+          {t("VIEW_ALL_NOTIFICATIONS")}
         </Button>
       </div>
     </div>

@@ -14,26 +14,28 @@ import {
   DeleteOutlined,
   ExclamationCircleOutlined,
 } from "@ant-design/icons";
-import { GLOBAL_TEXT } from "../../constants/Strings";
 import { useThemeContext } from "../../theme/ThemeContext";
 import ProfileSettings from "../../components/settings/ProfileSettings";
 import NotificationSettings from "../../components/settings/NotificationSettings";
 import PrivacySettings from "../../components/settings/PrivacySettings";
 import ThemeSettings from "../../components/settings/ThemeSettings";
+import LanguageSettings from "../../components/settings/LanguageSettings";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const { Title, Text } = Typography;
 const { confirm } = Modal;
 
 export const Settings: React.FC = () => {
   const { isDarkMode } = useThemeContext();
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     confirm({
-      title: GLOBAL_TEXT.ARE_YOU_SURE_YOU_WANT_TO_LOGOUT,
+      title: t("ARE_YOU_SURE_YOU_WANT_TO_LOGOUT"),
       icon: <ExclamationCircleOutlined />,
-      content: GLOBAL_TEXT.YOU_WILL_NEED_TO_LOGIN_AGAIN,
+      content: t("YOU_WILL_NEED_TO_LOGIN_AGAIN"),
       onOk() {
         localStorage.clear();
         message.success("Logged out successfully");
@@ -45,10 +47,10 @@ export const Settings: React.FC = () => {
   const handleDeleteAccount = () => {
     confirm({
       title: (
-        <span style={{ color: "#ff4d4f" }}>{GLOBAL_TEXT.DELETE_ACCOUNT}</span>
+        <span style={{ color: "#ff4d4f" }}>{t("DELETE_ACCOUNT")}</span>
       ),
       icon: <DeleteOutlined style={{ color: "#ff4d4f" }} />,
-      content: GLOBAL_TEXT.DELETE_WARNING,
+      content: t("DELETE_WARNING"),
       okText: "Delete",
       okType: "danger",
       cancelText: "Cancel",
@@ -65,7 +67,7 @@ export const Settings: React.FC = () => {
       key: "profile",
       label: (
         <span>
-          {GLOBAL_TEXT.PROFILE_SETTINGS}
+          {t("PROFILE_SETTINGS")}
         </span>
       ),
       children: <ProfileSettings />,
@@ -74,7 +76,7 @@ export const Settings: React.FC = () => {
       key: "notifications",
       label: (
         <span>
-          {GLOBAL_TEXT.NOTIFICATION_SETTINGS}
+          {t("NOTIFICATION_SETTINGS")}
         </span>
       ),
       children: <NotificationSettings />,
@@ -83,7 +85,7 @@ export const Settings: React.FC = () => {
       key: "privacy",
       label: (
         <span>
-          {GLOBAL_TEXT.PRIVACY_SECURITY}
+          {t("PRIVACY_SECURITY")}
         </span>
       ),
       children: <PrivacySettings />,
@@ -93,10 +95,19 @@ export const Settings: React.FC = () => {
       label: (
         <span>
           
-          {GLOBAL_TEXT.APPLICATION_THEME}
+          {t("APPLICATION_THEME")}
         </span>
       ),
       children: <ThemeSettings />,
+    },
+    {
+      key: "language",
+      label: (
+        <span>
+          {t("LANGUAGE")}
+        </span>
+      ),
+      children: <LanguageSettings />,
     },
   ];
 
@@ -106,7 +117,7 @@ export const Settings: React.FC = () => {
         level={2}
         style={{ color: isDarkMode ? "#ffffff" : "#000000", marginBottom: 24 }}
       >
-        {GLOBAL_TEXT.SETTINGS}
+        {t("SETTINGS")}
       </Title>
 
       <Card
@@ -152,14 +163,14 @@ export const Settings: React.FC = () => {
                       color: isDarkMode ? "#ffffff" : "#000000",
                     }}
                   >
-                    {GLOBAL_TEXT.LOGOUT_FROM_APPLICATION}
+                    {t("LOGOUT_FROM_APPLICATION")}
                   </Text>
                   <Text type="secondary">
-                    {GLOBAL_TEXT.SESSION_WILL_BE_TERMINATED}
+                    {t("SESSION_WILL_BE_TERMINATED")}
                   </Text>
                 </div>
                 <Button icon={<LogoutOutlined />} onClick={handleLogout}>
-                  {GLOBAL_TEXT.LOGOUT}
+                  {t("LOGOUT")}
                 </Button>
               </div>
 
@@ -182,10 +193,10 @@ export const Settings: React.FC = () => {
                       color: isDarkMode ? "#ffffff" : "#000000",
                     }}
                   >
-                    {GLOBAL_TEXT.DELETE_ACCOUNT}
+                    {t("DELETE_ACCOUNT")}
                   </Text>
                   <Text type="secondary">
-                    {GLOBAL_TEXT.PERMANENTLY_DELETE_YOUR_ACCOUNT}
+                    {t("PERMANENTLY_DELETE_YOUR_ACCOUNT")}
                   </Text>
                 </div>
                 <Button
@@ -193,7 +204,7 @@ export const Settings: React.FC = () => {
                   danger
                   icon={<DeleteOutlined />}
                   onClick={handleDeleteAccount}
-                >{GLOBAL_TEXT.DELETE_ACCOUNT}
+                >{t("DELETE_ACCOUNT")}
                 </Button>
               </div>
             </Space>

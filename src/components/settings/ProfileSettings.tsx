@@ -1,24 +1,15 @@
 import React from "react";
-import {
-  Form,
-  Input,
-  Button,
-  Upload,
-  Avatar,
-  Row,
-  Col,
-  Space,
-  message,
-} from "antd";
+import { Form, Input, Button, Row, Col, Avatar, Space, Upload, message } from "antd";
 import { UserOutlined, UploadOutlined } from "@ant-design/icons";
-import { GLOBAL_TEXT } from "../../constants/Strings";
 import { useThemeContext } from "../../theme/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const ProfileSettings: React.FC = () => {
   const { isDarkMode } = useThemeContext();
+  const { t } = useTranslation();
   const [form] = Form.useForm();
   const onFinish = (_values: any) => {
-    message.success(GLOBAL_TEXT.SAVE_CHANGES + " successful!");
+    message.success(t("SAVE_CHANGES") + " successful!");
   };
 
   
@@ -42,9 +33,9 @@ const ProfileSettings: React.FC = () => {
         <Col>
           <Space direction="vertical">
             <Upload showUploadList={false}>
-              <Button icon={<UploadOutlined />}>{GLOBAL_TEXT.CHANGE_AVATAR}</Button>
+              <Button icon={<UploadOutlined />}>{t("CHANGE_AVATAR")}</Button>
             </Upload>
-            <Button type="link" danger size="small">{GLOBAL_TEXT.REMOVE}</Button>
+            <Button type="link" danger size="small">{t("REMOVE")}</Button>
           </Space>
         </Col>
       </Row>
@@ -52,7 +43,7 @@ const ProfileSettings: React.FC = () => {
         <Col xs={24} sm={12}>
           <Form.Item
             name="firstName"
-            label={<span style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>{GLOBAL_TEXT.FIRST_NAME}</span>}
+            label={<span style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>{t("FIRST_NAME")}</span>}
             rules={[{required: true, message: "Please input your first name!"}]}
           >
             <Input />
@@ -63,7 +54,7 @@ const ProfileSettings: React.FC = () => {
             name="lastName"
             label={
               <span style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>
-                {GLOBAL_TEXT.LAST_NAME}
+                {t("LAST_NAME")}
               </span>
             }
             rules={[
@@ -79,7 +70,7 @@ const ProfileSettings: React.FC = () => {
         name="email"
         label={
           <span style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>
-            {GLOBAL_TEXT.EMAIL}
+            {t("EMAIL")}
           </span>
         }
         rules={[
@@ -94,7 +85,7 @@ const ProfileSettings: React.FC = () => {
         name="phone"
         label={
           <span style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>
-            {GLOBAL_TEXT.PHONE_NUMBER}
+            {t("PHONE_NUMBER")}
           </span>
         }
       >
@@ -105,7 +96,7 @@ const ProfileSettings: React.FC = () => {
         name="bio"
         label={
           <span style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>
-            {GLOBAL_TEXT.BIO}
+            {t("BIO")}
           </span>
         }
       >
@@ -114,7 +105,7 @@ const ProfileSettings: React.FC = () => {
 
       <Form.Item>
         <Button type="primary" htmlType="submit">
-          {GLOBAL_TEXT.SAVE_CHANGES}
+          {t("SAVE_CHANGES")}
         </Button>
       </Form.Item>
     </Form>

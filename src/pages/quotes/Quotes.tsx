@@ -19,11 +19,12 @@ import {
 import QuoteCard from '../../components/quotes/QuoteCard';
 import AddQuoteModal from '../../components/quotes/AddQuoteModal';
 import { useThemeContext } from '../../theme/ThemeContext';
-import { GLOBAL_TEXT } from '../../constants/Strings';
+import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
 
 const Quotes: React.FC = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { isDarkMode } = useThemeContext();
   const [isModalVisible, setIsModalVisible] = React.useState(false);
@@ -60,9 +61,9 @@ const Quotes: React.FC = () => {
       <Flex justify="space-between" align="center" style={{ marginBottom: 24 }} wrap="wrap" gap="middle">
         <div>
           <Title level={2} style={{ margin: 0, color: isDarkMode ? '#ffffff' : '#000000' }}>
-            {GLOBAL_TEXT.QUOTES}
+            {t("QUOTES")}
           </Title>
-          <Text type="secondary">{GLOBAL_TEXT.TOTAL_QUOTES}: {total}</Text>
+          <Text type="secondary">{t("TOTAL_QUOTES")}: {total}</Text>
         </div>
         
         {/* Search Ready Structure */}

@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Card } from "../../components/common/Card";
 import { Colors } from "../../theme/colors";
+import { useTranslation } from "react-i18next";
 
 import CountUpNumber from "../../utils/CountUpNumber";
 import { LineChart } from "./components/LineChart";
@@ -22,7 +23,8 @@ const StatCard: React.FC<{
   trend: string;
   isPositive: boolean;
   prefix: string;
-}> = ({ title, value, icon, trend, isPositive, prefix }) => (
+  t: any;
+}> = ({ title, value, icon, trend, isPositive, prefix, t }) => (
   <Card
     style={{
       padding: "24px",
@@ -79,48 +81,53 @@ const StatCard: React.FC<{
       >
         {trend}
       </span>
-      <span style={{ color: "var(--text)" }}>Up from yesterday</span>
+      <span style={{ color: "var(--text)" }}>{t("UP_FROM_YESTERDAY")}</span>
     </div>
   </Card>
 );
 
 export const Dashboard: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <div>
-      <h1 className="dashboard-heading">Dashboard</h1>
-
+      <h1 className="dashboard-heading">{t("DASHBOARD")}</h1>
       <div className="dashboard-grid">
         <StatCard
-          title="Total Users"
+          title={t("TOTAL_USERS")}
           value="40,689"
           icon={<UserOutlined />}
           trend="8.5%"
           isPositive={true}
           prefix=""
+          t={t}
         />
         <StatCard
-          title="Total Orders"
+          title={t("TOTAL_ORDERS")}
           value="10,293"
           icon={<ShoppingCartOutlined />}
           trend="1.3%"
           isPositive={true}
           prefix=""
+          t={t}
         />
         <StatCard
-          title="Today's Sales"
+          title={t("TODAY_SALES")}
           value="89,000"
           icon={<DollarOutlined />}
           trend="4.3%"
           isPositive={false}
           prefix="$"
+          t={t}
         />
         <StatCard
-          title="Active Users"
+          title={t("ACTIVE_USERS")}
           value="2040"
           icon={<RiseOutlined />}
           trend="1.8%"
           isPositive={true}
           prefix=""
+          t={t}
         />
       </div>
 

@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../store/hooks';
 import { addQuoteLocal } from '../../pages/quotes/quoteSlice';
 import type { Quote } from '../../services/quoteService';
 import { useThemeContext } from '../../theme/ThemeContext';
-import { GLOBAL_TEXT } from '../../constants/Strings';
+import { useTranslation } from 'react-i18next';
 const { TextArea } = Input;
 
 interface AddQuoteModalProps {
@@ -13,6 +13,7 @@ interface AddQuoteModalProps {
 }
 
 const AddQuoteModal: React.FC<AddQuoteModalProps> = ({ visible, onCancel }) => {
+  const { t } = useTranslation();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const { isDarkMode } = useThemeContext();
@@ -32,12 +33,12 @@ const AddQuoteModal: React.FC<AddQuoteModalProps> = ({ visible, onCancel }) => {
 
   return (
     <Modal
-      title={GLOBAL_TEXT.ADD_NEW_QUOTE}
+      title={t("ADD_NEW_QUOTE")}
       open={visible}
       onCancel={onCancel}
       onOk={() => form.submit()}
-      okText={GLOBAL_TEXT.ADD_QUOTE}
-      cancelText={GLOBAL_TEXT.CANCEL}
+      okText={t("ADD_QUOTE")}
+      cancelText={t("CANCEL")}
       centered
       destroyOnClose
       style={{ borderRadius: 16 }}
@@ -47,7 +48,7 @@ const AddQuoteModal: React.FC<AddQuoteModalProps> = ({ visible, onCancel }) => {
           paddingBottom: 16,
           marginBottom: 16
         },
-        content: {
+        body: {
           background: isDarkMode ? '#1f1f1f' : '#ffffff',
           borderRadius: 16
         }
@@ -61,15 +62,15 @@ const AddQuoteModal: React.FC<AddQuoteModalProps> = ({ visible, onCancel }) => {
       >
         <Form.Item
           name="quote"
-          label={<span style={{ color: isDarkMode ? '#ffffff' : '#000000' }}>{GLOBAL_TEXT.QUOTE_TEXT}</span>}
+          label={<span style={{ color: isDarkMode ? '#ffffff' : '#000000' }}>{t("QUOTE_TEXT")}</span>}
           rules={[
-            { required: true, message: GLOBAL_TEXT.PLEASE_ENTER_THE_QUOTE_TEXT },
-            { min: 10, message: GLOBAL_TEXT.QUOTE_MIN_LENGTH }
+            { required: true, message: t("PLEASE_ENTER_THE_QUOTE_TEXT") },
+            { min: 10, message: t("QUOTE_MIN_LENGTH") }
           ]}
         >
           <TextArea
             rows={4}
-            placeholder={GLOBAL_TEXT.ENTER_QUOTE_TEXT}
+            placeholder={t("ENTER_QUOTE_TEXT")}
             style={{
               borderRadius: 8,
               background: isDarkMode ? '#141414' : '#ffffff',
@@ -81,11 +82,11 @@ const AddQuoteModal: React.FC<AddQuoteModalProps> = ({ visible, onCancel }) => {
 
         <Form.Item
           name="author"
-          label={<span style={{ color: isDarkMode ? '#ffffff' : '#000000' }}>{GLOBAL_TEXT.AUTHOR_NAME}</span>}
-          rules={[{ required: true, message: GLOBAL_TEXT.PLEASE_ENTER_THE_AUTHOR_NAME }]}
+          label={<span style={{ color: isDarkMode ? '#ffffff' : '#000000' }}>{t("AUTHOR_NAME")}</span>}
+          rules={[{ required: true, message: t("PLEASE_ENTER_THE_AUTHOR_NAME") }]}
         >
           <Input
-            placeholder={GLOBAL_TEXT.ENTER_AUTHOR_NAME}
+            placeholder={t("ENTER_AUTHOR_NAME")}
             style={{
               borderRadius: 8,
               background: isDarkMode ? '#141414' : '#ffffff',

@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
+import "./i18n/config";
 import ConfigProvider from "antd/es/config-provider/index";
 import { AuthProvider } from "./context/AuthContext.tsx";
 import { Provider } from "react-redux";

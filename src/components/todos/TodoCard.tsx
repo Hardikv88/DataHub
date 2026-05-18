@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons';
 import type { Todo } from '../../services/todoService';
 import { useThemeContext } from '../../theme/ThemeContext';
-import { GLOBAL_TEXT } from '../../constants/Strings';
+import { useTranslation } from 'react-i18next';
 
 const { Text } = Typography;
 
@@ -17,6 +17,7 @@ interface TodoCardProps {
 
 const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
   const { isDarkMode } = useThemeContext();
+  const { t } = useTranslation();
 
   return (
     <Card 
@@ -37,7 +38,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
             icon={todo.completed ? <CheckCircleFilled /> : <ClockCircleFilled />}
             style={{ borderRadius: 12, padding: '0 12px' }}
           >
-            {todo.completed ? GLOBAL_TEXT.COMPLETED : GLOBAL_TEXT.PENDING}
+            {todo.completed ? t("COMPLETED") : t("PENDING")}
           </Tag>
         </Flex>
 

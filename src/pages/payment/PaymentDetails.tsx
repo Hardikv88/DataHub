@@ -8,6 +8,7 @@ import {
   QuestionCircleOutlined,
   CreditCardOutlined
 } from "@ant-design/icons";
+import { t } from "i18next";
 
 interface PaymentState {
   subtotal: number;
@@ -172,7 +173,7 @@ export const PaymentDetails: React.FC = () => {
 
           <div className="payment-card">
             <div className="form-group">
-              <label>PO Number <span className="optional-tag">Optional</span></label>
+              <label>{t("PO_NUMBER")} <span className="optional-tag">{t("OPTIONAL")}</span></label>
               <input 
                 type="text" 
                 name="poNumber"
@@ -184,7 +185,7 @@ export const PaymentDetails: React.FC = () => {
             </div>
 
             <div className="payment-method-selector">
-              <h3>Payment method</h3>
+              <h3>{t("PAYMENT_METHOD")}</h3>
               <div className="method-grid">
                 <div 
                   className={`method-item ${paymentMethod === "card" ? "active" : ""}`}
@@ -219,7 +220,7 @@ export const PaymentDetails: React.FC = () => {
 
             <div className="card-details-form">
               <div className="form-group">
-                <label>Cardholder name</label>
+                <label>{t("CARDHOLDER_NAME")}</label>
                 <input 
                   type="text" 
                   name="cardholderName"
@@ -233,7 +234,7 @@ export const PaymentDetails: React.FC = () => {
 
               <div className="form-row">
                 <div className="form-group flex-2">
-                  <label>Card number</label>
+                  <label>{t("CARD_NUMBER")}</label>
                   <div className="input-with-icon">
                     <input 
                       type="text" 
@@ -248,7 +249,7 @@ export const PaymentDetails: React.FC = () => {
                   {errors.cardNumber && <span className="error-text">{errors.cardNumber}</span>}
                 </div>
                 <div className="form-group flex-1">
-                  <label>Date</label>
+                  <label>{t("DATE")}</label>
                   <input 
                     type="text" 
                     name="expiryDate"
@@ -260,7 +261,7 @@ export const PaymentDetails: React.FC = () => {
                   {errors.expiryDate && <span className="error-text">{errors.expiryDate}</span>}
                 </div>
                 <div className="form-group flex-1">
-                  <label>CCV <QuestionCircleOutlined className="label-icon" /></label>
+                  <label>{t("CCV")} <QuestionCircleOutlined className="label-icon" /></label>
                   <input 
                     type="password" 
                     name="ccv"
@@ -275,7 +276,7 @@ export const PaymentDetails: React.FC = () => {
 
               <div className="info-message">
                 <InfoCircleOutlined />
-                <span>Credit Card payments may take up to 24h to be processed <QuestionCircleOutlined /></span>
+                <span>{t("CCV_DESCRIPTION")}</span>
               </div>
 
               <div className="checkbox-group">
@@ -285,15 +286,15 @@ export const PaymentDetails: React.FC = () => {
                   checked={saveDetails} 
                   onChange={() => setSaveDetails(!saveDetails)} 
                 />
-                <label htmlFor="save-details">Save my payment details for future purchases</label>
+                <label htmlFor="save-details">{t("SAVE_PAYMENT_DETAILS")}</label>
               </div>
             </div>
 
             <div className="recurring-section">
               <div className="recurring-header">
                 <div className="recurring-title">
-                  <span>Enable recurring payments</span>
-                  <span className="recommended-badge">Highly recommended</span>
+                  <span>{t("ENABLE_RECURRING_PAYMENTS")}</span>
+                  <span className="recommended-badge">{t("HIGHLY_RECOMMENDED")}</span>
                 </div>
                 <div 
                   className={`toggle-switch ${recurring ? "active" : ""}`}
@@ -303,23 +304,22 @@ export const PaymentDetails: React.FC = () => {
                 </div>
               </div>
               <p className="recurring-desc">
-                Never run out of balance when sending your campaigns! You can change these settings on your financial preferences anytime.
+                {t("NEVER_RUN_OUT_OF_BALANCE_DESCRIPTION")}
               </p>
-              
               <div className="recurring-controls disabled">
                 <div className="form-group">
-                  <label>When my balance is below</label>
+                  <label>{t("WHEN_MY_BALANCE_IS_BELOW")}</label>
                   <div className="select-placeholder">€ 10.00</div>
                 </div>
                 <div className="form-group">
-                  <label>Automatically recharge</label>
+                  <label>{t("AUTOMATIC_RE_RECHARGE")}</label>
                   <div className="select-placeholder">€ 100.00</div>
                 </div>
               </div>
             </div>
 
             <div className="return-link" onClick={() => navigate("/orders")}>
-              <ArrowLeftOutlined /> Return to orders
+              <ArrowLeftOutlined /> {t("RETURN_TO_ORDERS")}
             </div>
           </div>
         </div>
@@ -327,33 +327,33 @@ export const PaymentDetails: React.FC = () => {
         {/* Right Side - Summary */}
         <div className="payment-summary-section">
           <div className="summary-card">
-            <h3>Order Summary</h3>
+            <h3>{t("ORDER_SUMMARY")}</h3>
             
             <div className="summary-row">
-              <span>Subtotal:</span>
+              <span>{t("SUBTOTAL")}:</span>
               <span className="summary-amount">${subtotal.toFixed(2)}</span>
             </div>
 
             <div className="summary-row">
-              <span>GST/Tax (18%):</span>
+              <span>{t("GST")} Tax (18%):</span>
               <span className="summary-amount">+${gst.toFixed(2)}</span>
             </div>
 
             <div className="summary-row">
-              <span>Platform Charges:</span>
+              <span>{t("PLATFORM_CHARGES")}:</span>
               <span className="summary-amount">+${platformCharges.toFixed(2)}</span>
             </div>
 
             {deliveryCharges > 0 && (
               <div className="summary-row">
-                <span>Delivery Charges:</span>
+                <span>{t("DELIVERY_CHARGES")}:</span>
                 <span className="summary-amount">+${deliveryCharges.toFixed(2)}</span>
               </div>
             )}
 
             {discount > 0 && (
               <div className="summary-row" style={{ color: "var(--success)" }}>
-                <span>Discount Coupon:</span>
+                <span>{t("DISCOUNT_COUPON")}:</span>
                 <span className="summary-amount" style={{ color: "var(--success)" }}>-${discount.toFixed(2)}</span>
               </div>
             )}
@@ -362,7 +362,7 @@ export const PaymentDetails: React.FC = () => {
 
             <div className="summary-total">
               <div className="total-text">
-                <span className="total-label">Total Payable:</span>
+                <span className="total-label">{t("TOTAL_PAYABLE")}:</span>
                 <span className="vat-label">(Incl. Tax)</span>
               </div>
               <span className="total-amount-large">${totalPayable.toFixed(2)}</span>
@@ -370,8 +370,8 @@ export const PaymentDetails: React.FC = () => {
 
             <div className="top-up-preview">
               <div className="top-up-info">
-                <span className="top-up-label">Final Amount</span>
-                <span className="top-up-sub">Secure Checkout</span>
+                <span className="top-up-label">{t("FINAL_AMOUNT")}</span>
+                <span className="top-up-sub">{t("SECURE_CHECKOUT")}</span>
               </div>
               <span className="top-up-value">${totalPayable.toFixed(2)}</span>
             </div>
@@ -381,13 +381,13 @@ export const PaymentDetails: React.FC = () => {
               onClick={handleConfirmOrder}
               disabled={isProcessing}
             >
-              {isProcessing ? "Processing Transaction..." : "Confirm your order"}
+              {isProcessing ? t("PROCESSING_TRANSACTION") : t("CONFIRM_ORDER")}
             </button>
           </div>
 
           <div className="testimonial-box">
             <p>
-              "With DataHub, we send 1M messages in 10 minutes. Every second counts, DataHub is literally saving lives."
+              {t("CONFIRM_ORDER_DESCRIPTION")}
             </p>
             <div className="testimonial-author">
               <div className="author-avatar">FH</div>

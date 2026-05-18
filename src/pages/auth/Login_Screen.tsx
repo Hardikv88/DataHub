@@ -6,13 +6,14 @@ import Button from "../../components/common/Button";
 import { Colors } from "../../theme/colors";
 import "./auth.css";
 import Text from "../../components/common/Text";
-import { GLOBAL_TEXT, LOGIN_TEXT } from "../../constants/Strings";
 import apiHelper from "../../services/ApiHelper";
 import type { LoginResponseModel } from "../../modals/LoginResponseModel";
 import { setToken } from "../../utils/LocalStorage";
 import { useAuth } from "../../hooks/useAuth";
+import { useTranslation } from "react-i18next";
 
 const Login: React.FC = () => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "emilys",
@@ -25,12 +26,12 @@ const Login: React.FC = () => {
 
     // Simple validation
     if (!email) {
-      alert(LOGIN_TEXT.EMAIL_IS_REQUIRED);
+      alert(t("EMAIL_IS_REQUIRED"));
       return;
     }
 
     if (!password) {
-      alert(LOGIN_TEXT.PASSWORD_IS_REQUIRED);
+      alert(t("PASSWORD_IS_REQUIRED"));
       return;
     }
 
@@ -60,10 +61,10 @@ const Login: React.FC = () => {
       <div className="auth-form-wrapper">
         <div className="auth-inner">
           <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <Text variant="heading">{LOGIN_TEXT.LOGIN_TO_YOUR_ACCOUNT}</Text>
+            <Text variant="heading">{t("LOGIN_TO_YOUR_ACCOUNT")}</Text>
             <div style={{ height: 8 }} />
             <Text variant="subText">
-              {LOGIN_TEXT.PLEASE_ENTER_YOUR_EMAIL_AND_PASSWORD}
+              {t("PLEASE_ENTER_YOUR_EMAIL_AND_PASSWORD")}
             </Text>
           </div>
 
@@ -79,8 +80,8 @@ const Login: React.FC = () => {
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
-              label={GLOBAL_TEXT.EMAIL}
-              placeholder={GLOBAL_TEXT.ENTER_YOUR_EMAIL}
+              label={t("EMAIL")}
+              placeholder={t("ENTER_YOUR_EMAIL")}
               type="text"
             />
 
@@ -91,8 +92,8 @@ const Login: React.FC = () => {
                 marginBottom: 8,
               }}
             >
-              <Text variant="text">{GLOBAL_TEXT.PASSWORD}</Text>
-              <Text variant="hintText">{LOGIN_TEXT.FORGOT_PASSWORD}</Text>
+              <Text variant="text">{t("PASSWORD")}</Text>
+              <Text variant="hintText">{t("FORGOT_PASSWORD")}</Text>
             </div>
             <Input
               name="password"
@@ -113,7 +114,7 @@ const Login: React.FC = () => {
               }}
             >
               <Checkbox>
-                <Text variant="hintText">{LOGIN_TEXT.REMEMBER_PASSWORD}</Text>
+                <Text variant="hintText">{t("REMEMBER_PASSWORD")}</Text>
               </Checkbox>
             </div>
 
@@ -123,17 +124,17 @@ const Login: React.FC = () => {
               loading={loading}
               style={{ marginBottom: 24 }}
             >
-              Sign In
+              {t("SIGNIN")}
             </Button>
 
             <div style={{ textAlign: "center" }}>
-              <Text variant="hintText">{LOGIN_TEXT.DONT_HAVE_AN_ACCOUNT}</Text>
+              <Text variant="hintText">{t("DONT_HAVE_AN_ACCOUNT")}</Text>
               <Link
                 to="/register"
                 className="text"
                 style={{ color: Colors.primary }}
               >
-                {LOGIN_TEXT.CREATE_ACCOUNT}
+                {t("CREATE_ACCOUNT")}
               </Link>
             </div>
           </form>

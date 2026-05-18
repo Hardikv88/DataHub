@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Typography, List, Space } from 'antd';
 import { useThemeContext } from '../../theme/ThemeContext';
-import { GLOBAL_TEXT } from '../../constants/Strings';
+import { useTranslation } from 'react-i18next';
 
 const { Title, Paragraph } = Typography;
 
@@ -11,11 +11,12 @@ interface InstructionsListProps {
 
 const InstructionsList: React.FC<InstructionsListProps> = ({ instructions }) => {
   const { isDarkMode } = useThemeContext();
+  const { t } = useTranslation();
 
   return (
     <Card 
       className="instructions-section"
-      title={<Title level={3} style={{ margin: 0 }}>{GLOBAL_TEXT.INSTRUCTIONS}</Title>}
+      title={<Title level={3} style={{ margin: 0 }}>{t("INSTRUCTIONS")}</Title>}
       style={{ 
         borderRadius: 12,
         background: isDarkMode ? '#1f1f1f' : '#ffffff',

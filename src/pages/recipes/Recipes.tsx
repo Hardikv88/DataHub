@@ -14,11 +14,12 @@ import { loadRecipes, setCurrentPage, setPageSize, setSearchQuery, searchAllReci
 import RecipeCard from '../../components/recipes/RecipeCard';
 import Input from '../../components/common/Input';
 import { useThemeContext } from '../../theme/ThemeContext';
-import { GLOBAL_TEXT } from '../../constants/Strings';
+import { useTranslation } from 'react-i18next';
 
 const { Title } = Typography;
 
 const Recipes: React.FC = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { isDarkMode } = useThemeContext();
   const {
@@ -63,7 +64,7 @@ const Recipes: React.FC = () => {
       {/* Header Section */}
       <Flex justify="space-between" align="center" style={{ marginBottom: 24 }} wrap="wrap" gap="middle">
         <Title level={2} style={{ margin: 0, color: isDarkMode ? '#ffffff' : '#000000' }}>
-          {GLOBAL_TEXT.RECIPES}
+          {t("RECIPES")}
         </Title>
         <Input
           placeholder="Search recipes..."

@@ -12,9 +12,9 @@ import {
 } from "@ant-design/icons";
 import { useThemeContext } from "../theme/ThemeContext";
 import { useAuth } from "../hooks/useAuth";
-import { GLOBAL_TEXT } from "../constants/Strings";
 import { useNavigate } from "react-router-dom";
 import { NotificationList } from "../components/common/NotificationList";
+import { useTranslation } from "react-i18next";
 
 const { Header: AntHeader } = Layout;
 
@@ -24,6 +24,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
   const { isDarkMode, toggleTheme } = useThemeContext();
+  const { t } = useTranslation();
   const { logout, user } = useAuth();
   const navigate = useNavigate();
 
@@ -31,28 +32,28 @@ export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
 
   function getGreeting(): string {
     const hour = new Date().getHours();
-    if (hour < 12) return "Good morning,";
-    if (hour < 17) return "Good afternoon,";
-    return "Good evening,";
+    if (hour < 12) return "GREETING_MORNING";
+    if (hour < 17) return "GREETING_AFTERNOON";
+    return "GREETING_EVENING";
   }
 
   const userMenu: MenuProps["items"] = [
     {
       key: "1",
-      label: GLOBAL_TEXT.PROFILE,
+      label: t("PROFILE"),
       onClick: () => navigate("/profile"),
       icon: <UserOutlined />,
     },
     {
       key: "2",
-      label: GLOBAL_TEXT.SETTINGS,
+      label: t("SETTINGS"),
       onClick: () => navigate("/settings"),
       icon: <SettingOutlined />,
     },
     { type: "divider" },
     {
       key: "3",
-      label: GLOBAL_TEXT.LOGOUT,
+      label: t("LOGOUT"),
       onClick: () => logout(),
       icon: <LogoutOutlined />,
       danger: true,
@@ -68,7 +69,7 @@ export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
 
       {/* Greeting */}
       <div className="header-greeting">
-        <p>{greeting}</p>
+        <p>{t(greeting)}</p>
         <h2>
           {user?.firstName} {user?.lastName}
         </h2>

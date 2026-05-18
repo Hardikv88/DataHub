@@ -1,13 +1,14 @@
 import React from 'react';
-import { Radio, Typography, Space, Flex, Row, Col } from 'antd';
+import { Radio, Row, Col, Typography, Flex, Space } from 'antd';
 import { BulbOutlined, BulbFilled } from '@ant-design/icons';
-import { GLOBAL_TEXT } from '../../constants/Strings';
 import { useThemeContext } from '../../theme/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const { Text } = Typography;
 
 const ThemeSettings: React.FC = () => {
   const { isDarkMode, toggleTheme } = useThemeContext();
+  const { t } = useTranslation();
 
   return (
     <div style={{ maxWidth: 600 }}>
@@ -33,7 +34,7 @@ const ThemeSettings: React.FC = () => {
                   <Flex align="center" gap={12}>
                     <BulbOutlined style={{ fontSize: 20 }} />
                     <div>
-                      <Text strong style={{ display: 'block' }}>{GLOBAL_TEXT.LIGHT_MODE}</Text>
+                      <Text strong style={{ display: 'block' }}>{t("LIGHT_MODE")}</Text>
                       <Text type="secondary" style={{ fontSize: 12 }}>Classic light appearance</Text>
                     </div>
                   </Flex>
@@ -44,7 +45,7 @@ const ThemeSettings: React.FC = () => {
                   <Flex align="center" gap={12}>
                     <BulbFilled style={{ fontSize: 20 }} />
                     <div>
-                      <Text strong style={{ display: 'block' }}>{GLOBAL_TEXT.DARK_MODE}</Text>
+                      <Text strong style={{ display: 'block' }}>{t("DARK_MODE")}</Text>
                       <Text type="secondary" style={{ fontSize: 12 }}>Modern dark appearance</Text>
                     </div>
                   </Flex>

@@ -12,11 +12,12 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../storage/Store";
 import { addItem } from "../../storage/AddProducts";
 import { removeWishItem, wishItem } from "../../storage/WishList";
-import { GLOBAL_TEXT } from "../../constants/Strings";
+import { useTranslation } from "react-i18next";
 
 const PAGE_SIZE = 6;
 
 export const Products: React.FC = () => {
+  const { t } = useTranslation();
   const [, setLoading] = useState(false);
   const [productsData, setProductsData] = useState<Product[] | []>([]);
   const totalProducts = productsData.length;
@@ -65,7 +66,7 @@ export const Products: React.FC = () => {
 
   return (
     <div className="products-page">
-      <h1 className="dashboard-heading">{GLOBAL_TEXT.PRODUCTS}</h1>
+      <h1 className="dashboard-heading">{t("PRODUCTS")}</h1>
 
       {/* Banner Carousel */}
       <BannerCarousel />

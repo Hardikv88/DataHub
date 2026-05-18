@@ -66,9 +66,9 @@ This project follows a specific set of architectural and coding standards to ens
 
 ## 🔤 8. Global Strings Management
 - **Single Source of Truth**: All UI strings, labels, placeholders, and notification messages must be stored in `src/constants/Strings.ts`.
-- **Naming**: Use `camelCase` for keys and group them logically (e.g., `GLOBAL_TEXT.auth.login`).
+- **Naming**: Use `camelCase` for keys and group them logically (e.g., `auth.login`).
 - **Usage**:
-  - ✅ Correct: `<Button>{GLOBAL_TEXT.addNewMember}</Button>`
+  - ✅ Correct: `<Button>{addNewMember}</Button>`
   - ❌ Incorrect: `<Button>Add New Member</Button>`
 - **Dynamic Text**: Use helper functions for text with variables: `welcomeUser: (name: string) => \`Welcome \${name}\``.
 - **Validation & Toasts**: Store all form validation messages and toast notifications in `Strings.ts`.
