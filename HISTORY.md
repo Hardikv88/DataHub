@@ -4,6 +4,22 @@ This file maintains a complete record of all tasks performed by all AI Agents.
 
 ---
 
+## [2026-05-18 12:15 PM] - Enhance Language Settings UI Design
+- **Agent Name**: Gemini-3-Flash-Preview
+- **Task Title**: Enhance Language Settings UI
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/components/settings/LanguageSettings.tsx` more attractive UI desing not changes funcationlty only changes UI design better user experience"
+- **Response Summary**:
+    - Redesigned the Language Settings page with a modern, card-based interface.
+    - Replaced the simple radio button group with interactive language cards featuring flag emojis and native names.
+    - Added visual feedback for selection using primary color borders, background tints, and checkmark icons.
+    - Implemented hover effects and smooth transitions for a better user experience.
+    - Added an "Auto-save" notice at the bottom to inform users about preference persistence.
+    - Added missing translation keys (`CHOOSE_PREFERRED_LANGUAGE`, `LANGUAGE_AUTO_SAVE_NOTICE`) to `en.json` and `hi.json`.
+    - Maintained full support for both light and dark themes using theme context and consistent color variables.
+- **Status**: Completed ✅
+
+---
+
 ## [2026-05-18 12:00 PM] - Remove Strings.ts Declarations and Use Direct Keys
 - **Agent Name**: Gemini-3-Flash-Preview
 - **Task Title**: Remove Strings.ts Declarations

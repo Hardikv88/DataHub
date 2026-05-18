@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../../storage/Store";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
+import { t } from "i18next";
 
 type ProductCardProps = {
   readonly Product: Product;
@@ -60,14 +61,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
        <Button bgColor="var(--accent-bg)" icon={<ShoppingCartOutlined />} onClick={(e) => {
           e.stopPropagation();
           btnCallBack?.();
-        }}>Add to Cart</Button>
+        }}>{t("ADD_TO_CART")}</Button>
     );
   } else {
     cartButton = (
       <Button className="product-card-btn" icon={<ShoppingCartOutlined />} onClick={(e) => {
           e.stopPropagation();
           btnCallBack?.();
-        }}>Add to Cart</Button>
+        }}>{t("ADD_TO_CART")}</Button>
     );
   }
 

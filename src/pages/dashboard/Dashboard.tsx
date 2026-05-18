@@ -87,11 +87,11 @@ const StatCard: React.FC<{
 );
 
 export const Dashboard: React.FC = () => {
-  const { i18n,t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div>
-      <h1 className="dashboard-heading">{t("Hello")}</h1>
+      <h1 className="dashboard-heading">{t("DASHBOARD")}</h1>
       <div className="dashboard-grid">
         <StatCard
           title={t("TOTAL_USERS")}
