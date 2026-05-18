@@ -161,5 +161,12 @@ export const GLOBAL_TEXT = {
   PROCEED_TO_BUY: "Proceed to Buy",
   VIEW_DETAILS: "View Details",
   HIDE_DETAILS: "Hide Details",
+  USER_PROFILE: "User Profile",
+  USER_ROLE: "User Role",
+  DETAILED_INFORMATION: "Detailed Information",
+  NOTIFICATIONS: "Notifications",
+  MARK_ALL_AS_READ: "Mark all as read",
+  VIEW_ALL_NOTIFICATIONS: "View all notifications",
+  NO_NOTIFICATIONS: "No notifications found",
 };
 

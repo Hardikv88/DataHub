@@ -9,6 +9,7 @@ import { Products } from "../pages/products/Products";
 import { Orders } from "../pages/orders/Orders";
 import { Settings } from "../pages/settings/Settings";
 import { Analytics } from "../pages/analytics/Analytics";
+import { Profile } from "../pages/profile/Profile";
 import { WishList } from "../pages/wishlist/WishList";
 import { ProductDetails } from "../pages/products/ProductDetails";
 import { PaymentDetails } from "../pages/payment/PaymentDetails";
@@ -51,6 +52,7 @@ const AppRoutes = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/wishlist" element={<WishList />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/products/:id" element={<ProductDetails />} />
