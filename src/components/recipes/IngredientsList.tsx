@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Typography, List, Checkbox } from 'antd';
 import { useThemeContext } from '../../theme/ThemeContext';
-import { GLOBAL_TEXT } from '../../constants/Strings';
+import { useTranslation } from 'react-i18next';
 
 const { Title } = Typography;
 
@@ -11,11 +11,12 @@ interface IngredientsListProps {
 
 const IngredientsList: React.FC<IngredientsListProps> = ({ ingredients }) => {
   const { isDarkMode } = useThemeContext();
+  const { t } = useTranslation();
 
   return (
     <Card 
       className="ingredients-section"
-      title={<Title level={3} style={{ margin: 0 }}>{GLOBAL_TEXT.INGREDIENTS}</Title>}
+      title={<Title level={3} style={{ margin: 0 }}>{t("INGREDIENTS")}</Title>}
       style={{ 
         borderRadius: 12, 
         height: '100%',

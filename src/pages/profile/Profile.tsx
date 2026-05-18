@@ -3,13 +3,14 @@ import { Card, Avatar, Typography, Descriptions, Tag, Row, Col, Divider } from "
 import { UserOutlined, MailOutlined, WomanOutlined, ManOutlined } from "@ant-design/icons";
 import { useAuth } from "../../hooks/useAuth";
 import { useThemeContext } from "../../theme/ThemeContext";
-import { GLOBAL_TEXT } from "../../constants/Strings";
+import { useTranslation } from "react-i18next";
 
 const { Title, Text } = Typography;
 
 export const Profile: React.FC = () => {
   const { user } = useAuth();
   const { isDarkMode } = useThemeContext();
+  const { t } = useTranslation();
 
   if (!user) {
     return <div style={{ padding: "24px", textAlign: "center" }}>Loading...</div>;
@@ -18,9 +19,9 @@ export const Profile: React.FC = () => {
   const genderIcon = user.gender === "female" ? <WomanOutlined style={{ color: "#eb2f96" }} /> : <ManOutlined style={{ color: "#1890ff" }} />;
 
   return (
-    <div>
+    <div style={{ padding: "24px" }}>
       <Title level={2} style={{ color: isDarkMode ? "#ffffff" : "#000000", marginBottom: 24 }}>
-        {GLOBAL_TEXT.USER_PROFILE}
+        {t("USER_PROFILE")}
       </Title>
 
       <Row gutter={[24, 24]}>
@@ -53,7 +54,7 @@ export const Profile: React.FC = () => {
             
             <div style={{ textAlign: "left" }}>
               <div style={{ marginBottom: 16 }}>
-                <Text strong style={{ color: isDarkMode ? "#ffffff" : "#000000", display: "block", marginBottom: 4 }}>{GLOBAL_TEXT.EMAIL}</Text>
+                <Text strong style={{ color: isDarkMode ? "#ffffff" : "#000000", display: "block", marginBottom: 4 }}>{t("EMAIL")}</Text>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <MailOutlined style={{ color: "#1890ff" }} />
                   <Text ellipsis>{user.email}</Text>
@@ -61,7 +62,7 @@ export const Profile: React.FC = () => {
               </div>
               
               <div>
-                <Text strong style={{ color: isDarkMode ? "#ffffff" : "#000000", display: "block", marginBottom: 4 }}>{GLOBAL_TEXT.GENDER}</Text>
+                <Text strong style={{ color: isDarkMode ? "#ffffff" : "#000000", display: "block", marginBottom: 4 }}>{t("GENDER")}</Text>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   {genderIcon}
                   <Text style={{ textTransform: "capitalize" }}>{user.gender}</Text>
@@ -73,7 +74,7 @@ export const Profile: React.FC = () => {
 
         <Col xs={24} md={16}>
           <Card
-            title={<span style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>{GLOBAL_TEXT.DETAILED_INFORMATION}</span>}
+            title={<span style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>{t("DETAILED_INFORMATION")}</span>}
             style={{
               borderRadius: 12,
               background: isDarkMode ? "#1f1f1f" : "#ffffff",
@@ -94,22 +95,22 @@ export const Profile: React.FC = () => {
                 color: isDarkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.85)" 
               }}
             >
-              <Descriptions.Item label={GLOBAL_TEXT.USER_ROLE}>
+              <Descriptions.Item label={t("USER_ROLE")}>
                 Admin
               </Descriptions.Item>
-              <Descriptions.Item label={GLOBAL_TEXT.USER_NAME}>
+              <Descriptions.Item label={t("USER_NAME")}>
                 {user.username}
               </Descriptions.Item>
-              <Descriptions.Item label={GLOBAL_TEXT.FIRST_NAME}>
+              <Descriptions.Item label={t("FIRST_NAME")}>
                 {user.firstName}
               </Descriptions.Item>
-              <Descriptions.Item label={GLOBAL_TEXT.LAST_NAME}>
+              <Descriptions.Item label={t("LAST_NAME")}>
                 {user.lastName}
               </Descriptions.Item>
-              <Descriptions.Item label={GLOBAL_TEXT.EMAIL} span={2}>
+              <Descriptions.Item label={t("EMAIL")} span={2}>
                 {user.email}
               </Descriptions.Item>
-              <Descriptions.Item label={GLOBAL_TEXT.GENDER}>
+              <Descriptions.Item label={t("GENDER")}>
                 <span style={{ textTransform: "capitalize" }}>{user.gender}</span>
               </Descriptions.Item>
             </Descriptions>

@@ -1,19 +1,20 @@
 import React from 'react';
-import { Switch, List, Button, message, Typography } from 'antd';
-import { GLOBAL_TEXT } from '../../constants/Strings';
+import { List, Switch, Typography, Button, message } from 'antd';
 import { useThemeContext } from '../../theme/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const { Text } = Typography;
 
 const NotificationSettings: React.FC = () => {
   const { isDarkMode } = useThemeContext();
+  const { t } = useTranslation();
 
   const settings = [
-    { key: 'email', title: GLOBAL_TEXT.EMAIL_NOTIFICATIONS, description: 'Receive emails about account activity.' },
-    { key: 'push', title: GLOBAL_TEXT.PUSH_NOTIFICATIONS, description: 'Receive push notifications on your devices.' },
-    { key: 'marketing', title: GLOBAL_TEXT.MARKETING_EMAILS, description: 'Receive emails about new features and offers.' },
-    { key: 'orders', title: GLOBAL_TEXT.ORDER_UPDATES, description: 'Receive updates about your order status.' },
-    { key: 'security', title: GLOBAL_TEXT.SECURITY_ALERTS, description: 'Receive alerts about your account security.' },
+    { key: 'email', title: t("EMAIL_NOTIFICATIONS"), description: 'Receive emails about account activity.' },
+    { key: 'push', title: t("PUSH_NOTIFICATIONS"), description: 'Receive push notifications on your devices.' },
+    { key: 'marketing', title: t("MARKETING_EMAILS"), description: 'Receive emails about new features and offers.' },
+    { key: 'orders', title: t("ORDER_UPDATES"), description: 'Receive updates about your order status.' },
+    { key: 'security', title: t("SECURITY_ALERTS"), description: 'Receive alerts about your account security.' },
   ];
 
   const handleSave = () => {
@@ -39,7 +40,7 @@ const NotificationSettings: React.FC = () => {
       />
       <div style={{ marginTop: 24 }}>
         <Button type="primary" onClick={handleSave}>
-          {GLOBAL_TEXT.SAVE_CHANGES}
+          {t("SAVE_CHANGES")}
         </Button>
       </div>
     </div>

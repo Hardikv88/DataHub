@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 import {
   DashboardOutlined,
   AppstoreOutlined,
@@ -15,9 +15,9 @@ import {
 
 import { Layout } from "antd";
 import { useThemeContext } from "../theme/ThemeContext";
-import { GLOBAL_TEXT } from "../constants/Strings";
 import "./layout.css";
 import { Colors } from "../theme/colors";
+import { useTranslation } from "react-i18next";
 
 const { Sider } = Layout;
 
@@ -27,27 +27,27 @@ interface NavigationItem {
   icon: React.ReactNode;
 }
 
-const NAVIGATION: NavigationItem[] = [
+const getNavigation = (): NavigationItem[] => [
   {
-    name: GLOBAL_TEXT.DASHBOARD,
+    name: "DASHBOARD",
     path: "/dashboard",
     icon: <DashboardOutlined />,
   },
-  { name: GLOBAL_TEXT.PRODUCTS, path: "/products", icon: <AppstoreOutlined /> },
-  { name: GLOBAL_TEXT.WISH_LIST, path: "/wishlist", icon: <HeartOutlined /> },
-  { name: GLOBAL_TEXT.ORDERS, path: "/orders", icon: <ShoppingCartOutlined /> },
+  { name: "PRODUCTS", path: "/products", icon: <AppstoreOutlined /> },
+  { name: "WISH_LIST", path: "/wishlist", icon: <HeartOutlined /> },
+  { name: "ORDERS", path: "/orders", icon: <ShoppingCartOutlined /> },
   
-  { name: GLOBAL_TEXT.TEAM_MEMBERS, path: "/users", icon: <TeamOutlined /> },
-  { name: GLOBAL_TEXT.POSTS, path: "/posts", icon: <FileTextOutlined /> },
-  { name: GLOBAL_TEXT.RECIPES, path: "/recipes", icon: <FireOutlined /> },
-  { name: GLOBAL_TEXT.TODOS, path: "/todos", icon: <CheckSquareOutlined /> },
-  { name: GLOBAL_TEXT.QUOTES, path: "/quotes", icon: <CheckSquareOutlined /> },
+  { name: "TEAM_MEMBERS", path: "/users", icon: <TeamOutlined /> },
+  { name: "POSTS", path: "/posts", icon: <FileTextOutlined /> },
+  { name: "RECIPES", path: "/recipes", icon: <FireOutlined /> },
+  { name: "TODOS", path: "/todos", icon: <CheckSquareOutlined /> },
+  { name: "QUOTES", path: "/quotes", icon: <CheckSquareOutlined /> },
   {
-    name: GLOBAL_TEXT.ANALYTICS,
+    name: "ANALYTICS",
     path: "/analytics",
     icon: <LineChartOutlined />,
   },
-  { name: GLOBAL_TEXT.SETTINGS, path: "/settings", icon: <SettingOutlined /> },
+  { name: "SETTINGS", path: "/settings", icon: <SettingOutlined /> },
 ];
 
 interface SidebarProps {
@@ -64,9 +64,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onMobileClose,
 }) => {
   const { isDarkMode } = useThemeContext();
+  const { t } = useTranslation();
   const location = useLocation();
 
   const siderWidth = collapsed ? 80 : 250;
+  const NAVIGATION = getNavigation();
 
   return (
     <>
@@ -144,7 +146,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 onClick={onMobileClose}
               >
                 <span className="sidebar-link-icon">{item.icon}</span>
-                <span className="sidebar-link-text">{item.name}</span>
+                <span className="sidebar-link-text">{t(item.name)}</span>
               </NavLink>
             );
           })}

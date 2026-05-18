@@ -5,9 +5,10 @@ import type { AppDispatch, RootState } from "../../storage/Store";
 import { removeItem } from "../../storage/AddProducts";
 import { ProductCard } from "../../components/common/ProductCard";
 import { ShoppingCartOutlined, LockOutlined, LoadingOutlined, UpOutlined, DownOutlined } from "@ant-design/icons";
-import { GLOBAL_TEXT } from "../../constants/Strings";
+import { useTranslation } from "react-i18next";
 
 export const Orders: React.FC = () => {
+  const { t } = useTranslation();
   const cartItems = useSelector((state: RootState) => state.addItem);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -58,9 +59,9 @@ export const Orders: React.FC = () => {
           <ShoppingCartOutlined style={{ fontSize: 48, color: "#6366f1" }} />
 
           <span style={{ fontSize: 16, fontWeight: 700 }}>
-            {GLOBAL_TEXT.YOUR_CART_IS_EMPTY}
+            {t("YOUR_CART_IS_EMPTY")}
           </span>
-          <span>{GLOBAL_TEXT.BROWSE_PRODUCTS_TO_ADD_ITEMS_TO_YOUR_CART}</span>
+          <span>{t("BROWSE_PRODUCTS_TO_ADD_ITEMS_TO_YOUR_CART")}</span>
         </div>
       </div>
     );
@@ -69,7 +70,7 @@ export const Orders: React.FC = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column", minHeight: "calc(100vh - 70px)" }}>
       <div style={{ flex: 1, padding: "0 24px 24px 24px" }}>
-        <h1 className="dashboard-heading">{GLOBAL_TEXT.ORDERS}</h1>
+        <h1 className="dashboard-heading">{t("ORDERS")}</h1>
         <div className="products-grid">
           {cartItems.items.map((product) => (
             <ProductCard
@@ -91,33 +92,33 @@ export const Orders: React.FC = () => {
             onClick={() => setIsExpanded(!isExpanded)}
           >
             <span className="toggle-text">
-              {isExpanded ? GLOBAL_TEXT.HIDE_DETAILS : GLOBAL_TEXT.VIEW_DETAILS}
+              {isExpanded ? t("HIDE_DETAILS") : t("VIEW_DETAILS")}
             </span>
             {isExpanded ? <DownOutlined /> : <UpOutlined />}
           </div>
 
           <div className={`invoice-details ${isExpanded ? 'expanded' : 'collapsed'}`}>
             <div className="invoice-item">
-              <span  className="invoice-label">{GLOBAL_TEXT.SUBTOTAL}</span>
+              <span  className="invoice-label">{t("SUBTOTAL")}</span>
               <span className="invoice-value">${subtotal.toFixed(2)}</span>
             </div>
             <div className="invoice-item">
-              <span className="invoice-label">{GLOBAL_TEXT.GST_TAX} (18%)</span>
+              <span className="invoice-label">{t("GST_TAX")} (18%)</span>
               <span className="invoice-value">+${gst.toFixed(2)}</span>
             </div>
             <div className="invoice-item">
-              <span className="invoice-label">{GLOBAL_TEXT.PLATFORM_CHARGES}</span>
+              <span className="invoice-label">{t("PLATFORM_CHARGES")}</span>
               <span className="invoice-value">+${platformCharges.toFixed(2)}</span>
             </div>
             {deliveryCharges > 0 && (
               <div className="invoice-item">
-                <span className="invoice-label">{GLOBAL_TEXT.DELIVERY_CHARGES}</span>
+                <span className="invoice-label">{t("DELIVERY_CHARGES")}</span>
                 <span className="invoice-value">+${deliveryCharges.toFixed(2)}</span>
               </div>
             )}
             {discount > 0 && (
               <div className="invoice-item" style={{ color: "var(--success)" }}>
-                <span className="invoice-label">{GLOBAL_TEXT.DISCOUNT_COUPON}</span>
+                <span className="invoice-label">{t("DISCOUNT_COUPON")}</span>
                 <span className="invoice-value" style={{ color: "var(--success)" }}>-${discount.toFixed(2)}</span>
               </div>
             )}
@@ -125,11 +126,11 @@ export const Orders: React.FC = () => {
 
           <div className="payment-action">
             <div className="total-payable">
-              <span className="total-label">{GLOBAL_TEXT.TOTAL_PAYABLE}</span>
+              <span className="total-label">{t("TOTAL_PAYABLE")}</span>
               <span className="total-amount">${totalPayable.toFixed(2)}</span>
               <div className="secure-tag">
                 <LockOutlined />
-                <span>{GLOBAL_TEXT.SECURE_PAYMENT}</span>
+                <span>{t("SECURE_PAYMENT")}</span>
               </div>
             </div>
 
@@ -139,7 +140,7 @@ export const Orders: React.FC = () => {
               disabled={isLoading}
             >
               {isLoading ? <LoadingOutlined /> : null}
-              {GLOBAL_TEXT.PROCEED_TO_BUY}
+              {t("PROCEED_TO_BUY")}
             </button>
           </div>
         </div>

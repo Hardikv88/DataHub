@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Typography, Select } from "antd";
 import { Card } from "../../../components/common/Card";
-import { GLOBAL_TEXT } from "../../../constants/Strings";
+import { useTranslation } from "react-i18next";
 import { Line } from "@ant-design/plots";
 import { useThemeContext } from "../../../theme/ThemeContext";
 
@@ -31,6 +31,7 @@ const rawData = [
 const months = ["Jan", "Feb", "Mar", "Apr", "May"];
 
 export const LineChart: React.FC = () => {
+  const { t } = useTranslation();
   const { isDarkMode } = useThemeContext();
   const [selectedMonth, setSelectedMonth] = useState("Jan");
 
@@ -110,7 +111,7 @@ export const LineChart: React.FC = () => {
           }}
         >
           <Title level={4} style={{ margin: 0, color: "var(--text-h)" }}>
-            {GLOBAL_TEXT.SALES_DETAILS}
+            {t("SALES_DETAILS")}
           </Title>
 
           <Select

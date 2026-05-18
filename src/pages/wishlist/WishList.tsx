@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../storage/Store";
 import { ProductCard } from "../../components/common/ProductCard";
 import { HeartOutlined } from "@ant-design/icons";
-import { GLOBAL_TEXT } from "../../constants/Strings";
 import { removeWishItem } from "../../storage/WishList";
 import "../../pages/products/style/products.css"
+import { useTranslation } from "react-i18next";
 
 export const WishList: React.FC = () => {
+  const { t } = useTranslation();
   const wishListItems = useSelector((state: RootState) => state.WishListItem);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -31,10 +32,10 @@ export const WishList: React.FC = () => {
           <HeartOutlined style={{ fontSize: 48, color: "#6366f1" }} />
 
           <span style={{ fontSize: 16, fontWeight: 700 }}>
-            {GLOBAL_TEXT.YOUR_FAVOURITE_IS_EMPTY}
+            {t("YOUR_FAVOURITE_IS_EMPTY")}
           </span>
           <span>
-            {GLOBAL_TEXT.BROWSE_PRODUCTS_TO_ADD_ITEMS_TO_YOUR_FAVOURITE}
+            {t("BROWSE_PRODUCTS_TO_ADD_ITEMS_TO_YOUR_FAVOURITE")}
           </span>
         </div>
       </div>
@@ -43,7 +44,7 @@ export const WishList: React.FC = () => {
 
   return (
     <div >
-      <h1 className="dashboard-heading">{GLOBAL_TEXT.WISH_LIST}</h1>
+      <h1 className="dashboard-heading">{t("WISH_LIST")}</h1>
       <div className="products-grid">
         {wishListItems.items.map((product) => (
           <ProductCard

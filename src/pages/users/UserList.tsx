@@ -14,11 +14,12 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { loadUsers, setSearchTerm, setSelectedRole } from "./userSlice";
 import UserCard from "./components/UserCard";
 import Button from "../../components/common/Button";
-import { GLOBAL_TEXT } from "../../constants/Strings";
+import { useTranslation } from "react-i18next";
 import AddUserModal from "./components/AddUserModal";
 
 
 const UserList: React.FC = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const { users, loading, error, searchTerm, selectedRole } = useAppSelector(
@@ -72,11 +73,11 @@ const UserList: React.FC = () => {
         
       <Row justify="space-between" align="middle" style={{ marginBottom: 24 }}>
         <Col>
-          <h1 style={{ fontSize: 24, marginBottom: 16 }}>{GLOBAL_TEXT.TEAM_MEMBERS}</h1>
+          <h1 style={{ fontSize: 24, marginBottom: 16 }}>{t("TEAM_MEMBERS")}</h1>
         </Col>
         <Col>
           <Button icon={<PlusOutlined />} onClick={() => setModalVisible(true)}>
-            {GLOBAL_TEXT.ADD_NEW_MEMBER}
+            {t("ADD_NEW_MEMBER")}
           </Button>
         </Col>
       </Row>

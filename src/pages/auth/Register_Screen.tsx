@@ -6,9 +6,10 @@ import Button from "../../components/common/Button";
 import { Colors } from "../../theme/colors";
 import "./auth.css";
 import Text from "../../components/common/Text";
-import { GLOBAL_TEXT, LOGIN_TEXT } from "../../constants/Strings";
+import { useTranslation } from "react-i18next";
 
 const Register: React.FC = () => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
@@ -43,18 +44,18 @@ const Register: React.FC = () => {
       <div className="auth-form-wrapper" style={{ width: "100%" }}>
         <div className="auth-inner" style={{ width: "100%" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <Text variant="heading">{LOGIN_TEXT.CREATE_AN_ACCOUNT}</Text>
+            <Text variant="heading">{t("CREATE_AN_ACCOUNT")}</Text>
             <div style={{ height: 8 }} />
             <Text variant="subText">
-              {LOGIN_TEXT.CREATE_A_ACCOUNT_CONTINUE}
+              {t("CREATE_A_ACCOUNT_CONTINUE")}
             </Text>
           </div>
 
           <form onSubmit={handleRegister}>
             <Input
-              label={GLOBAL_TEXT.FULL_NAME}
+              label={t("FULL_NAME")}
               name="fullName"
-              placeholder={GLOBAL_TEXT.ENTER_YOUR_FULL_NAME}
+              placeholder={t("ENTER_YOUR_FULL_NAME")}
               type="text"
               required
               value={formData.fullName}
@@ -62,9 +63,9 @@ const Register: React.FC = () => {
             />
 
             <Input
-              label={GLOBAL_TEXT.EMAIL}
+              label={t("EMAIL")}
               name="email"
-              placeholder={GLOBAL_TEXT.ENTER_YOUR_EMAIL}
+              placeholder={t("ENTER_YOUR_EMAIL")}
               type="email"
               required
               value={formData.email}
@@ -72,7 +73,7 @@ const Register: React.FC = () => {
             />
 
             <Input
-              label={GLOBAL_TEXT.PASSWORD}
+              label={t("PASSWORD")}
               name="password"
               placeholder="••••••••"
               type="password"
@@ -82,7 +83,7 @@ const Register: React.FC = () => {
             />
 
             <Input
-              label={GLOBAL_TEXT.CONFIRM_PASSWORD}
+              label={t("CONFIRM_PASSWORD")}
               name="confirmPassword"
               placeholder="••••••••"
               type="password"
@@ -102,7 +103,7 @@ const Register: React.FC = () => {
             >
               <Checkbox required style={{ color: Colors.text }}>
                 <Text variant="hintText">
-                  {LOGIN_TEXT.I_ACCEPT_TERMS_AND_CONDITIONS}{" "}
+                  {t("I_ACCEPT_TERMS_AND_CONDITIONS")}{" "}
                 </Text>
               </Checkbox>
             </div>
@@ -113,15 +114,15 @@ const Register: React.FC = () => {
               loading={loading}
               style={{ marginBottom: 24 }}
             >
-              {LOGIN_TEXT.SIGN_UP}
+              {t("SIGN_UP")}
             </Button>
 
             <div style={{ textAlign: "center" }}>
               <Text variant="hintText">
-                {LOGIN_TEXT.ALREADY_HAVE_AN_ACCOUNT}
+                {t("ALREADY_HAVE_AN_ACCOUNT")}
               </Text>
               <Link to="/" style={{ color: Colors.primary, fontWeight: 600 }}>
-                {LOGIN_TEXT.LOGIN}
+                {t("LOGIN")}
               </Link>
             </div>
           </form>

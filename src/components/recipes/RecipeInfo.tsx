@@ -3,7 +3,7 @@ import { Row, Col, Card, Typography, Space } from 'antd';
 import { ClockCircleOutlined, UserOutlined, FireOutlined } from '@ant-design/icons';
 import type { Recipe } from '../../modals/recipe';
 import { useThemeContext } from '../../theme/ThemeContext';
-import { GLOBAL_TEXT } from '../../constants/Strings';
+import { useTranslation } from 'react-i18next';
 
 const { Text, Title } = Typography;
 
@@ -13,25 +13,26 @@ interface RecipeInfoProps {
 
 const RecipeInfo: React.FC<RecipeInfoProps> = ({ recipe }) => {
   const { isDarkMode } = useThemeContext();
+  const { t } = useTranslation();
 
   const infoItems = [
     {
-      title: GLOBAL_TEXT.PREP_TIME,
+      title: t("PREP_TIME"),
       value: `${recipe.prepTimeMinutes} min`,
       icon: <ClockCircleOutlined style={{ color: '#faad14', fontSize: 24 }} />,
     },
     {
-      title: GLOBAL_TEXT.COOK_TIME,
+      title: t("COOK_TIME"),
       value: `${recipe.cookTimeMinutes} min`,
       icon: <ClockCircleOutlined style={{ color: '#ff4d4f', fontSize: 24 }} />,
     },
     {
-      title: GLOBAL_TEXT.SERVINGS,
+      title: t("SERVINGS"),
       value: recipe.servings,
       icon: <UserOutlined style={{ color: '#1677ff', fontSize: 24 }} />,
     },
     {
-      title: GLOBAL_TEXT.CALORIES,
+      title: t("CALORIES"),
       value: `${recipe.caloriesPerServing} kcal`,
       icon: <FireOutlined style={{ color: '#52c41a', fontSize: 24 }} />,
     },

@@ -18,11 +18,12 @@ import {
 import TodoCard from '../../components/todos/TodoCard';
 import Button from '../../components/common/Button';
 import { useThemeContext } from '../../theme/ThemeContext';
-import { GLOBAL_TEXT } from '../../constants/Strings';
+import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
 
 const Todos: React.FC = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { isDarkMode } = useThemeContext();
   const {
@@ -56,7 +57,7 @@ const Todos: React.FC = () => {
       <Flex justify="space-between" align="center" style={{ marginBottom: 24 }} wrap="wrap" gap="middle">
         <div>
           <Title level={2} style={{ margin: 0, color: isDarkMode ? '#ffffff' : '#000000' }}>
-            {GLOBAL_TEXT.TODOS}
+            {t("TODOS")}
           </Title>
           <Text type="secondary">Total Todos: {total}</Text>
         </div>
@@ -66,7 +67,7 @@ const Todos: React.FC = () => {
           height={40}
           width={140}
         >
-          {GLOBAL_TEXT.ADD_TODO}
+          {t("ADD_TODO")}
         </Button>
       </Flex>
 

@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { Row, Col, Typography, Table, Select } from "antd";
 import { Card } from "../../../components/common/Card";
-import { GLOBAL_TEXT } from "../../../constants/Strings";
+import { useTranslation } from "react-i18next";
 
 const { Title } = Typography;
 
 export const RecentOrders: React.FC = () => {
+  const { t } = useTranslation();
   const recentOrdersColumns = [
-    { title: GLOBAL_TEXT.PRODUCT_NAME, dataIndex: "name", key: "name" },
-    { title: GLOBAL_TEXT.LOCATION, dataIndex: "location", key: "location" },
-    { title: GLOBAL_TEXT.DATE_TIME, dataIndex: "datetime", key: "datetime" },
-    { title: GLOBAL_TEXT.PIECE, dataIndex: "piece", key: "piece" },
-    { title: GLOBAL_TEXT.AMOUNT, dataIndex: "amount", key: "amount" },
+    { title: t("PRODUCT_NAME"), dataIndex: "name", key: "name" },
+    { title: t("LOCATION"), dataIndex: "location", key: "location" },
+    { title: t("DATE_TIME"), dataIndex: "datetime", key: "datetime" },
+    { title: t("PIECE"), dataIndex: "piece", key: "piece" },
+    { title: t("AMOUNT"), dataIndex: "amount", key: "amount" },
     {
-      title: GLOBAL_TEXT.STATUS,
+      title: t("STATUS"),
       dataIndex: "status",
       key: "status",
       render: (status: string) => (
@@ -159,7 +160,7 @@ const [selectedStatus, setSelectedStatus] = useState("All");
             }}
           >
             <Title level={4} style={{ margin: 0, color: "var(--text-h)" }}>
-              {GLOBAL_TEXT.RECENT_ORDERS}
+              {t("RECENT_ORDERS")}
             </Title>
 
             <Select

@@ -17,9 +17,10 @@ import { ProductImageGallery } from "../../components/product/ProductImageGaller
 import { ProductInfo } from "../../components/product/ProductInfo";
 import { ProductReviews } from "../../components/product/ProductReviews";
 import "./ProductDetails.css";
-import { GLOBAL_TEXT } from "../../constants/Strings";
+import { useTranslation } from "react-i18next";
 
 export const ProductDetails: React.FC = () => {
+  const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -130,7 +131,7 @@ export const ProductDetails: React.FC = () => {
                 className={`status-dot ${product.stock > 0 ? "in-stock" : "out-of-stock"}`}
               ></span>
               {product.availabilityStatus ||
-                (product.stock > 0 ? GLOBAL_TEXT.IN_STOCK : GLOBAL_TEXT.OUT_OF_STOCK)}
+                (product.stock > 0 ? t("IN_STOCK") : t("OUT_OF_STOCK"))}
             </div>
           </div>
 
@@ -160,8 +161,8 @@ export const ProductDetails: React.FC = () => {
               {isInCart ? <DeleteOutlined /> : <ShoppingCartOutlined />}
               <span>
                 {isInCart
-                  ? GLOBAL_TEXT.REMOVE_FROM_CART
-                  : GLOBAL_TEXT.ADD_TO_CART}
+                  ? t("REMOVE_FROM_CART")
+                  : t("ADD_TO_CART")}
               </span>
             </button>
 
@@ -177,17 +178,17 @@ export const ProductDetails: React.FC = () => {
 
       <div className="product-details-bottom">
         <div className="details-section">
-          <h3 className="section-title">{GLOBAL_TEXT.DESCRIPTION}</h3>
+          <h3 className="section-title">{t("DESCRIPTION")}</h3>
           <p className="product-description">{product.description}</p>
         </div>
 
         <div className="details-section">
-          <h3 className="section-title">{GLOBAL_TEXT.PRODUCT_INFORMATION}</h3>
+          <h3 className="section-title">{t("PRODUCT_INFORMATION")}</h3>
           <ProductInfo product={product} />
         </div>
 
         <div className="details-section">
-          <h3 className="section-title">{GLOBAL_TEXT.CUSTOMER_REVIEWS}</h3>
+          <h3 className="section-title">{t("CUSTOMER_REVIEWS")}</h3>
           <ProductReviews reviews={product.reviews || []} />
         </div>
       </div>

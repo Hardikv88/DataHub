@@ -15,12 +15,13 @@ import PostCard from './components/PostCard';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
 import { useThemeContext } from '../../theme/ThemeContext';
-import { GLOBAL_TEXT } from '../../constants/Strings';
+import { useTranslation } from 'react-i18next';
 import CreatePostModal from './components/CreatePostModal';
 
 const { Title } = Typography;
 
 const Posts: React.FC = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { isDarkMode } = useThemeContext();
   const [modalVisible, setModalVisible] = useState(false);
@@ -69,7 +70,7 @@ const Posts: React.FC = () => {
       {/* Header Section */}
       <Flex justify="space-between" align="center" style={{ marginBottom: 24 }} wrap="wrap" gap="middle">
         <Title level={2} style={{ margin: 0, color: isDarkMode ? '#ffffff' : '#000000' }}>
-          {GLOBAL_TEXT.POSTS}
+          {t("POSTS")}
         </Title>
         <Flex gap="middle" align="center">
           <Input 
@@ -86,7 +87,7 @@ const Posts: React.FC = () => {
             height={40}
             width={140}
           >
-            {GLOBAL_TEXT.ADD_POST}
+            {t("ADD_POST")}
           </Button>
         </Flex>
       </Flex>
