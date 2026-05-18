@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Avatar, Dropdown, Badge } from "antd";
+import { Layout, Avatar, Dropdown, Badge, Popover } from "antd";
 import type { MenuProps } from "antd";
 import {
   BellOutlined,
@@ -14,6 +14,7 @@ import { useThemeContext } from "../theme/ThemeContext";
 import { useAuth } from "../hooks/useAuth";
 import { GLOBAL_TEXT } from "../constants/Strings";
 import { useNavigate } from "react-router-dom";
+import { NotificationList } from "../components/common/NotificationList";
 
 const { Header: AntHeader } = Layout;
 
@@ -39,6 +40,7 @@ export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
     {
       key: "1",
       label: GLOBAL_TEXT.PROFILE,
+      onClick: () => navigate("/profile"),
       icon: <UserOutlined />,
     },
     {
@@ -101,11 +103,19 @@ export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
           )}
         </button>
 
-        <Badge count={3} size="small">
-          <BellOutlined
-            style={{ fontSize: 20, color: "var(--text)", cursor: "pointer" }}
-          />
-        </Badge>
+        <Popover
+          content={<NotificationList />}
+          trigger="click"
+          placement="bottomRight"
+          overlayClassName="notification-popover"
+          arrow={{ pointAtCenter: true }}
+        >
+          <Badge count={3} size="small" style={{ cursor: "pointer" }}>
+            <BellOutlined
+              style={{ fontSize: 20, color: "var(--text)", cursor: "pointer" }}
+            />
+          </Badge>
+        </Popover>
 
         <Dropdown menu={{ items: userMenu }} placement="bottomRight" arrow>
           <div className="header-profile">
