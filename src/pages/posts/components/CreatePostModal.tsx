@@ -3,6 +3,7 @@ import { Modal, Form, Input, Select, message } from 'antd';
 import { createPost } from '../../../services/postService';
 import { useAppDispatch } from '../../../store/hooks';
 import { addPostToList } from '../postSlice';
+import { t } from 'i18next';
 
 interface CreatePostModalProps {
   visible: boolean;
@@ -48,13 +49,13 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ visible, onCancel }) 
 
   return (
     <Modal
-      title="Create New Post"
+      title={t('CREATE_NEW_POST')}
       open={visible}
       onOk={handleOk}
       onCancel={onCancel}
       confirmLoading={loading}
-      okText="Create Post"
-      cancelText="Cancel"
+      okText={t('CREATE_POST')}
+      cancelText={t('CANCEL')}
       destroyOnClose
       width={600}
     >
@@ -66,37 +67,37 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ visible, onCancel }) 
       >
         <Form.Item
           name="title"
-          label="Title"
+          label={t('TITLE')}
           rules={[
-            { required: true, message: 'Please enter post title' },
-            { min: 5, message: 'Title must be at least 5 characters' }
+            { required: true, message: t('PLEASE_ENTER_POST_TITLE') },
+            { min: 5, message: t('TITLE_MIN_LENGTH') }
           ]}
         >
-          <Input placeholder="Enter post title" />
+          <Input placeholder={t('ENTER_POST_TITLE')} />
         </Form.Item>
 
         <Form.Item
           name="body"
-          label="Description (Body)"
+          label={t('DESCRIPTION_BODY')}
           rules={[
-            { required: true, message: 'Please enter post description' },
-            { min: 10, message: 'Description must be at least 10 characters' }
+            { required: true, message: t('PLEASE_ENTER_POST_DESCRIPTION') },
+            { min: 10, message: t('DESCRIPTION_MIN_LENGTH') }
           ]}
         >
-          <TextArea rows={6} placeholder="Enter post description" />
+          <TextArea rows={6} placeholder={t('ENTER_POST_DESCRIPTION')} />
         </Form.Item>
 
         <Form.Item
           name="tags"
-          label="Tags"
+          label={t('TAGS')}
           rules={[
-            { type: 'array', max: 5, message: 'You can add up to 5 tags' }
+            { type: 'array', max: 5, message: t('TAGS_MAX_LENGTH') }
           ]}
         >
           <Select
             mode="tags"
             style={{ width: '100%' }}
-            placeholder="Add tags"
+            placeholder={t('ADD_TAGS')}
             tokenSeparators={[',']}
           />
         </Form.Item>
