@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&family=Cairo:wght@300;400;600;700;800&display=swap');
 
 :root {
   /* LIGHT VARIABLES (Defaults) */
@@ -27,7 +27,7 @@
   --chart-tooltip-bg: #ffffff;
   --chart-tooltip-text: #333;
 
-  font-family: 'Nunito Sans', system-ui, -apple-system, sans-serif;
+  font-family: 'Nunito Sans', 'Cairo', system-ui, -apple-system, sans-serif;
 }
 
 html.dark {
@@ -61,10 +61,24 @@ body {
   color: var(--text);
   background-color: var(--bg);
   transition: background-color 0.3s ease, color 0.3s ease;
-  font-family: 'Nunito Sans', system-ui, -apple-system, sans-serif;
+  font-family: 'Nunito Sans', 'Cairo', system-ui, -apple-system, sans-serif;
   letter-spacing: 0.2px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+[dir="rtl"] body {
+  font-family: 'Cairo', 'Nunito Sans', sans-serif;
+  letter-spacing: 0;
+}
+
+[dir="rtl"] .sidebar-collapse-btn {
+  right: auto;
+  left: -14px;
+}
+
+[dir="rtl"] .sidebar-collapse-btn .anticon {
+  transform: rotate(180deg);
 }
 
 #root {
@@ -103,7 +117,14 @@ a {
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 100;
-  transition: width 0.3s cubic-bezier(0.2, 0, 0, 1);
+  transition: width 0.3s cubic-bezier(0.2, 0, 0, 1), left 0.3s ease, right 0.3s ease;
+}
+
+[dir="rtl"] .sidebar {
+  left: auto;
+  right: 0;
+  border-right: none;
+  border-left: 1px solid var(--border);
 }
 
 .sidebar::-webkit-scrollbar {
@@ -126,6 +147,11 @@ a {
 .sidebar-logo-accent {
   color: var(--accent);
   margin-right: 4px;
+}
+
+[dir="rtl"] .sidebar-logo-accent {
+  margin-right: 0;
+  margin-left: 4px;
 }
 
 .sidebar-nav {
@@ -282,6 +308,10 @@ a {
   white-space: nowrap;
 }
 
+[dir="rtl"] .invoice-value {
+  text-align: left;
+}
+
 .discount-row .invoice-label,
 .discount-row .invoice-value {
   color: var(--success);
@@ -323,6 +353,11 @@ a {
 .invoice-item span:last-child {
   color: var(--text-h);
   font-weight: 600;
+  text-align: right;
+}
+
+[dir="rtl"] .invoice-item span:last-child {
+  text-align: left;
 }
 
 .payment-action {
@@ -335,6 +370,10 @@ a {
 .total-payable {
   display: flex;
   flex-direction: column;
+}
+
+[dir="rtl"] .total-payable {
+  align-items: flex-start;
 }
 
 .total-label {
@@ -420,6 +459,70 @@ a {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+[dir="rtl"] .header-greeting {
+  text-align: right;
+}
+
+[dir="rtl"] .header-actions {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .header-greeting h2,
+[dir="rtl"] .header-greeting p {
+  text-align: right;
+}
+
+/* Mobile Sidebar Overrides */
+[dir="rtl"] .mobile-open {
+  right: 0 !important;
+  left: auto !important;
+}
+
+[dir="rtl"] .sidebar-overlay {
+  left: 0;
+  right: 0;
+}
+
+/* Ant Design Table Header RTL Fix */
+[dir="rtl"] .ant-table-thead > tr > th {
+  text-align: right !important;
+}
+
+[dir="rtl"] .ant-table-tbody > tr > td {
+  text-align: right !important;
+}
+
+[dir="rtl"] .ant-modal-header {
+  text-align: right;
+}
+
+[dir="rtl"] .ant-modal-footer {
+  text-align: left;
+}
+
+[dir="rtl"] .ant-form-item-label {
+  text-align: right !important;
+}
+
+[dir="rtl"] .ant-select-selection-item {
+  text-align: right;
+}
+
+[dir="rtl"] .ant-select-arrow {
+  right: auto;
+  left: 11px;
+}
+
+[dir="rtl"] .ant-input-prefix {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+[dir="rtl"] .ant-input-suffix {
+  margin-left: 0;
+  margin-right: 8px;
 }
 
 .theme-toggle-btn {

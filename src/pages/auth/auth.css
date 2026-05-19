@@ -81,6 +81,15 @@
   }
 }
 
+@media (min-width: 1024px) {
+  [dir="rtl"] .auth-bg {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+  }
+}
+
 text {
   font-size: 20px;
   font-family: 'Nunito Sans', system-ui, -apple-system, sans-serif;

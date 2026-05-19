@@ -75,7 +75,6 @@
   "COUNTRY": "Country",
   "BANK_INFORMATION": "Bank Information",
   "CARD_TYPE": "Card Type",
-  "CARD_NUMBER": "Card Number",
   "EXPIRY": "Expiry",
   "CURRENCY": "Currency",
   "CRYPTO_INFORMATION": "Crypto Information",
@@ -174,7 +173,6 @@
   "TODAY_SALES": "Today's Sales",
   "ACTIVE_USERS": "Active Users",
   "UP_FROM_YESTERDAY": "Up from yesterday",
-  "ADD_TO_CART": "Add to Cart",
   "CATEGORY": "Category",
   "SKU": "SKU",
   "WEIGHT": "Weight",
@@ -202,5 +200,9 @@
   "CONFIRM_ORDER_DESCRIPTION": "With DataHub, we send 1M messages in 10 minutes. Every second counts, DataHub is literally saving lives.",
   "FINAL_AMOUNT": "Final Amount",
   "SECURE_CHECKOUT": "Secure Checkout",
-  "TOTAL_PAYABLE": "Total Payable Amount"
+  "AUTHOR_ID": "AUTHOR ID",
+  "LIKES": "LIKES",
+  "DISLIKES": "DISLIKES",
+  "VIEWS": "VIEWS",
+  "POST_ID": "Post ID"
 }
