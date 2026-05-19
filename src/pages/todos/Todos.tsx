@@ -59,7 +59,7 @@ const Todos: React.FC = () => {
           <Title level={2} style={{ margin: 0, color: isDarkMode ? '#ffffff' : '#000000' }}>
             {t("TODOS")}
           </Title>
-          <Text type="secondary">Total Todos: {total}</Text>
+          <Text type="secondary">{t("TOTAL_TODOS")}: {total}</Text>
         </div>
         <Button
           type="primary"

@@ -30,9 +30,9 @@ const PrivacySettings: React.FC = () => {
   };
 
   const privacyOptions = [
-    { key: '2fa', title: t("TWO_FACTOR_AUTH"), description: 'Add an extra layer of security to your account.' },
-    { key: 'visibility', title: t("PROFILE_VISIBILITY"), description: 'Make your profile visible to other users.' },
-    { key: 'tracking', title: t("ACTIVITY_TRACKING"), description: 'Allow us to track your activity to improve experience.' },
+    { key: '2fa', title: t("TWO_FACTOR_AUTH"), description: t("DATA_MANAGEMENT_DESCRIPTION") },
+    { key: 'visibility', title: t("PROFILE_VISIBILITY"), description: t("MAKE_PROFILE_VISIBLE") },
+    { key: 'tracking', title: t("ACTIVITY_TRACKING"), description: t("ACTIVITY_TRACKING") },
   ];
 
   return (

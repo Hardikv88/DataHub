@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col, Typography, Tag, Rate, Space, Flex } from 'antd';
 import type { Recipe } from '../../modals/recipe';
 import { useThemeContext } from '../../theme/ThemeContext';
+import { t } from 'i18next';
 
 const { Title, Text } = Typography;
 
@@ -59,7 +60,7 @@ const RecipeHero: React.FC<RecipeHeroProps> = ({ recipe }) => {
               </Space>
 
               <div>
-                <Text type="secondary" style={{ display: 'block', marginBottom: 8 }}>Meal Types:</Text>
+                <Text type="secondary" style={{ display: 'block', marginBottom: 8 }}>{t('MEAL_TYPES')}:</Text>
                 <Space wrap>
                   {recipe.mealType.map(type => (
                     <Tag key={type} style={{ borderRadius: 4 }}>{type}</Tag>
@@ -68,7 +69,7 @@ const RecipeHero: React.FC<RecipeHeroProps> = ({ recipe }) => {
               </div>
 
               <div style={{ marginTop: 8 }}>
-                <Text type="secondary">Tags:</Text>
+                <Text type="secondary">{t('TAGS')}:</Text>
                 <div style={{ marginTop: 4 }}>
                   <Space wrap>
                     {recipe.tags.map(tag => (

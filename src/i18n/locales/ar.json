@@ -220,7 +220,14 @@
   "ENTER_POST_DESCRIPTION": "أدخل وصف المقالة هنا",
   "TAGS_MAX_LENGTH": "يجب أن تضف 5 تگ مقصودة على الأقل",
   "TAGS_MIN_LENGTH": "يجب أن تضف 1 تگ على الأقل",
-  "TAGS": "태그"
+  "TAGS": "태그",
+  "MEAL_TYPES": "식사 유형",
+  "TOTAL_TODOS": "총 할일",
+  "DATA_MANAGEMENT": "데이터 관리",
+  "DATA_MANAGEMENT_DESCRIPTION": "데이터 관리를 통해 보안을 강화할 수 있습니다.",
+  "MAKE_PROFILE_VISIBLE": "프로필을 다른 사용자들에게 보여줍니다.",
+  "ACTIVITY_TRACKING": "활동 추적을 통해 경험을 개선합니다."
+
 
 
 

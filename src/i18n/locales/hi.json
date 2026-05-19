@@ -220,5 +220,11 @@
   "PLEASE_ENTER_POST_DESCRIPTION": "पोस्ट विवरण इन्टर्करें अपने लिए जाएगा",
   "DESCRIPTION_MIN_LENGTH": "पोस्ट विवरण अपने लिए जाएगा अन्तर अपने 10 अक्षर अपने लिए जाएगा",
   "ENTER_POST_DESCRIPTION": "पोस्ट विवरण इन्टर्करें अपने लिए जाएगा",
-  "TAGS_MAX_LENGTH": "पोस्ट अपने लिए जाएगा अन्तर अपने 5 तग अपने लिए जाएगा"
+  "TAGS_MAX_LENGTH": "पोस्ट अपने लिए जाएगा अन्तर अपने 5 तग अपने लिए जाएगा",
+  "MEAL_TYPES": "मेल तिप्पिया",
+  "TOTAL_TODOS": "कुल अपने लिए जाएगा",
+  "DATA_MANAGEMENT": "डेटामेजी अपने लिए जाएगा",
+  "DATA_MANAGEMENT_DESCRIPTION": "प्रतिकारना अपने लिए जाएगा",
+  "MAKE_PROFILE_VISIBLE": "प्रोफिल अपने लिए जाएगा",
+  "ACTIVITY_TRACKING": "प्रतिकारना अपने लिए जाएगा"
 }
