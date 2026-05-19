@@ -3,6 +3,7 @@ import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "./Sidebar";
 import { Header } from "./Header";
+import { useTranslation } from "react-i18next";
 
 const { Content } = Layout;
 
@@ -13,6 +14,9 @@ export const MainLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { i18n } = useTranslation();
+
+  const isRtl = i18n.language === 'ar';
 
   useEffect(() => {
     const checkMobile = () => {
@@ -37,7 +41,7 @@ export const MainLayout: React.FC = () => {
     setMobileOpen(false);
   };
 
-  const marginLeft = isMobile ? 0 : collapsed ? SIDEBAR_COLLAPSED : SIDEBAR_EXPANDED;
+  const marginValue = isMobile ? 0 : collapsed ? SIDEBAR_COLLAPSED : SIDEBAR_EXPANDED;
 
   return (
     <Layout style={{ minHeight: "100vh", background: "var(--bg)" }}>
@@ -50,7 +54,11 @@ export const MainLayout: React.FC = () => {
 
       <Layout
         className="main-content-wrapper"
-        style={{ marginLeft }}
+        style={{ 
+          marginLeft: isRtl ? 0 : marginValue,
+          marginRight: isRtl ? marginValue : 0,
+          transition: 'margin 0.3s cubic-bezier(0.2, 0, 0, 1)'
+        }}
       >
         <Header onMobileMenuToggle={handleMobileMenuToggle} />
         <Content className="main-content">

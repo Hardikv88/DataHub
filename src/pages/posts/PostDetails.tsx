@@ -24,6 +24,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { loadPostById, clearSelectedPost } from "./postSlice";
 import { useThemeContext } from "../../theme/ThemeContext";
+import { t } from "i18next";
 
 
 const { Title, Paragraph, Text } = Typography;
@@ -33,7 +34,6 @@ const PostDetails: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { isDarkMode } = useThemeContext();
-
   const { selectedPost, loading, error } = useAppSelector((state) => state.posts);
 
   useEffect(() => {
@@ -107,7 +107,7 @@ const PostDetails: React.FC = () => {
                 />
               </Flex>
               <Text type="secondary" style={{ fontSize: 12 }}>
-                Post ID: {selectedPost.id}
+                {t("POST_ID")}: {selectedPost.id}
               </Text>
               <div style={{ marginTop: 12 }}>
                 {selectedPost.tags.map((tag) => (
@@ -131,7 +131,7 @@ const PostDetails: React.FC = () => {
                 <Col>
                   <Space direction="vertical" size={4}>
                     <Text type="secondary" style={{ fontSize: 12 }}>
-                      AUTHOR ID
+                      {t("AUTHOR_ID")}
                     </Text>
                     <Text strong>{selectedPost.userId}</Text>
                   </Space>
@@ -139,7 +139,7 @@ const PostDetails: React.FC = () => {
                 <Col>
                   <Space direction="vertical" size={4}>
                     <Text type="secondary" style={{ fontSize: 12 }}>
-                      LIKES
+                      {t("LIKES")}
                     </Text>
                     <Space>
                       <LikeOutlined style={{ color: "#52c41a" }} />
@@ -150,7 +150,7 @@ const PostDetails: React.FC = () => {
                 <Col>
                   <Space direction="vertical" size={4}>
                     <Text type="secondary" style={{ fontSize: 12 }}>
-                      DISLIKES
+                      {t("DISLIKES")}
                     </Text>
                     <Space>
                       <DislikeOutlined style={{ color: "#ff4d4f" }} />
@@ -163,7 +163,7 @@ const PostDetails: React.FC = () => {
                 <Col>
                   <Space direction="vertical" size={4}>
                     <Text type="secondary" style={{ fontSize: 12 }}>
-                      VIEWS
+                      {t("VIEWS")}
                     </Text>
                     <Space>
                       <EyeOutlined style={{ color: "#1677ff" }} />

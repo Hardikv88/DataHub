@@ -152,6 +152,11 @@ html.dark .method-item img {
   font-size: 18px;
 }
 
+[dir="rtl"] .select-badge {
+  right: auto;
+  left: -8px;
+}
+
 /* Card Details */
 .form-row {
   display: flex;
@@ -170,6 +175,11 @@ html.dark .method-item img {
   padding-right: 45px;
 }
 
+[dir="rtl"] .input-with-icon .payment-input {
+  padding-right: 16px;
+  padding-left: 45px;
+}
+
 .input-icon {
   position: absolute;
   right: 15px;
@@ -177,6 +187,11 @@ html.dark .method-item img {
   transform: translateY(-50%);
   color: var(--text-secondary);
   font-size: 18px;
+}
+
+[dir="rtl"] .input-icon {
+  right: auto;
+  left: 15px;
 }
 
 .text-center { text-align: center; }

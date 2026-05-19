@@ -202,5 +202,10 @@
   "CONFIRM_ORDER_DESCRIPTION": "प्रतिकारना जाएगा",
   "FINAL_AMOUNT": "प्रतिकारना जाएगा",
   "SECURE_CHECKOUT": "प्रतिकारना जाएगा",
-  "TOTAL_PAYABLE": "प्रतिकारना जाएगा"
+  "TOTAL_PAYABLE": "प्रतिकारना जाएगा",
+  "AUTHOR_ID": "लेखक आईडी",
+  "LIKES": "पसंद",
+  "DISLIKES": "अपसंद",
+  "VIEWS": "दृश्य",
+  "POST_ID": "पोस्ट आईडी"
 }

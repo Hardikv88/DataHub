@@ -28,6 +28,13 @@ const LanguageSettings: React.FC = () => {
       flag: "🇮🇳",
       description: "भारतीय हिंदी",
     },
+    {
+      key: "ar",
+      name: "Arabic",
+      nativeName: "العربية",
+      flag: "🇸🇦",
+      description: "اللغة العربية الفصحى",
+    },
   ];
 
   const handleLanguageChange = (key: string) => {

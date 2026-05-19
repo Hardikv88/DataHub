@@ -79,9 +79,7 @@ html.dark .product-card:hover {
 
 .product-card:hover .product-card-image {
   transform: scale(1.06);
-}
-
- .product-card-category {
+.product-card-category {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -97,7 +95,12 @@ html.dark .product-card:hover {
   border-radius: 50%;
 
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
 
+[dir="rtl"] .product-card-category {
+  right: auto;
+  left: 12px;
+}
   font-size: 20px;
   color: var(--text);
 
