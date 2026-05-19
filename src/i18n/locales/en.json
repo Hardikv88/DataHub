@@ -204,5 +204,18 @@
   "LIKES": "LIKES",
   "DISLIKES": "DISLIKES",
   "VIEWS": "VIEWS",
-  "POST_ID": "Post ID"
+  "POST_ID": "Post ID",
+  "CREATE_NEW_POST": "Create New Post",
+  "CREATE_POST": "Create Post",
+  "CANCEL": "Cancel",
+  "DESCRIPTION_BODY": "Description (Body)",
+  "TAGS": "Tags",
+  "ADD_TAGS": "Add tags",
+  "PLEASE_ENTER_POST_TITLE": "Please enter post title",
+  "TITLE_MIN_LENGTH": "Title must be at least 5 characters",
+  "ENTER_POST_TITLE": "Enter post title",
+  "PLEASE_ENTER_POST_DESCRIPTION": "Please enter post description",
+  "DESCRIPTION_MIN_LENGTH": "Description must be at least 10 characters",
+  "ENTER_POST_DESCRIPTION": "Enter post description",
+  "TAGS_MAX_LENGTH": "You can add up to 5 tags"
 }

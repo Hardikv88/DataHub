@@ -200,5 +200,28 @@
   "CONFIRM_ORDER": "تأكيد طلبك",
   "CONFIRM_ORDER_DESCRIPTION": "مع DataHub، نرسل مليون رسالة في 10 دقائق. كل ثانية تهم، DataHub ينقذ الأرواح حرفياً.",
   "FINAL_AMOUNT": "المبلغ النهائي",
-  "SECURE_CHECKOUT": "الدفع الآمن"
+  "SECURE_CHECKOUT": "الدفع الآمن",
+  "AUTHOR_ID": "رقم المؤلف",
+  "LIKES": "اللайك",
+  "DISLIKES": "اللايك",
+  "VIEWS": "العرض",
+  "POST_ID": "ID المقالة",
+  "CREATE_NEW_POST": "إنشاء مقالة جديدة",
+  "CREATE_POST": "إنشاء مقالة",
+  "CANCEL": "إلغاء",
+  "DESCRIPTION_BODY": "وصف (Body)",
+  "TAGS": "태그",
+  "ADD_TAGS": "태그 추가",
+  "PLEASE_ENTER_POST_TITLE": "يرجى إدخال عنوان المقالة",
+  "TITLE_MIN_LENGTH": "يجب أن يتكون عنوان المقالة من 5 أحرف على الأقل",
+  "ENTER_POST_TITLE": "أدخل عنوان المقالة هنا",
+  "PLEASE_ENTER_POST_DESCRIPTION": "يرجى إدخال وصف المقالة",
+  "DESCRIPTION_MIN_LENGTH": "يجب أن يتكون وصف المقالة من 10 أحرف على الأقل",
+  "ENTER_POST_DESCRIPTION": "أدخل وصف المقالة هنا",
+  "TAGS_MAX_LENGTH": "يجب أن تضف 5 تگ مقصودة على الأقل",
+  "TAGS_MIN_LENGTH": "يجب أن تضف 1 تگ على الأقل",
+  "TAGS": "태그"
+
+
+
 }

@@ -173,7 +173,7 @@ const PostDetails: React.FC = () => {
                 </Col>
               </Row>
             </Col>
-          </Row>
+          </Row>\\
         </Card>
       ) : (
         <Result
