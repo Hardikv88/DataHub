@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Avatar, Typography, Descriptions, Tag, Row, Col, Divider } from "antd";
+import { Card, Avatar, Typography, Descriptions, Row, Col, Divider } from "antd";
 import { UserOutlined, MailOutlined, WomanOutlined, ManOutlined } from "@ant-design/icons";
 import { useAuth } from "../../hooks/useAuth";
 import { useThemeContext } from "../../theme/ThemeContext";

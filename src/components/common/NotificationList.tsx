@@ -1,7 +1,6 @@
 import React from "react";
 import { List, Avatar, Typography, Badge, Button, Space, Divider } from "antd";
 import {
-  BellOutlined,
   CheckCircleOutlined,
   InfoCircleOutlined,
   WarningOutlined,

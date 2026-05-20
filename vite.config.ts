@@ -54,6 +54,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MB
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/dummyjson\.com\/.*/i,
@@ -76,4 +77,31 @@ export default defineConfig({
   optimizeDeps: {
     include: ["@ant-design/plots"],
   },
+  build: {
+    chunkSizeWarningLimit: 1000, // Increase warning limit to 1000 KB
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+              return 'vendor';
+            }
+            if (id.includes('antd') || id.includes('@ant-design/icons')) {
+              return 'antd';
+            }
+            if (id.includes('@ant-design/plots')) {
+              return 'charts';
+            }
+            if (id.includes('i18next') || id.includes('react-i18next')) {
+              return 'i18n';
+            }
+            if (id.includes('redux') || id.includes('@reduxjs/toolkit')) {
+              return 'state';
+            }
+            return 'vendor';
+          }
+        }
+      }
+    }
+  }
 })
