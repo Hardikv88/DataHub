@@ -4,6 +4,8 @@ import { getAntdTheme } from './theme/theme';
 import AppRoutes from './routes/AppRoutes';
 import { ThemeProvider, useThemeContext } from './theme/ThemeContext';
 import { useTranslation } from 'react-i18next';
+import ReloadPrompt from './components/common/ReloadPrompt';
+import OfflineStatus from './components/common/OfflineStatus';
 
 function AppContent() {
   const { isDarkMode } = useThemeContext();
@@ -19,6 +21,8 @@ function AppContent() {
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
+      <ReloadPrompt />
+      <OfflineStatus />
     </ConfigProvider>
   );
 }

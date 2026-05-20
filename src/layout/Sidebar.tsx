@@ -7,7 +7,6 @@ import {
   HeartOutlined,
   ShoppingCartOutlined,
   SettingOutlined,
-  LineChartOutlined,
   FileTextOutlined,
   FireOutlined,
   CheckSquareOutlined,
@@ -42,11 +41,6 @@ const getNavigation = (): NavigationItem[] => [
   { name: "RECIPES", path: "/recipes", icon: <FireOutlined /> },
   { name: "TODOS", path: "/todos", icon: <CheckSquareOutlined /> },
   { name: "QUOTES", path: "/quotes", icon: <CheckSquareOutlined /> },
-  {
-    name: "ANALYTICS",
-    path: "/analytics",
-    icon: <LineChartOutlined />,
-  },
   { name: "SETTINGS", path: "/settings", icon: <SettingOutlined /> },
 ];
 

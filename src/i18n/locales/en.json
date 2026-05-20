@@ -217,5 +217,11 @@
   "PLEASE_ENTER_POST_DESCRIPTION": "Please enter post description",
   "DESCRIPTION_MIN_LENGTH": "Description must be at least 10 characters",
   "ENTER_POST_DESCRIPTION": "Enter post description",
-  "TAGS_MAX_LENGTH": "You can add up to 5 tags"
+  "TAGS_MAX_LENGTH": "You can add up to 5 tags",
+  "MEAL_TYPES": "Meal Types",
+  "TOTAL_TODOS": "Total Todos",
+  "DATA_MANAGEMENT": "Data Management",
+  "DATA_MANAGEMENT_DESCRIPTION": "Add an extra layer of security to your account.",
+  "MAKE_PROFILE_VISIBLE": "Make your profile visible to other users.",
+  "ACTIVITY_TRACKING": "Allow us to track your activity to improve experience."
 }

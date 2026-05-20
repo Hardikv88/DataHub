@@ -12,27 +12,28 @@ const LanguageSettings: React.FC = () => {
   const { isDarkMode } = useThemeContext();
 
   const currentLang = i18n.language.split("-")[0];
+  const isRtl = i18n.language === 'ar';
 
   const languages = [
     {
       key: "en",
       name: "English",
       nativeName: "English",
-      flag: "🇺🇸",
+      code: "EN",
       description: "Standard English (US)",
     },
     {
       key: "hi",
       name: "Hindi",
       nativeName: "हिन्दी",
-      flag: "🇮🇳",
+      code: "HI",
       description: "भारतीय हिंदी",
     },
     {
       key: "ar",
       name: "Arabic",
       nativeName: "العربية",
-      flag: "🇸🇦",
+      code: "AR",
       description: "اللغة العربية الفصحى",
     },
   ];
@@ -44,10 +45,10 @@ const LanguageSettings: React.FC = () => {
   return (
     <div style={{ padding: "16px 0" }}>
       <div style={{ marginBottom: 24 }}>
-        <Title level={4} style={{ color: isDarkMode ? "#ffffff" : "#000000", margin: 0 }}>
+        <Title level={4} style={{ color: isDarkMode ? "#ffffff" : "#000000", margin: 0, fontWeight: 700 }}>
           {t("LANGUAGE")}
         </Title>
-        <Text type="secondary">
+        <Text type="secondary" style={{ fontSize: 14 }}>
           {t("CHOOSE_PREFERRED_LANGUAGE")}
         </Text>
       </div>
@@ -61,47 +62,77 @@ const LanguageSettings: React.FC = () => {
                 hoverable
                 onClick={() => handleLanguageChange(lang.key)}
                 style={{
-                  borderRadius: 12,
-                  border: `2px solid ${isSelected ? Colors.primary : isDarkMode ? "#303030" : "#f0f0f0"}`,
-                  background: isDarkMode ? (isSelected ? "rgba(72, 128, 255, 0.1)" : "#1f1f1f") : (isSelected ? "rgba(72, 128, 255, 0.05)" : "#ffffff"),
-                  transition: "all 0.3s ease",
+                  borderRadius: 16,
+                  border: `2px solid ${isSelected ? Colors.primary : "transparent"}`,
+                  background: isDarkMode 
+                    ? (isSelected ? "rgba(72, 128, 255, 0.12)" : "#1f1f1f") 
+                    : (isSelected ? "rgba(72, 128, 255, 0.08)" : "#ffffff"),
+                  boxShadow: isSelected 
+                    ? `0 8px 20px ${Colors.primary}20` 
+                    : "0 2px 8px rgba(0,0,0,0.04)",
+                  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                   position: "relative",
                   overflow: "hidden"
                 }}
-                styles={{ body: { padding: "20px" } }}
+                styles={{ body: { padding: "24px" } }}
               >
                 {isSelected && (
                   <div style={{
                     position: "absolute",
-                    top: 12,
-                    right: 12,
-                    color: Colors.primary,
-                    fontSize: 20
+                    top: 0,
+                    right: isRtl ? "auto" : 0,
+                    left: isRtl ? 0 : "auto",
+                    width: 40,
+                    height: 40,
+                    background: Colors.primary,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderBottomLeftRadius: isRtl ? 0 : 16,
+                    borderBottomRightRadius: isRtl ? 16 : 0,
+                    color: "#ffffff",
+                    fontSize: 18,
+                    boxShadow: "0 2px 6px rgba(0,0,0,0.1)"
                   }}>
                     <CheckCircleFilled />
                   </div>
                 )}
                 
-                <Space size={16} align="start">
+                <Space size={20} align="center">
                   <div style={{ 
-                    fontSize: 40, 
-                    width: 60, 
-                    height: 60, 
+                    width: 56, 
+                    height: 56, 
                     display: "flex", 
                     alignItems: "center", 
                     justifyContent: "center",
-                    background: isDarkMode ? "#141414" : "#f5f5f5",
-                    borderRadius: 12,
-                    lineHeight: 1
+                    background: isSelected 
+                      ? Colors.primary 
+                      : isDarkMode ? "#2d2d2d" : "#f5f5f5",
+                    color: isSelected ? "#ffffff" : isDarkMode ? "#a0a0a0" : "#666666",
+                    borderRadius: "50%",
+                    fontSize: 16,
+                    fontWeight: 800,
+                    transition: "all 0.3s ease",
+                    boxShadow: isSelected ? `0 4px 12px ${Colors.primary}40` : "none"
                   }}>
-                    {lang.flag}
+                    {lang.code}
                   </div>
                   
-                  <div style={{ paddingTop: 4 }}>
-                    <Title level={5} style={{ margin: 0, color: isDarkMode ? "#ffffff" : "#000000" }}>
+                  <div style={{ flex: 1 }}>
+                    <Title level={5} style={{ 
+                      margin: 0, 
+                      color: isDarkMode ? "#ffffff" : "#000000",
+                      fontSize: 18,
+                      fontWeight: 600
+                    }}>
                       {lang.nativeName}
                     </Title>
-                    <Text type="secondary" style={{ fontSize: 13, display: "block", marginTop: 4 }}>
+                    <Text style={{ 
+                      fontSize: 14, 
+                      display: "block", 
+                      marginTop: 2,
+                      color: isDarkMode ? "rgba(255,255,255,0.45)" : "rgba(0,0,0,0.45)"
+                    }}>
                       {lang.name} • {lang.description}
                     </Text>
                   </div>
