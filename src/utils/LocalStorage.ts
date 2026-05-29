@@ -45,4 +45,3 @@ export const getToken = <T>(): T | null => {
 export const removeToken = () => {
   localStorage.removeItem(ACCESS_TOKEN_KEY);
 };
-

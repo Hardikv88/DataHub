@@ -112,6 +112,8 @@
   "COOK_TIME": "Cook Time",
   "SERVINGS": "Servings",
   "CALORIES": "Calories",
+  "MINS": "mins",
+  "KCAL": "kcal",
   "INGREDIENTS": "Ingredients",
   "INSTRUCTIONS": "Instructions",
   "PERMANENTLY_DELETE_YOUR_ACCOUNT": "Permanently delete your account and all associated data.",
