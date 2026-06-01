@@ -1,18 +1,42 @@
 
 import type { User, UsersResponse } from '../modals/user';
-import apiHelper from './ApiHelper';
+import { apiHelperOne } from './ApiHelper';
+
+export interface RegisterRequest {
+  userName: string;
+  userEmail: string;
+  userPassword: string;
+}
+
+export interface RegisterResponse {
+  success: boolean;
+  data: {
+    userRole: string;
+    userId: number;
+    userName: string;
+    userEmail: string;
+    userPassword: string;
+    updated_at: string;
+    created_at: string;
+  };
+}
 
 export const fetchUsers = async (): Promise<UsersResponse> => {
-  const response = await apiHelper.get<UsersResponse>('/users');
+  const response = await apiHelperOne.get<UsersResponse>('/users');
   return response.data;
 };
 
 export const fetchUserById = async (id: number | string): Promise<User> => {
-  const response = await apiHelper.get<User>(`/users/${id}`);
+  const response = await apiHelperOne.get<User>(`/users/${id}`);
   return response.data;
 };
 
 export const addUser = async (payload: Partial<User>): Promise<User> => {
-  const response = await apiHelper.post<User>(`/users/add`, payload);
+  const response = await apiHelperOne.post<User>(`/users/add`, payload);
+  return response.data;
+};
+
+export const registerUser = async (payload: RegisterRequest): Promise<RegisterResponse> => {
+  const response = await apiHelperOne.post<RegisterResponse>('/users', payload);
   return response.data;
 };

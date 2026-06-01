@@ -1,6 +1,6 @@
 
 import type { PostsResponse, Post } from '../modals/post';
-import apiHelper from './ApiHelper';
+import { apiHelper} from "./ApiHelper";
 
 
 export const fetchPosts = async (limit: number = 10, skip: number = 0): Promise<PostsResponse> => {

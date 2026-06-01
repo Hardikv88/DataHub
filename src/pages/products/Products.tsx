@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Pagination } from "antd";
 import { BannerCarousel } from "../../components/common/BannerCarousel";
 import { ProductCard } from "../../components/common/ProductCard";
-import apiHelper from "../../services/ApiHelper";
+import { apiHelper} from "../../services/ApiHelper";
 import type {
   Product,
   ProductResponseModal,

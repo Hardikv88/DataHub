@@ -1,4 +1,4 @@
-import apiHelper from './ApiHelper';
+import { apiHelper} from './ApiHelper';
 import type { RecipesResponse, Recipe } from '../modals/recipe';
 
 export const fetchRecipes = async (limit: number = 10, skip: number = 0): Promise<RecipesResponse> => {

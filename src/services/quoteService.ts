@@ -1,4 +1,4 @@
-import apiHelper from "./ApiHelper";
+import { apiHelper} from "./ApiHelper";
 
 export interface Quote {
   id: number;

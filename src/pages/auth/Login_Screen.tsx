@@ -6,7 +6,7 @@ import Button from "../../components/common/Button";
 import { Colors } from "../../theme/colors";
 import "./auth.css";
 import Text from "../../components/common/Text";
-import apiHelper from "../../services/ApiHelper";
+import { apiHelper} from "../../services/ApiHelper";
 import type { LoginResponseModel } from "../../modals/LoginResponseModel";
 import { setToken } from "../../utils/LocalStorage";
 import { useAuth } from "../../hooks/useAuth";

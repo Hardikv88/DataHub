@@ -1,5 +1,5 @@
 import type { Product } from '../modals/ProductResponseModal';
-import apiHelper from './ApiHelper';
+import { apiHelper} from "./ApiHelper";
 
 
 export const productService = {

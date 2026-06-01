@@ -7,9 +7,9 @@ import type {
 
 class ApiHelper {
   axiosInstance: AxiosInstance;
-  constructor() {
+  constructor(baseURL: string) {
     this.axiosInstance = axios.create({
-      baseURL: import.meta.env.VITE_BASE_URL, // 👉 Change your base URL
+      baseURL: baseURL, // 👉 Change your base URL
       timeout: 30000,
       headers: {
         "Content-Type": "application/json",
@@ -65,5 +65,11 @@ class ApiHelper {
 }
 
 // Export single instance (Singleton)
-const apiHelper = new ApiHelper();
-export default apiHelper;
+// const apiHelper = new ApiHelper(import.meta.env.VITE_BASE_URL);
+
+// const apiHelperOne = new ApiHelper(import.meta.env.VITE_BASE_URL_ONE);
+
+// export default { apiHelper, apiHelperOne }; 
+
+export const apiHelper = new ApiHelper(import.meta.env.VITE_BASE_URL);
+export const apiHelperOne = new ApiHelper(import.meta.env.VITE_BASE_URL_ONE);

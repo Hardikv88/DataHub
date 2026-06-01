@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Checkbox } from "antd";
+import { Checkbox, message } from "antd";
 import { useNavigate, Link } from "react-router-dom";
 import Input from "../../components/common/Input";
 import Button from "../../components/common/Button";
@@ -7,6 +7,7 @@ import { Colors } from "../../theme/colors";
 import "./auth.css";
 import Text from "../../components/common/Text";
 import { useTranslation } from "react-i18next";
+import { registerUser, type RegisterRequest } from "../../services/userService";
 
 const Register: React.FC = () => {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ const Register: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match");
@@ -29,10 +30,28 @@ const Register: React.FC = () => {
     }
     setError("");
     setLoading(true);
-    setTimeout(() => {
+
+    try {
+      const payload: RegisterRequest = {
+        userName: formData.fullName,
+        userEmail: formData.email,
+        userPassword: formData.password,
+      };
+
+      const response = await registerUser(payload);
+      
+      if (response.success) {
+        message.success("Registration successful! Please login.");
+        navigate("/");
+      } else {
+        setError("Registration failed. Please try again.");
+      }
+    } catch (err: any) {
+      console.error("Registration error:", err);
+      setError(err?.response?.data?.message || "Registration failed. Please try again.");
+    } finally {
       setLoading(false);
-      navigate("/login");
-    }, 1500);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
