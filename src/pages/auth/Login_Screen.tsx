@@ -17,8 +17,8 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "hardik1@yopmail.com",
+    password: "12345",
   });
   const { login } = useAuth();
 
@@ -48,16 +48,13 @@ const Login: React.FC = () => {
       });
       
       if (response && response.data && response.data.success) {
-        const { data } = response.data;
+        const fullResponse = response.data;
         
-        // Save token and user data
-        setToken(data.token);
-        login(data.user);
+        setToken(fullResponse.data.token);
+        login(fullResponse);
         
-        // Show success message
-        message.success(response.data.message || "Login successful!");
+        message.success(fullResponse.message || "Login successful!");
         
-        // Navigate to dashboard
         navigate("/dashboard");
       } else {
         message.error(response.data?.message || "Login failed");
@@ -68,7 +65,6 @@ const Login: React.FC = () => {
       setLoading(false);
       console.error("Login error:", error);
       
-      // Show error message from API or generic message
       const errorMessage = error?.response?.data?.message 
         || error?.message 
         || "Login failed. Please try again.";

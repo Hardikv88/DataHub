@@ -22,6 +22,10 @@ export type LoginResponseModel = {
       userRole: string
       created_at: string
       updated_at: string
+      city?: string;
+      address?: string;
+      image?: string;
+      gender?: string;
     }
   }
 }

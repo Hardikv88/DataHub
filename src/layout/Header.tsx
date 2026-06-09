@@ -61,6 +61,7 @@ export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
   ];
 
   return (
+    
     <AntHeader className="app-header">
       {/* Hamburger (mobile only) */}
       <button className="hamburger-btn" onClick={onMobileMenuToggle}>
@@ -71,7 +72,8 @@ export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
       <div className="header-greeting">
         <p>{t(greeting)}</p>
         <h2>
-          {user?.firstName} {user?.lastName}
+         {user?.userName}
+         
         </h2>
       </div>
 
@@ -125,8 +127,8 @@ export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
               src="https://api.dicebear.com/7.x/notionists/svg?seed=Felix"
             />
             <div className="header-profile-info">
-              <span className="header-profile-name">{user?.firstName}</span>
-              <span className="header-profile-role">Admin</span>
+              <span className="header-profile-name">{user?.userName}</span>
+              <span className="header-profile-role">{user?.userRole}</span>
             </div>
           </div>
         </Dropdown>

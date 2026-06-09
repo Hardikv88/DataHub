@@ -6,7 +6,7 @@ import type { JSX } from "react";
 
 const PublicRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
   const { user } = useAuth();
-
+  console.log("user login status",user);
   return user ? <Navigate to="/dashboard" replace /> : children;
 };
 
