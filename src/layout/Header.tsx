@@ -124,7 +124,7 @@ export const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
           <div className="header-profile">
             <Avatar
               size={40}
-              src="https://api.dicebear.com/7.x/notionists/svg?seed=Felix"
+              src={(import.meta.env.VITE_BASE_URL_IMAGE + user?.profileImage) || "https://api.dicebear.com/7.x/notionists/svg?seed=Felix"}
             />
             <div className="header-profile-info">
               <span className="header-profile-name">{user?.userName}</span>

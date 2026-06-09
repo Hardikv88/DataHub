@@ -225,5 +225,6 @@
   "DATA_MANAGEMENT": "Data Management",
   "DATA_MANAGEMENT_DESCRIPTION": "Add an extra layer of security to your account.",
   "MAKE_PROFILE_VISIBLE": "Make your profile visible to other users.",
-  "ACTIVITY_TRACKING": "Allow us to track your activity to improve experience."
+  "ACTIVITY_TRACKING": "Allow us to track your activity to improve experience.",
+  "EDIT_PROFILE": "Edit Profile"
 }

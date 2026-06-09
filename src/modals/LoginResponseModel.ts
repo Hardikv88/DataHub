@@ -24,7 +24,7 @@ export type LoginResponseModel = {
       updated_at: string
       city?: string;
       address?: string;
-      image?: string;
+      profileImage?: string;
       gender?: string;
     }
   }

@@ -4,6 +4,7 @@ import type {
   AxiosRequestConfig,
   AxiosResponse,
 } from "axios";
+import { getToken } from "../utils/LocalStorage";
 
 class ApiHelper {
   axiosInstance: AxiosInstance;
@@ -19,7 +20,7 @@ class ApiHelper {
     // Request Interceptor (Add token here if needed)
     this.axiosInstance.interceptors.request.use(
       (config) => {
-        const token = localStorage.getItem("token");
+        const token = getToken<string>();
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }

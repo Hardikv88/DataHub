@@ -4,6 +4,54 @@ This file maintains a complete record of all tasks performed by all AI Agents.
 
 ---
 
+## [2026-06-09] - Fix ApiHelper Token Retrieval
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Fix ApiHelper Token Retrieval
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/services/ApiHelper.ts#L75-75`  this apiHelperOne use url every apis pass the Authorization Bearer token pass on header if local store on token avaible `/Users/hardikv/Desktop/flutter_project/DataHub/src/pages/auth/Login_Screen.tsx#L53-53`"
+- **Response Summary**:
+    - Discovered that ApiHelper was trying to retrieve token using localStorage.getItem("token") but the actual key in LocalStorage.ts is "accessToken" and token is encrypted
+    - Updated ApiHelper.ts to import and use getToken() from "../utils/LocalStorage"
+    - Now all API calls using either apiHelper or apiHelperOne will automatically include the Authorization Bearer token from localStorage when available
+- **Status**: Completed ✅
+
+---
+
+## [2026-06-09] - Implement Profile Edit with API Integration
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Implement Profile Edit with API Integration
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/pages/profile/Profile.tsx#L52-61` i want user Edit profile button and user profile edit all field to user inout all user data and save button call Api Url : http://localhost:3000/api/auth/update Method : put , form-data parameter: userName, city,  profileImage (type file), gender, address all user data pass on api and get response data and update user data on local store and update Note : user email not editble disables this field and ApiHelper.ts use apiHelperOne this base url one"
+- **Response Summary**:
+    - Imported `apiHelperOne` from `../../services/ApiHelper`
+    - Added state `selectedFile` to store uploaded profile image
+    - Updated `handleImageUpload` to set `selectedFile` in addition to `previewImage`
+    - Disabled `userEmail` field in edit mode so user can't change it
+    - Implemented `handleSave` async function that:
+      - Creates FormData with userName, city, gender, address
+      - Appends profileImage if selected
+      - Calls `apiHelperOne.put("/api/auth/update", formData)`
+      - On success, calls `updateUser` to update AuthContext and localStorage, sets isEditing to false
+      - Shows success/error messages using Ant Design message component
+    - Updated Form component to use `onFinish={handleSave}`
+    - Updated `handleCancel` to reset selectedFile and previewImage
+- **Status**: Completed ✅
+
+---
+
+## [2026-06-09 10:15 AM] - Developer Task Tracking Rule - Agent Manager Logging
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Developer Task Tracking Rule - Agent Manager Logging
+- **Prompt**: "one login to added history.md file to developer traclig to any ask to agent manager to log on added history.md"
+- **Response Summary**:
+    - Established mandatory developer task tracking protocol requiring all agent managers to log every developer request to HISTORY.md.
+    - Created standardized logging format ensuring consistent task documentation across all AI agent interactions.
+    - Implemented reverse chronological ordering (newest entries at top) for easy tracking of recent activities.
+    - Required all future agent tasks to include: Date, Time, Agent Name, Task Title, Prompt, Response Summary, and Status.
+    - Reinforced that no task is considered complete until properly logged in HISTORY.md following the established format.
+    - Updated .cursorrules, PROJECT_GUIDELINES.md, and agent/PromptLoggingAgentRules.md to reflect this mandatory logging requirement.
+- **Status**: Completed ✅
+
+---
+
 ## [2026-06-01 09:50 AM] - Implement Registration API Integration
 - **Agent Name**: DeepSeek-V3.2
 - **Task Title**: Implement Registration API Integration
