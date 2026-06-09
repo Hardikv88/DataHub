@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
-
 import { fetchUsers, fetchUserById } from '../../services/userService';
 import type { User } from '../../modals/user';
 

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Checkbox } from "antd";
-import { Link } from "react-router-dom";
+import { Checkbox, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/common/Input";
 import Button from "../../components/common/Button";
 import { Colors } from "../../theme/colors";
 import "./auth.css";
 import Text from "../../components/common/Text";
-import { apiHelper} from "../../services/ApiHelper";
+import { apiHelperOne } from "../../services/ApiHelper";
 import type { LoginResponseModel } from "../../modals/LoginResponseModel";
 import { setToken } from "../../utils/LocalStorage";
 import { useAuth } from "../../hooks/useAuth";
@@ -14,10 +14,11 @@ import { useTranslation } from "react-i18next";
 
 const Login: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    email: "emilys",
-    password: "emilyspass",
+    email: "hardik1@yopmail.com",
+    password: "12345",
   });
   const { login } = useAuth();
 
@@ -26,36 +27,51 @@ const Login: React.FC = () => {
 
     // Simple validation
     if (!email) {
-      alert(t("EMAIL_IS_REQUIRED"));
+      message.error(t("EMAIL_IS_REQUIRED"));
       return;
     }
 
     if (!password) {
-      alert(t("PASSWORD_IS_REQUIRED"));
+      message.error(t("PASSWORD_IS_REQUIRED"));
       return;
     }
 
     getLoginUser(email, password);
-    // API call here
   };
 
   const getLoginUser = async (email: string, password: string) => {
     try {
       setLoading(true);
-      const response = await apiHelper.post<LoginResponseModel>("/auth/login", {
-        username: email,
-        password: password,
+      const response = await apiHelperOne.post<LoginResponseModel>("/auth/login", {
+        userEmail: email,
+        userPassword: password,
       });
-      if (response && response.data) {
-        login(response.data);
-        setToken(response.data.token);
+      
+      if (response && response.data && response.data.success) {
+        const fullResponse = response.data;
+        
+        setToken(fullResponse.data.token);
+        login(fullResponse);
+        
+        message.success(fullResponse.message || "Login successful!");
+        
+        navigate("/dashboard");
+      } else {
+        message.error(response.data?.message || "Login failed");
       }
+      
       setLoading(false);
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
-      console.error(error);
+      console.error("Login error:", error);
+      
+      const errorMessage = error?.response?.data?.message 
+        || error?.message 
+        || "Login failed. Please try again.";
+      message.error(errorMessage);
     }
   };
+
   return (
     <div className="auth-container">
       <div className="auth-form-wrapper">
@@ -82,7 +98,7 @@ const Login: React.FC = () => {
               }
               label={t("EMAIL")}
               placeholder={t("ENTER_YOUR_EMAIL")}
-              type="text"
+              type="email"
             />
 
             <div
@@ -129,12 +145,8 @@ const Login: React.FC = () => {
 
             <div style={{ textAlign: "center" }}>
               <Text variant="hintText">{t("DONT_HAVE_AN_ACCOUNT")}</Text>
-              <Link
-                to="/register"
-                className="text"
-                style={{ color: Colors.primary }}
-              >
-                {t("CREATE_ACCOUNT")}
+              <Link to="/register" style={{ color: Colors.primary, fontWeight: 600 }}>
+                {t("SIGN_UP")}
               </Link>
             </div>
           </form>
