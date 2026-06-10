@@ -39,7 +39,8 @@ const UserDetails: React.FC = () => {
   }, [id, dispatch]);
 
   const getRoleColor = (role: string) => {
-    switch (role) {
+    const lowerRole = role?.toLowerCase() || '';
+    switch (lowerRole) {
       case "admin":
         return "red";
       case "moderator":
@@ -47,10 +48,6 @@ const UserDetails: React.FC = () => {
       default:
         return "green";
     }
-  };
-
-  const maskCardNumber = (cardNumber: string) => {
-    return `**** **** **** ${cardNumber.slice(-4)}`;
   };
 
   if (loading) {
@@ -76,6 +73,14 @@ const UserDetails: React.FC = () => {
     );
   }
 
+  const userName = currentUser.userName || currentUser.name || 'Unknown User';
+  const userEmail = currentUser.userEmail || currentUser.email || 'no-email@example.com';
+  const userRole = currentUser.userRole || currentUser.role || 'user';
+  const userImage = currentUser.profileImage || currentUser.image;
+  const createdAt = currentUser.created_at || '';
+  const updatedAt = currentUser.updated_at || '';
+
+
   return (
     <div className="product-details-container">
       <div className="breadcrumb-wrapper">
@@ -83,7 +88,7 @@ const UserDetails: React.FC = () => {
           items={[
             { title: <Link to="/dashboard">Home</Link> },
             { title: <Link to="/users">Users</Link> },
-            { title: currentUser.firstName },
+            { title: userName },
           ]}
         />
       </div>
@@ -93,30 +98,30 @@ const UserDetails: React.FC = () => {
         <Row align="middle" gutter={24}>
           <Col>
             <Avatar
-              src={currentUser.image}
+              src={userImage}
               size={100}
               style={{ backgroundColor: "#f0f2f5" }}
             />
           </Col>
           <Col flex="auto">
             <Title level={3} style={{ margin: 0 }}>
-              {currentUser.firstName} {currentUser.lastName}
+              {userName}
             </Title>
             <Text
               type="secondary"
               style={{ display: "block", marginBottom: 8 }}
             >
-              @{currentUser.username}
+              @{userEmail}
             </Text>
             <Space>
               <Tag
-                color={getRoleColor(currentUser.role)}
+                color={getRoleColor(userRole)}
                 style={{ textTransform: "capitalize" }}
               >
-                {currentUser.role}
+                {userRole}
               </Tag>
-              {currentUser.bloodGroup && (
-                <Tag>Blood: {currentUser.bloodGroup}</Tag>
+              {currentUser.gender && (
+                <Tag>Gender: {currentUser.gender}</Tag>
               )}
             </Space>
           </Col>
@@ -136,137 +141,34 @@ const UserDetails: React.FC = () => {
               labelStyle={{ color: "var(--ant-color-text-secondary)" }}
             >
               <Descriptions.Item label={t("EMAIL")}>
-                {currentUser.email}
-              </Descriptions.Item>
-              <Descriptions.Item label={t("PHONE")}>
-                {currentUser.phone}
-              </Descriptions.Item>
-              <Descriptions.Item label={t("AGE")}>
-                {currentUser.age}
+                {userEmail}
               </Descriptions.Item>
               <Descriptions.Item
                 label={t("GENDER")}
                 style={{ textTransform: "capitalize" }}
               >
-                {currentUser.gender}
-              </Descriptions.Item>
-              <Descriptions.Item label={t("BIRTH_DATE")}>
-                {currentUser.birthDate}
-              </Descriptions.Item>
-              <Descriptions.Item label={t("UNIVERSITY")}>
-                {currentUser.university}
-              </Descriptions.Item>
-            </Descriptions>
-          </Card>
-        </Col>
-
-        {/* Right Column */}
-        <Col xs={24} md={12}>
-          <Card
-            title={t("COMPANY_INFORMATION")}
-            bordered={false}
-            style={{ borderRadius: 12, height: "100%" }}
-          >
-            <Descriptions
-              column={1}
-              labelStyle={{ color: "var(--ant-color-text-secondary)" }}
-            >
-              <Descriptions.Item label={t("COMPANY_NAME")}>
-                {currentUser.company.name}
-              </Descriptions.Item>
-              <Descriptions.Item label={t("DEPARTMENT")}>
-                {currentUser.company.department}
-              </Descriptions.Item>
-              <Descriptions.Item label={t("TITLE")}>
-                {currentUser.company.title}
-              </Descriptions.Item>
-              <Descriptions.Item label={t("COMPANY_ADDRESS")}>
-                {currentUser.company.address.address},{" "}
-                {currentUser.company.address.city},{" "}
-                {currentUser.company.address.stateCode}{" "}
-                {currentUser.company.address.postalCode}
-              </Descriptions.Item>
-            </Descriptions>
-          </Card>
-        </Col>
-
-        {/* Full Width Column */}
-        <Col span={24}>
-          <Card title={t("LOCATION")} bordered={false} style={{ borderRadius: 12 }}>
-            <Descriptions
-              column={{ xs: 1, sm: 2, md: 3 }}
-              labelStyle={{ color: "var(--ant-color-text-secondary)" }}
-            >
-              <Descriptions.Item label={t("ADDRESS")}>
-                {currentUser.address.address}
+                {currentUser.gender || "N/A"}
               </Descriptions.Item>
               <Descriptions.Item label={t("CITY")}>
-                {currentUser.address.city}
+                {currentUser.city || "N/A"}
               </Descriptions.Item>
-              <Descriptions.Item label={t("STATE")}>
-                {currentUser.address.state}
+              <Descriptions.Item label={t("ADDRESS")}>
+                {currentUser.address || "N/A"}
               </Descriptions.Item>
-              <Descriptions.Item label={t("POSTAL_CODE")}>
-                {currentUser.address.postalCode}
-              </Descriptions.Item>
-              <Descriptions.Item label={t("COUNTRY")}>
-                {currentUser.address.country}
-              </Descriptions.Item>
+              {createdAt && (
+                <Descriptions.Item label="Created At">
+                  {new Date(createdAt).toLocaleString()}
+                </Descriptions.Item>
+              )}
+              {updatedAt && (
+                <Descriptions.Item label="Updated At">
+                  {new Date(updatedAt).toLocaleString()}
+                </Descriptions.Item>
+              )}
             </Descriptions>
           </Card>
         </Col>
 
-        <Col xs={24} md={12}>
-          <Card
-            title={t("BANK_INFORMATION")}
-            bordered={false}
-            style={{ borderRadius: 12, height: "100%" }}
-          >
-            <Descriptions
-              column={1}
-              labelStyle={{color: "var(--ant-color-text-secondary)"}}
-            >
-              <Descriptions.Item label={t("CARD_TYPE")}>
-                {currentUser.bank.cardType}
-              </Descriptions.Item>
-              <Descriptions.Item label={t("CARD_NUMBER")}>
-                {maskCardNumber(currentUser.bank.cardNumber)}
-              </Descriptions.Item>
-              <Descriptions.Item label={t("EXPIRY")}>
-                {currentUser.bank.cardExpire}
-              </Descriptions.Item>
-              <Descriptions.Item label={t("CURRENCY")}>
-                {currentUser.bank.currency}
-              </Descriptions.Item>
-            </Descriptions>
-          </Card>
-        </Col>
-
-        <Col xs={24} md={12}>
-          <Card
-            title={t("CRYPTO_INFORMATION")}
-            bordered={false}
-            style={{ borderRadius: 12, height: "100%" }}
-          >
-            <Descriptions
-              column={1}
-              labelStyle={{ color: "var(--ant-color-text-secondary)" }}
-            >
-              <Descriptions.Item label={t("COIN")}>
-                {currentUser.crypto.coin}
-              </Descriptions.Item>
-              <Descriptions.Item label={t("NETWORK")}>
-                {currentUser.crypto.network}
-              </Descriptions.Item>
-              <Descriptions.Item
-                label={t("WALLET_ADDRESS")}
-                style={{ wordBreak: "break-all" }}
-              >
-                {currentUser.crypto.wallet}
-              </Descriptions.Item>
-            </Descriptions>
-          </Card>
-        </Col>
       </Row>
     </div>
   );

@@ -25,8 +25,38 @@ export const loadUsers = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const data = await fetchUsers();
-      return data.users;
+      console.log('loadUsers data:', data);
+      const dataAny = data as any;
+      
+      // Check if data is already an array
+      if (Array.isArray(dataAny)) {
+        console.log('data is array, returning it');
+        return dataAny;
+      }
+      
+      // Check if data.success exists and data.data.users exists
+      if (dataAny.success && dataAny.data?.users) {
+        console.log('found data.data.users, returning');
+        return dataAny.data.users;
+      }
+      
+      // Check if data.users exists directly
+      if (dataAny.users) {
+        console.log('found data.users directly, returning');
+        return dataAny.users;
+      }
+      
+      // Check if data.data exists and is an array
+      if (Array.isArray(dataAny.data)) {
+        console.log('data.data is array, returning');
+        return dataAny.data;
+      }
+      
+      // Otherwise return empty array
+      console.log('no valid user data found, returning empty array');
+      return [];
     } catch (error: any) {
+      console.error('loadUsers error:', error);
       return rejectWithValue(error.message || 'Failed to fetch users');
     }
   }
@@ -37,8 +67,16 @@ export const loadUserById = createAsyncThunk(
   async (id: string | number, { rejectWithValue }) => {
     try {
       const data = await fetchUserById(id);
+      console.log('loadUserById data:', data);
+      const dataAny = data as any;
+      
+      // Handle different response structures
+      if (dataAny.success && dataAny.data) {
+        return dataAny.data;
+      }
       return data;
     } catch (error: any) {
+      console.error('loadUserById error:', error);
       return rejectWithValue(error.message || 'Failed to fetch user');
     }
   }
@@ -52,7 +90,7 @@ const userSlice = createSlice({
       state.searchTerm = action.payload;
     },
     setSelectedRole: (state, action: PayloadAction<string | null>) => {
-      console.log('data',action.payload)
+      console.log('data', action.payload);
       state.selectedRole = action.payload;
     },
     clearCurrentUser: (state) => {
@@ -70,7 +108,9 @@ const userSlice = createSlice({
       })
       .addCase(loadUsers.fulfilled, (state, action) => {
         state.loading = false;
-        state.users = action.payload;
+        // Make sure payload is an array, else default to empty
+        state.users = Array.isArray(action.payload) ? action.payload : [];
+        console.log('loadUsers.fulfilled - state.users set to:', state.users);
       })
       .addCase(loadUsers.rejected, (state, action) => {
         state.loading = false;

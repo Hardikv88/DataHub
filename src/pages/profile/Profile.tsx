@@ -51,13 +51,15 @@ export const Profile: React.FC = () => {
 
   // Initialize form with user data when entering edit mode
   const handleEdit = () => {
-    form.setFieldsValue({
-      userName: user.userName || "",
-      userEmail: user.userEmail || "",
-      gender: user.gender || "male",
-      city: user.city || "",
-      address: user.address || "",
-    });
+    if (user) {
+      form.setFieldsValue({
+        userName: user.userName || "",
+        userEmail: user.userEmail || "",
+        gender: user.gender || "male",
+        city: user.city || "",
+        address: user.address || "",
+      });
+    }
     setIsEditing(true);
   };
 
@@ -87,17 +89,18 @@ export const Profile: React.FC = () => {
       if (selectedFile) {
         formData.append("profileImage", selectedFile);
       }
-
       const response = await apiHelperOne.put("/auth/update", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          // Authorization: `Bearer ${getToken<string>()}`,
+         // Authorization: `Bearer ${getToken<string>()}`,
         },
       });
 
-      if (response.data && response.data) {
+      if (response.data) {
+        // Handle different response formats
+        const userData = (response.data as any)?.data?.user || (response.data as any)?.data || response.data;
         message.success("Profile updated successfully!");
-        updateUser(response.data["data"]);
+        updateUser(userData);
         setIsEditing(false);
       } else {
         message.error("Failed to update profile");

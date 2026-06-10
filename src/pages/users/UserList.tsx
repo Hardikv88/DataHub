@@ -22,9 +22,12 @@ const UserList: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
-  const { users, loading, error, searchTerm, selectedRole } = useAppSelector(
+  const { users = [], loading, error, searchTerm, selectedRole } = useAppSelector(
     (state) => state.users,
   );
+  
+  // Add console logs to debug
+  console.log('UserList state:', { users, loading, error, searchTerm, selectedRole });
 
   // Local state for debounced search
   const [localSearch, setLocalSearch] = useState(searchTerm);
@@ -43,12 +46,16 @@ const UserList: React.FC = () => {
 
   const filteredUsers = useMemo(() => {
     return users.filter((user) => {
-      const matchesSearch = `${user.firstName} ${user.lastName} ${user.email}`
+      const userName = user.userName || user.name || '';
+      const userEmail = user.userEmail || user.email || '';
+      const userRole = user.userRole || user.role || '';
+      
+      const matchesSearch = `${userName} ${userEmail}`
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
       const matchesRole =
         selectedRole && selectedRole !== "all"
-          ? user.role === selectedRole
+          ? userRole.toLowerCase() === selectedRole.toLowerCase()
           : true;
       return matchesSearch && matchesRole;
     });
@@ -69,78 +76,78 @@ const UserList: React.FC = () => {
     );
   }
   return (
-    <div>
-        
-      <Row justify="space-between" align="middle" style={{ marginBottom: 24 }}>
-        <Col>
-          <h1 style={{ fontSize: 24, marginBottom: 16 }}>{t("TEAM_MEMBERS")}</h1>
-        </Col>
-        <Col>
-          <Button icon={<PlusOutlined />} onClick={() => setModalVisible(true)}>
-            {t("ADD_NEW_MEMBER")}
-          </Button>
-        </Col>
-      </Row>
-
-      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
-        <Col xs={24} sm={12} md={8} lg={6}>
-          <Input
-            placeholder="Search by name or email..."
-            prefix={<SearchOutlined />}
-            size="large"
-            value={localSearch}
-            onChange={(e) => setLocalSearch(e.target.value)}
-            allowClear
-          />
-        </Col>
-        <Col xs={24} sm={12} md={8} lg={4}>
-          <Select
-            placeholder="Filter by Role"
-            size="large"
-            style={{ width: "100%" }}
-            allowClear
-            value={selectedRole}
-            onChange={(val) => dispatch(setSelectedRole(val))}
-            options={[
-              { value: "all", label: "All" },
-              { value: "admin", label: "Admin" },
-              { value: "moderator", label: "Moderator" },
-              { value: "user", label: "User" },
-            ]}
-          />
-        </Col>
-      </Row>
-
-      <Row gutter={[24, 24]}>
-        {loading
-          ? Array.from({ length: 8 }).map((_, index) => (
-              <Col xs={24} sm={12} md={8} lg={6} xl={6} key={index}>
-                <Card style={{ borderRadius: 12 }}>
-                  <Skeleton avatar active paragraph={{ rows: 2 }} />
-                </Card>
-              </Col>
-            ))
-          : filteredUsers.map((user) => (
-              <Col xs={24} sm={12} md={8} lg={6} xl={6} key={user.id}>
-                <UserCard user={user} />
-              </Col>
-            ))}
-      </Row>
-      {!loading && filteredUsers.length === 0 && (
-        <Row justify="center" style={{ marginTop: 40 }}>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "calc(100vh - 70px)" }}>
+      <div style={{ flex: 1, padding: "0 24px 24px 24px" }}>
+        <Row justify="space-between" align="middle" style={{ marginBottom: 24 }}>
           <Col>
-            <Typography.Text type="secondary">
-              No users found matching your criteria.
-            </Typography.Text>
+            <h1 className="dashboard-heading">{t("ACTIVE_USERS")}</h1>
+          </Col>
+          <Col>
+            <Button icon={<PlusOutlined />} onClick={() => setModalVisible(true)}>
+              {t("ADD_NEW_MEMBER")}
+            </Button>
           </Col>
         </Row>
-      )}
 
-      <AddUserModal 
-        visible={modalVisible} 
-        onCancel={() => setModalVisible(false)} 
-      />
+        <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
+          <Col xs={24} sm={12} md={8} lg={6}>
+            <Input
+              placeholder="Search by name or email..."
+              prefix={<SearchOutlined />}
+              size="large"
+              value={localSearch}
+              onChange={(e) => setLocalSearch(e.target.value)}
+              allowClear
+            />
+          </Col>
+          <Col xs={24} sm={12} md={8} lg={4}>
+            <Select
+              placeholder="Filter by Role"
+              size="large"
+              style={{ width: "100%" }}
+              allowClear
+              value={selectedRole}
+              onChange={(val) => dispatch(setSelectedRole(val))}
+              options={[
+                { value: "all", label: "All" },
+                { value: "admin", label: "Admin" },
+                { value: "moderator", label: "Moderator" },
+                { value: "user", label: "User" },
+              ]}
+            />
+          </Col>
+        </Row>
 
+        <Row gutter={[24, 24]}>
+          {loading
+            ? Array.from({ length: 8 }).map((_, index) => (
+                <Col xs={24} sm={12} md={8} lg={6} xl={6} key={index}>
+                  <Card style={{ borderRadius: 12 }}>
+                    <Skeleton avatar active paragraph={{ rows: 2 }} />
+                  </Card>
+                </Col>
+              ))
+            : filteredUsers.map((user) => (
+                <Col xs={24} sm={12} md={8} lg={6} xl={6} key={user.userId || user.id}>
+                  <UserCard user={user} />
+                </Col>
+              ))}
+        </Row>
+        {!loading && filteredUsers.length === 0 && (
+          <Row justify="center" style={{ marginTop: 40 }}>
+            <Col>
+              <Typography.Text type="secondary">
+                No users found matching your criteria.
+              </Typography.Text>
+            </Col>
+          </Row>
+        )}
+
+        <AddUserModal 
+          visible={modalVisible} 
+          onCancel={() => setModalVisible(false)} 
+        />
+      </div>
     </div>
   );
 };
