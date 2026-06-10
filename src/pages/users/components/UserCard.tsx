@@ -12,9 +12,11 @@ interface UserCardProps {
 
 const UserCard: React.FC<UserCardProps> = ({ user }) => {
   const navigate = useNavigate();
+  console.log('UserCard user:', user);
 
   const getRoleColor = (role: string) => {
-    switch (role) {
+    const lowerRole = role?.toLowerCase() || '';
+    switch (lowerRole) {
       case "admin":
         return "red";
       case "moderator":
@@ -24,16 +26,22 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
     }
   };
 
+  const userId = user.userId || user.id;
+  const userName = user.userName || user.name || 'Unknown User';
+  const userEmail = user.userEmail || user.email || 'no-email@example.com';
+  const userRole = user.userRole || user.role || 'user';
+  const userImage = user.profileImage || user.image;
+
   return (
     <Card
       hoverable
-      onClick={() => navigate(`/users/${user.id}`)}
+      onClick={() => navigate(`/users/${userId}`)}
       style={{ borderRadius: 12, overflow: "hidden" }}
       styles={{ body: { padding: "24px", textAlign: "center" } }}
     >
       <Flex vertical gap="middle" align="center">
         <Avatar
-          src={user.image}
+          src={userImage}
           size={80}
           style={{ backgroundColor: "#f0f2f5", }}
         />
@@ -48,7 +56,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
               textOverflow: "ellipsis",
             }}
           >
-            {user.firstName} {user.lastName}
+            {userName}
           </Title>
           <Text
             type="secondary"
@@ -61,13 +69,13 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
               textOverflow: "ellipsis",
             }}
           >
-            {user.email}
+            {userEmail}
           </Text>
           <Tag
-            color={getRoleColor(user.role)}
+            color={getRoleColor(userRole)}
             style={{ margin: 0, textTransform: "capitalize" }}
           >
-            {user.role}
+            {userRole}
           </Tag>
         </div>
       </Flex>

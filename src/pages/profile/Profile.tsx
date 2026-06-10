@@ -11,7 +11,6 @@ import {
   Form,
   Input,
   Select,
-  Upload,
   message,
   Space,
   Modal,
@@ -31,6 +30,7 @@ import {
 import { useAuth } from "../../hooks/useAuth";
 import { useThemeContext } from "../../theme/ThemeContext";
 import { useTranslation } from "react-i18next";
+import { apiHelperOne } from "../../services/ApiHelper";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -44,19 +44,22 @@ export const Profile: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [form] = Form.useForm();
   const [previewImage, setPreviewImage] = useState<string>("");
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewOpen, setPreviewOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
 
   // Initialize form with user data when entering edit mode
   const handleEdit = () => {
-    form.setFieldsValue({
-      userName: user.userName || "",
-      userEmail: user.userEmail || "",
-      gender: user.gender || "male",
-      city: user.city || "",
-      address: user.address || "",
-    });
+    if (user) {
+      form.setFieldsValue({
+        userName: user.userName || "",
+        userEmail: user.userEmail || "",
+        gender: user.gender || "male",
+        city: user.city || "",
+        address: user.address || "",
+      });
+    }
     setIsEditing(true);
   };
 
@@ -64,20 +67,60 @@ export const Profile: React.FC = () => {
   const handleCancel = () => {
     setIsEditing(false);
     form.resetFields();
+    setSelectedFile(null);
+    setPreviewImage("");
+  };
+
+  // Handle save profile
+  const handleSave = async (values: any) => {
+    try {
+      const formData = new FormData();
+      
+      formData.append("userName", values.userName);
+      if (values.city) {
+        formData.append("city", values.city);
+      }
+      if (values.gender) {
+        formData.append("gender", values.gender);
+      }
+      if (values.address) {
+        formData.append("address", values.address);
+      }
+      if (selectedFile) {
+        formData.append("profileImage", selectedFile);
+      }
+      const response = await apiHelperOne.put("/auth/update", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+         // Authorization: `Bearer ${getToken<string>()}`,
+        },
+      });
+
+      if (response.data) {
+        // Handle different response formats
+        const userData = (response.data as any)?.data?.user || (response.data as any)?.data || response.data;
+        message.success("Profile updated successfully!");
+        updateUser(userData);
+        setIsEditing(false);
+      } else {
+        message.error("Failed to update profile");
+      }
+    } catch (error) {
+      console.error("Update profile error:", error);
+      message.error("Failed to update profile");
+    }
   };
 
   // Handle image upload
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setSelectedFile(file);
       // Create preview URL
       const reader = new FileReader();
       reader.onload = (event) => {
         const imageUrl = event.target?.result as string;
         setPreviewImage(imageUrl);
-        // Update user image in context
-        // updateUser({ image: imageUrl } as Partial<user>);
-        message.success(t("PROFILE_IMAGE_UPDATED"));
       };
       reader.readAsDataURL(file);
     }
@@ -102,8 +145,9 @@ export const Profile: React.FC = () => {
     ) : (
       <ManOutlined style={{ color: "#1890ff" }} />
     );
-
+      console.log("user image",user?.profileImage)
   return (
+    
     <div style={{ padding: "24px" }}>
       <div
         style={{
@@ -170,7 +214,7 @@ export const Profile: React.FC = () => {
             <div style={{ position: "relative", display: "inline-block" }}>
               <Avatar
                 size={120}
-                src={previewImage || user?.image}
+                 src={previewImage || (import.meta.env.VITE_BASE_URL_IMAGE + user?.profileImage)}
                 icon={<UserOutlined />}
                 style={{
                   marginBottom: 16,
@@ -311,7 +355,7 @@ export const Profile: React.FC = () => {
               <Form
                 form={form}
                 layout="vertical"
-                // onFinish={handleSave}
+                onFinish={handleSave}
                 initialValues={{
                   userName: user?.userName,
                   userEmail: user?.userEmail,
@@ -333,12 +377,8 @@ export const Profile: React.FC = () => {
                 <Form.Item
                   name="userEmail"
                   label={t("EMAIL")}
-                  rules={[
-                    { required: true, message: t("PLEASE_ENTER_EMAIL") },
-                    { type: "email", message: t("PLEASE_ENTER_VALID_EMAIL") },
-                  ]}
                 >
-                  <Input placeholder={t("ENTER_EMAIL")} />
+                  <Input placeholder={t("ENTER_EMAIL")} disabled />
                 </Form.Item>
 
                 <Form.Item name="gender" label={t("GENDER")}>

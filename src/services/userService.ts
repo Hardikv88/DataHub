@@ -22,12 +22,18 @@ export interface RegisterResponse {
 }
 
 export const fetchUsers = async (): Promise<UsersResponse> => {
+  console.log('fetchUsers called');
   const response = await apiHelperOne.get<UsersResponse>('/users');
+  console.log('fetchUsers response:', response);
+  console.log('fetchUsers response.data:', response.data);
   return response.data;
 };
 
 export const fetchUserById = async (id: number | string): Promise<User> => {
+  console.log('fetchUserById called with id:', id);
   const response = await apiHelperOne.get<User>(`/users/${id}`);
+  console.log('fetchUserById response:', response);
+  console.log('fetchUserById response.data:', response.data);
   return response.data;
 };
 
