@@ -1,5 +1,5 @@
 
-import type { User, UsersResponse } from '../modals/user';
+import type { User, UsersResponse, GetUsersParams } from '../modals/user';
 import { apiHelperOne } from './ApiHelper';
 
 export interface RegisterRequest {
@@ -21,9 +21,9 @@ export interface RegisterResponse {
   };
 }
 
-export const fetchUsers = async (): Promise<UsersResponse> => {
-  console.log('fetchUsers called');
-  const response = await apiHelperOne.get<UsersResponse>('/users');
+export const fetchUsers = async (params: GetUsersParams = { page: 1, limit: 10 }): Promise<UsersResponse> => {
+  console.log('fetchUsers called with params:', params);
+  const response = await apiHelperOne.post<UsersResponse>('/users', params);
   console.log('fetchUsers response:', response);
   console.log('fetchUsers response.data:', response.data);
   return response.data;

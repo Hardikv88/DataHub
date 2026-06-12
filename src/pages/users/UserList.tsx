@@ -8,10 +8,11 @@ import {
   Skeleton,
   Card,
   Result,
+  Pagination,
 } from "antd";
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { loadUsers, setSearchTerm, setSelectedRole } from "./userSlice";
+import { loadUsers, setSearchTerm, setSelectedRole, setCurrentPage } from "./userSlice";
 import UserCard from "./components/UserCard";
 import Button from "../../components/common/Button";
 import { useTranslation } from "react-i18next";
@@ -22,19 +23,26 @@ const UserList: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
-  const { users = [], loading, error, searchTerm, selectedRole } = useAppSelector(
+  const { 
+    users = [], 
+    loading, 
+    error, 
+    searchTerm, 
+    selectedRole,
+    pagination = { currentPage: 1, itemsPerPage: 10, totalItems: 0, totalPages: 1, hasNextPage: false, hasPreviousPage: false },
+  } = useAppSelector(
     (state) => state.users,
   );
   
   // Add console logs to debug
-  console.log('UserList state:', { users, loading, error, searchTerm, selectedRole });
+  console.log('UserList state:', { users, loading, error, searchTerm, selectedRole, pagination });
 
   // Local state for debounced search
   const [localSearch, setLocalSearch] = useState(searchTerm);
 
   useEffect(() => {
-    dispatch(loadUsers());
-  }, [dispatch]);
+    dispatch(loadUsers({ page: pagination.currentPage, limit: pagination.itemsPerPage }));
+  }, [dispatch, pagination.currentPage, pagination.itemsPerPage]);
 
   // Debounce search term update
   useEffect(() => {
@@ -45,7 +53,9 @@ const UserList: React.FC = () => {
   }, [localSearch, dispatch]);
 
   const filteredUsers = useMemo(() => {
-    return users.filter((user) => {
+    const safeUsers = Array.isArray(users) ? users : [];
+    console.log('safeUsers in filteredUsers:', safeUsers);
+    return safeUsers.filter((user) => {
       const userName = user.userName || user.name || '';
       const userEmail = user.userEmail || user.email || '';
       const userRole = user.userRole || user.role || '';
@@ -61,6 +71,11 @@ const UserList: React.FC = () => {
     });
   }, [users, searchTerm, selectedRole]);
 
+  const handlePageChange = (page: number, pageSize?: number) => {
+    dispatch(setCurrentPage(page));
+    dispatch(loadUsers({ page, limit: pageSize || pagination.itemsPerPage }));
+  };
+
   if (error) {
     return (
       <Result
@@ -68,7 +83,7 @@ const UserList: React.FC = () => {
         title="Failed to Load Users"
         subTitle={error}
         extra={
-          <Button type="primary" onClick={() => dispatch(loadUsers())}>
+          <Button type="primary" onClick={() => dispatch(loadUsers({ page: 1, limit: pagination.itemsPerPage }))}>
             Try Again
           </Button>
         }
@@ -140,6 +155,20 @@ const UserList: React.FC = () => {
                 No users found matching your criteria.
               </Typography.Text>
             </Col>
+          </Row>
+        )}
+
+        {/* Pagination */}
+        {!loading && Array.isArray(users) && users.length > 0 && (
+          <Row justify="center" style={{ marginTop: 40, marginBottom: 20 }}>
+            <Pagination
+              current={pagination.currentPage}
+              pageSize={pagination.itemsPerPage}
+              total={pagination.totalItems}
+              onChange={handlePageChange}
+              showSizeChanger={false}
+              showQuickJumper={false}
+            />
           </Row>
         )}
 

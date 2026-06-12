@@ -1,29 +1,40 @@
 export interface User {
-  userId?: number;
+  userId: number;
+  userName: string;
+  userEmail: string;
+  userRole: 'admin' | 'moderator' | 'user' | 'User';
+  gender: string;
+  city: string;
+  address: string;
+  profileImage: string;
+  created_at: string;
+  updated_at: string;
   id?: number;
-  userName?: string;
   name?: string;
-  userEmail?: string;
   email?: string;
-  userRole?: 'admin' | 'moderator' | 'user' | 'User';
   role?: 'admin' | 'moderator' | 'user' | 'User';
-  created_at?: string;
-  updated_at?: string;
-  city?: string;
-  address?: string;
-  profileImage?: string;
   image?: string;
-  gender?: string;
-  [key: string]: any; // Allow any other properties for flexibility
+  [key: string]: any;
 }
 
-// Make UsersResponse flexible to handle different formats
+export interface PaginationInfo {
+  currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+}
+
 export interface UsersResponse {
-  success?: boolean;
+  success: boolean;
+  data: User[];
+  pagination: PaginationInfo;
   message?: string;
-  data?: {
-    users?: User[];
-  } | User[];
-  users?: User[];
-  [key: string]: any; // Allow any other properties
+  [key: string]: any;
+}
+
+export interface GetUsersParams {
+  page: number;
+  limit: number;
 }
