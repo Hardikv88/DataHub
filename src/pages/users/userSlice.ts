@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import { fetchUsers, fetchUserById } from '../../services/userService';
-import type { User } from '../../modals/user';
+import type { User, PaginationInfo, GetUsersParams } from '../../modals/user';
 
 interface UserState {
   users: User[];
@@ -9,7 +9,17 @@ interface UserState {
   error: string | null;
   searchTerm: string;
   selectedRole: string | null;
+  pagination: PaginationInfo;
 }
+
+const initialPagination: PaginationInfo = {
+  currentPage: 1,
+  itemsPerPage: 10,
+  totalItems: 0,
+  totalPages: 1,
+  hasNextPage: false,
+  hasPreviousPage: false,
+};
 
 const initialState: UserState = {
   users: [],
@@ -18,43 +28,18 @@ const initialState: UserState = {
   error: null,
   searchTerm: '',
   selectedRole: null,
+  pagination: initialPagination,
 };
 
 export const loadUsers = createAsyncThunk(
   'users/loadUsers',
-  async (_, { rejectWithValue }) => {
+  async (params: GetUsersParams = { page: 1, limit: 10 }, { rejectWithValue }) => {
     try {
-      const data = await fetchUsers();
+      const data = await fetchUsers(params);
       console.log('loadUsers data:', data);
-      const dataAny = data as any;
       
-      // Check if data is already an array
-      if (Array.isArray(dataAny)) {
-        console.log('data is array, returning it');
-        return dataAny;
-      }
-      
-      // Check if data.success exists and data.data.users exists
-      if (dataAny.success && dataAny.data?.users) {
-        console.log('found data.data.users, returning');
-        return dataAny.data.users;
-      }
-      
-      // Check if data.users exists directly
-      if (dataAny.users) {
-        console.log('found data.users directly, returning');
-        return dataAny.users;
-      }
-      
-      // Check if data.data exists and is an array
-      if (Array.isArray(dataAny.data)) {
-        console.log('data.data is array, returning');
-        return dataAny.data;
-      }
-      
-      // Otherwise return empty array
-      console.log('no valid user data found, returning empty array');
-      return [];
+      // Return the whole response so we can get users AND pagination
+      return data;
     } catch (error: any) {
       console.error('loadUsers error:', error);
       return rejectWithValue(error.message || 'Failed to fetch users');
@@ -98,7 +83,10 @@ const userSlice = createSlice({
     },
     addUserToList: (state, action: PayloadAction<User>) => {
       state.users = [action.payload, ...state.users];
-    }
+    },
+    setCurrentPage: (state, action: PayloadAction<number>) => {
+      state.pagination.currentPage = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -108,9 +96,35 @@ const userSlice = createSlice({
       })
       .addCase(loadUsers.fulfilled, (state, action) => {
         state.loading = false;
-        // Make sure payload is an array, else default to empty
-        state.users = Array.isArray(action.payload) ? action.payload : [];
+        
+        console.log('loadUsers.fulfilled action.payload:', action.payload);
+        
+        const payload: any = action.payload;
+        
+        let usersList: any[] = [];
+        
+        if (Array.isArray(payload)) {
+          usersList = payload;
+        } else if (payload?.success && Array.isArray(payload?.data)) {
+          usersList = payload.data;
+        } else if (payload?.success && payload?.data?.users && Array.isArray(payload.data.users)) {
+          usersList = payload.data.users;
+        } else if (Array.isArray(payload?.data)) {
+          usersList = payload.data;
+        }
+        
+        state.users = usersList;
+        
+        let paginationData: any = initialPagination;
+        
+        if (payload?.pagination) {
+          paginationData = payload.pagination;
+        }
+        
+        state.pagination = paginationData;
+        
         console.log('loadUsers.fulfilled - state.users set to:', state.users);
+        console.log('loadUsers.fulfilled - state.pagination set to:', state.pagination);
       })
       .addCase(loadUsers.rejected, (state, action) => {
         state.loading = false;
@@ -131,6 +145,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setSearchTerm, setSelectedRole, clearCurrentUser, addUserToList } = userSlice.actions;
+export const { setSearchTerm, setSelectedRole, clearCurrentUser, addUserToList, setCurrentPage } = userSlice.actions;
 
 export default userSlice.reducer;
