@@ -4,6 +4,116 @@ This file maintains a complete record of all tasks performed by all AI Agents.
 
 ---
 
+## [2026-06-16] - Fix PostCard and PostDetails Tags Undefined Error
+
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Fix PostCard and PostDetails error when tags are undefined
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/pages/posts/components/PostCard.tsx#L55-64`  solve this error after posts add check this error and solve problmes fix it"
+- **Response Summary**:
+  - Updated PostCard.tsx: Added fallback (post.tags || []) to ensure tags is always an array
+  - Updated PostDetails.tsx: Added fallback (selectedPost.tags || []) to ensure tags is always an array
+- **Status**: Completed ✅
+
+---
+
+## [2026-06-16] - Update CreatePost API Integration
+
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Update createPost API to send only title, body, and tags
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/services/postService.ts#L29-36`  createPost Apis user input title, body and tags all pass parameter create a data and add database   Url : http://localhost:3000/api/posts/create   Method : Post with Authorization   parameter : {    \"title\": \"Post Title\",    \"body\": \"Post content goes here...\",    \"tags\": [\"post\", \"title\", \"content\"]  }    this Authorization token get user id and posts table user id column added"
+- **Response Summary**:
+  - Updated CreatePostModal.tsx: Removed the mock userId from payload, now only sends title, body, and tags (user ID will be determined from Authorization token on backend)
+- **Status**: Completed ✅
+
+---
+
+## [2026-06-16] - Update PostDetails API Parameter to Use postId
+
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Update PostDetails API parameter from id to postId
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/pages/posts/postSlice.ts#L58-68`  change Apsi    url : http://localhost:3000/api/posts/detail   Method : post with Authorization   parameter. : {    \"postId\": 10  }    response data show all data with postdetails screen"
+- **Response Summary**:
+  - Updated postService.ts: Changed fetchPostById to use { postId: id } as request body instead of { id }
+- **Status**: Completed ✅
+
+---
+
+## [2026-06-16] - Update PostDetails Screen to Use New API Endpoint
+
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Update PostDetails screen to integrate new API endpoint for post details
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/pages/posts/PostDetails.tsx#L41-41`  Postdetailas screen integration Apis new Apis   url : http://localhost:3000/api/posts/detail   Method : post with Authorization   response data show all data with postdetails screen"
+- **Response Summary**:
+  - Updated postService.ts: Changed fetchPostById from GET to POST, endpoint from /posts/{id} to /posts/detail, passing { id } in request body
+  - Updated postSlice.ts: Added handling for multiple response formats in loadPostById.fulfilled, and added console log for debugging
+- **Status**: Completed ✅
+
+---
+
+## [2026-06-12] - Fix Posts currentPage Starting at 19 Instead of 1
+
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Fix Posts screen currentPage starting at 19 and ensure proper pagination
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/pages/posts/Posts.tsx#L38-45`  currentPage first time 19 but change 1 value and pagination proper working to fix it"
+- **Response Summary**:
+  - Added a useEffect in Posts.tsx that resets currentPage to 1 when the component mounts, fixing the issue with redux-persist persisting old page number
+- **Status**: Completed ✅
+
+---
+
+## [2026-06-12] - Fix Posts Screen "Cannot read properties of undefined (reading 'length')" Error
+
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Fix Posts screen error and test posts screen with API call and pagination
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/pages/posts/Posts.tsx#L101-120` this run Posts screen show error my console Posts.tsx:109 Uncaught TypeError: Cannot read properties of undefined (reading 'length') this error fix it   testing proper posts screen with call and pagination"
+- **Response Summary**:
+  - Updated Posts.tsx: Added fallback `posts = []` when destructuring from Redux state
+  - Updated postService.ts: Changed to use `apiHelperOne` (like userService) and added console logs for debugging
+  - Updated postSlice.ts: Added console log in loadPosts.fulfilled to see API response payload
+- **Status**: Completed ✅
+
+---
+
+## [2026-06-12] - Update Posts Response Handling and Pagination
+
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Update Posts response handling and implement pagination changes
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/pages/posts/Posts.tsx#L38-44`  All Posts get response and screen desing changes and implement pagination chagnes"
+- **Response Summary**:
+  - Updated post.ts: Added PaginationInfo interface, updated PostsResponse to match { success, data, pagination } format, added GetPostsParams
+  - Updated postSlice.ts: Added pagination state to PostState, updated extraReducers to handle multiple response formats (data array or posts array) and update pagination from response
+  - Updated Posts.tsx: Changed from using total to pagination.totalItems for Pagination component
+- **Status**: Completed ✅
+
+---
+
+## [2026-06-12] - Confirm Automatic HISTORY.md Logging for All Tasks
+
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Confirm automatic HISTORY.md logging for every agent task
+- **Prompt**: "For every prompt, task, or request processed by the agent, automatically append an entry to `/Users/hardikv/Desktop/flutter_project/DataHub/HISTORY.md`  history.md . and format wise data and time"
+- **Response Summary**:
+  - Verified PROJECT_GUIDELINES.md already has mandatory history logging rules
+  - Added both recent tasks (Posts API update and this request) to HISTORY.md in reverse chronological order
+  - Confirmed logging format includes date, agent name, task title, prompt, response summary, and status
+- **Status**: Completed ✅
+
+---
+
+## [2026-06-12] - Update Posts API to POST /api/posts with pagination
+
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Update Posts API to use POST /api/posts with page and limit parameters
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/pages/posts/Posts.tsx#L38-45`  replace Apis and reponse data Like url : http://localhost:3000/api/posts  Method : Post with Authorization bearer token  parameter : {  \"page\": 1,  \"limit\": 10  } this Apis call and replace old apis and implement pagination"
+- **Response Summary**:
+  - Updated postService.ts: Changed fetchPosts from GET to POST /api/posts with page and limit params instead of limit and skip
+  - Updated postSlice.ts: Updated loadPosts thunk to take page and limit instead of limit and skip
+  - Updated Posts.tsx: Updated fetchPostsData to pass page and limit to loadPosts
+  - Pagination is maintained via currentPage and pageSize from Redux state
+- **Status**: Completed ✅
+
+---
+
 ## [2026-06-11] - Fix "users.filter is not a function" error in UserList
 
 - **Agent Name**: DeepSeek-V3.2

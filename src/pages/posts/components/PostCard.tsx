@@ -25,10 +25,10 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
       hoverable 
       onClick={() => navigate(`/posts/${post.id}`)}
       style={{ 
-        height: '100%', 
-        borderRadius: 12,
-        background: isDarkMode ? '#1f1f1f' : '#ffffff',
-        border: `1px solid ${isDarkMode ? '#303030' : '#f0f0f0'}`
+        height: '100%',     
+        borderRadius: 12,    
+        background: isDarkMode ? '#1f1f1f' : '#ffffff',    
+        border: `1px solid ${isDarkMode ? '#303030' : '#f0f0f0'}`    
       }}
       styles={{ body: { padding: '20px', display: 'flex', flexDirection: 'column', height: '100%' } }}
     >
@@ -44,9 +44,9 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
       <Paragraph 
         ellipsis={{ rows: 3 }} 
         style={{ 
-          color: isDarkMode ? '#a6a6a6' : '#595959',
-          flex: 1,
-          marginBottom: 16 
+          color: isDarkMode ? '#a6a6a6' : '#595959', 
+          flex: 1, 
+          marginBottom: 16  
         }}
       >
         {post.body}
@@ -55,7 +55,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
       <div style={{ marginBottom: 16 }}>
         <Space size={[0, 8]} wrap>
           <TagOutlined style={{ marginRight: 4, color: '#1677ff' }} />
-          {post.tags.map(tag => (
+          {(post.tags || []).map(tag => (
             <Tag key={tag} color="blue" style={{ borderRadius: 4,marginRight: 6 }}>
               {tag}
             </Tag>
@@ -91,3 +91,5 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 };
 
 export default PostCard;
+
+

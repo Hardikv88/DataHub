@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import { fetchPosts, searchPosts, fetchPostById } from '../../services/postService';
-import type { Post } from '../../modals/post';
+import type { Post, PaginationInfo } from '../../modals/post';
 
 interface PostState {
   posts: Post[];
   selectedPost: Post | null;
   loading: boolean;
   error: string | null;
-  total: number;
+  pagination: PaginationInfo;
   currentPage: number;
   pageSize: number;
   searchQuery: string;
@@ -18,7 +18,14 @@ const initialState: PostState = {
   selectedPost: null,
   loading: false,
   error: null,
-  total: 0,
+  pagination: {
+    currentPage: 1,
+    itemsPerPage: 10,
+    totalItems: 0,
+    totalPages: 0,
+    hasNextPage: false,
+    hasPreviousPage: false,
+  },
   currentPage: 1,
   pageSize: 10,
   searchQuery: '',
@@ -26,9 +33,9 @@ const initialState: PostState = {
 
 export const loadPosts = createAsyncThunk(
   'posts/loadPosts',
-  async ({ limit, skip }: { limit: number; skip: number }, { rejectWithValue }) => {
+  async ({ page, limit }: { page: number; limit: number }, { rejectWithValue }) => {
     try {
-      const data = await fetchPosts(limit, skip);
+      const data = await fetchPosts(page, limit);
       return data;
     } catch (error: any) {
       return rejectWithValue(error.message || 'Failed to fetch posts');
@@ -49,7 +56,7 @@ export const searchAllPosts = createAsyncThunk(
 );
 
 export const loadPostById = createAsyncThunk(
-  'posts/loadPostById',
+  'posts/detail/loadPostById',
   async (id: string | number, { rejectWithValue }) => {
     try {
       const data = await fetchPostById(id);
@@ -79,7 +86,7 @@ const postSlice = createSlice({
     },
     addPostToList: (state, action: PayloadAction<Post>) => {
       state.posts = [action.payload, ...state.posts];
-      state.total += 1;
+      state.pagination.totalItems += 1;
     }
   },
   extraReducers: (builder) => {
@@ -90,8 +97,20 @@ const postSlice = createSlice({
       })
       .addCase(loadPosts.fulfilled, (state, action) => {
         state.loading = false;
-        state.posts = action.payload.posts;
-        state.total = action.payload.total;
+        // Handle multiple possible response formats
+        if (action.payload.data && Array.isArray(action.payload.data)) {
+          state.posts = action.payload.data;
+        } else if (action.payload.posts && Array.isArray(action.payload.posts)) {
+          state.posts = action.payload.posts;
+        } else {
+          state.posts = [];
+        }
+        
+        if (action.payload.pagination) {
+          state.pagination = action.payload.pagination;
+        } else if (typeof action.payload.total === 'number') {
+          state.pagination.totalItems = action.payload.total;
+        }
       })
       .addCase(loadPosts.rejected, (state, action) => {
         state.loading = false;
@@ -103,8 +122,20 @@ const postSlice = createSlice({
       })
       .addCase(searchAllPosts.fulfilled, (state, action) => {
         state.loading = false;
-        state.posts = action.payload.posts;
-        state.total = action.payload.total;
+        // Handle multiple possible response formats
+        if (action.payload.data && Array.isArray(action.payload.data)) {
+          state.posts = action.payload.data;
+        } else if (action.payload.posts && Array.isArray(action.payload.posts)) {
+          state.posts = action.payload.posts;
+        } else {
+          state.posts = [];
+        }
+        
+        if (action.payload.pagination) {
+          state.pagination = action.payload.pagination;
+        } else if (typeof action.payload.total === 'number') {
+          state.pagination.totalItems = action.payload.total;
+        }
         state.currentPage = 1;
       })
       .addCase(searchAllPosts.rejected, (state, action) => {
@@ -117,7 +148,13 @@ const postSlice = createSlice({
       })
       .addCase(loadPostById.fulfilled, (state, action) => {
         state.loading = false;
-        state.selectedPost = action.payload;
+        console.log('loadPostById fulfilled - action.payload:', action.payload);
+        // Handle multiple possible response formats
+        if (action.payload.data) {
+          state.selectedPost = action.payload.data;
+        } else {
+          state.selectedPost = action.payload;
+        }
       })
       .addCase(loadPostById.rejected, (state, action) => {
         state.loading = false;

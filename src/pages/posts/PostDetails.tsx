@@ -110,7 +110,7 @@ const PostDetails: React.FC = () => {
                 {t("POST_ID")}: {selectedPost.id}
               </Text>
               <div style={{ marginTop: 12 }}>
-                {selectedPost.tags.map((tag) => (
+                {(selectedPost.tags || []).map((tag) => (
                   <Tag
                     key={tag}
                     color="blue"

@@ -23,8 +23,9 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ visible, onCancel }) 
       setLoading(true);
       
       const payload = {
-        ...values,
-        userId: 1, // Mock user ID as per DummyJSON requirements
+        title: values.title,
+        body: values.body,
+        tags: values.tags || [],
       };
 
       const newPost = await createPost(payload);
