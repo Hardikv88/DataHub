@@ -26,10 +26,10 @@ const Posts: React.FC = () => {
   const { isDarkMode } = useThemeContext();
   const [modalVisible, setModalVisible] = useState(false);
   const { 
-    posts, 
+    posts = [], 
     loading, 
     error, 
-    total, 
+    pagination,
     currentPage, 
     pageSize, 
     searchQuery 
@@ -39,10 +39,14 @@ const Posts: React.FC = () => {
     if (searchQuery) {
       dispatch(searchAllPosts(searchQuery));
     } else {
-      const skip = (currentPage - 1) * pageSize;
-      dispatch(loadPosts({ limit: pageSize, skip }));
+      dispatch(loadPosts({ page: currentPage, limit: pageSize }));
     }
   }, [dispatch, currentPage, pageSize, searchQuery]);
+
+  useEffect(() => {
+    // Reset currentPage to 1 when component mounts
+    dispatch(setCurrentPage(1));
+  }, [dispatch]);
 
   useEffect(() => {
     fetchPostsData();
@@ -125,7 +129,7 @@ const Posts: React.FC = () => {
                 size="large"
                 current={currentPage}
                 pageSize={pageSize}
-                total={total}
+                total={pagination.totalItems}
                 onChange={handlePageChange}
                 showSizeChanger={false}
               />
