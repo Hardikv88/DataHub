@@ -30,11 +30,11 @@ import { t } from "i18next";
 const { Title, Paragraph, Text } = Typography;
 
 const PostDetails: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const { isDarkMode } = useThemeContext();
-  const { selectedPost, loading, error } = useAppSelector((state) => state.posts);
+  const { id } = useParams<{ id: string }>(); 
+  const navigate = useNavigate(); 
+  const dispatch = useAppDispatch(); 
+  const { isDarkMode } = useThemeContext(); 
+  const { selectedPost, loading, error } = useAppSelector((state) => state.posts); 
 
   useEffect(() => {
     if (id) {
@@ -154,8 +154,7 @@ const PostDetails: React.FC = () => {
                     </Text>
                     <Space>
                       <DislikeOutlined style={{ color: "#ff4d4f" }} />
-                      <Text strong>
-                        {selectedPost.reactions?.dislikes || 0}
+                      <Text strong> {selectedPost.reactions?.dislikes || 0}
                       </Text>
                     </Space>
                   </Space>

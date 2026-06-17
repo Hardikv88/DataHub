@@ -29,9 +29,11 @@ const CreatePostModal: React.FC<CreatePostModalProps> = ({ visible, onCancel }) 
       };
 
       const newPost = await createPost(payload);
+      console.log('CreatePostModal newPost:', newPost);
       
       // Update local state
       dispatch(addPostToList(newPost));
+      console.log('CreatePostModal dispatched addPostToList');
       
       message.success('Post created successfully!');
       form.resetFields();
