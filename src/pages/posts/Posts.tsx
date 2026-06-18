@@ -84,9 +84,9 @@ const Posts: React.FC = () => {
             onChange={handleSearch}
             style={{ width: 350, marginTop: 16 }}
           />
-          <Button 
-            type="primary" 
-            icon={<PlusOutlined />} 
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
             onClick={handleAddPost}
             height={40}
             width={140}

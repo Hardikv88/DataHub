@@ -4,6 +4,32 @@ This file maintains a complete record of all tasks performed by all AI Agents.
 
 ---
 
+## [2026-06-17] - Fix Register API Endpoint and Add Debug Logs
+
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Fix register API endpoint and add debug logs for registration
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/pages/auth/Register_Screen.tsx#L34-54`  create a register new user add record not databast in user table please check and solve this problme"
+- **Response Summary**:
+  - Updated userService.ts: Changed registerUser endpoint from /users to /auth/register, added console logs, and handled multiple response formats
+  - Updated Register_Screen.tsx: Added console log for registerUser response, and uses response.message for success/error messages
+  - Updated RegisterResponse type: Added optional message field and made data optional
+- **Status**: Completed ✅
+
+---
+
+## [2026-06-17] - Add Debug Logs for CreatePost API Integration
+
+- **Agent Name**: DeepSeek-V3.2
+- **Task Title**: Add debug logs to investigate blank posts after createPost API call
+- **Prompt**: "`/Users/hardikv/Desktop/flutter_project/DataHub/src/pages/posts/components/CreatePostModal.tsx#L31-31`  CreatePost Apis call after resonse add `/Users/hardikv/Desktop/flutter_project/DataHub/src/pages/posts/Posts.tsx#L29-29`  bcz write now to apis successfully response black posts show now to solve problem it"
+- **Response Summary**:
+  - Updated postService.ts: Added handling for multiple createPost response formats, added console logs, and ensured tags, reactions, and views have fallbacks
+  - Updated CreatePostModal.tsx: Added console logs for newPost and after dispatching addPostToList
+  - Updated postSlice.ts: Added console logs in addPostToList reducer to track state changes
+- **Status**: Completed ✅
+
+---
+
 ## [2026-06-16] - Fix PostCard and PostDetails Tags Undefined Error
 
 - **Agent Name**: DeepSeek-V3.2

@@ -1,4 +1,3 @@
-
 import type { PostsResponse, Post } from '../modals/post';
 import { apiHelperOne} from "./ApiHelper";
 
@@ -28,9 +27,21 @@ export const fetchPostById = async (id: number | string): Promise<Post> => {
 
 export const createPost = async (payload: Partial<Post>): Promise<Post> => {
   const response = await apiHelperOne.post<Post>(`/posts/create`, payload);
+  console.log('createPost full response:', response);
+  console.log('createPost response.data:', response.data);
+  // Handle multiple response formats
+  let postData: Post;
+  if (response.data && response.data.data) {
+    postData = response.data.data;
+  } else if (response.data) {
+    postData = response.data;
+  } else {
+    postData = response as any;
+  }
   return {
-    ...response.data,
-    reactions: response.data.reactions || { likes: 0, dislikes: 0 },
-    views: response.data.views || 0,
+    ...postData,
+    reactions: postData.reactions || { likes: 0, dislikes: 0 },
+    views: postData.views || 0,
+    tags: postData.tags || [],
   };
 };

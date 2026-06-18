@@ -30,8 +30,8 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
   const userName = user.userName || user.name || 'Unknown User';
   const userEmail = user.userEmail || user.email || 'no-email@example.com';
   const userRole = user.userRole || user.role || 'user';
-  const userImage = user.profileImage || user.image;
 
+ 
   return (
     <Card
       hoverable
@@ -41,7 +41,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
     >
       <Flex vertical gap="middle" align="center">
         <Avatar
-          src={userImage}
+          src={(import.meta.env.VITE_BASE_URL_IMAGE + user?.profileImage) || "https://api.dicebear.com/7.x/notionists/svg?seed=Felix"}
           size={80}
           style={{ backgroundColor: "#f0f2f5", }}
         />

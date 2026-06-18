@@ -37,14 +37,13 @@ const Register: React.FC = () => {
         userEmail: formData.email,
         userPassword: formData.password,
       };
-
       const response = await registerUser(payload);
-      
+      console.log('Register_Screen registerUser response:', response);
       if (response.success) {
-        message.success("Registration successful! Please login.");
+        message.success(response.message || "Registration successful! Please login.");
         navigate("/");
       } else {
-        setError("Registration failed. Please try again.");
+        setError(response.message || "Registration failed. Please try again.");
       }
     } catch (err: any) {
       console.error("Registration error:", err);

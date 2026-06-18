@@ -10,7 +10,7 @@ export interface RegisterRequest {
 
 export interface RegisterResponse {
   success: boolean;
-  data: {
+  data?: {
     userRole: string;
     userId: number;
     userName: string;
@@ -19,6 +19,7 @@ export interface RegisterResponse {
     updated_at: string;
     created_at: string;
   };
+  message?: string;
 }
 
 export const fetchUsers = async (params: GetUsersParams = { page: 1, limit: 10 }): Promise<UsersResponse> => {
@@ -43,6 +44,19 @@ export const addUser = async (payload: Partial<User>): Promise<User> => {
 };
 
 export const registerUser = async (payload: RegisterRequest): Promise<RegisterResponse> => {
-  const response = await apiHelperOne.post<RegisterResponse>('/users', payload);
-  return response.data;
+  console.log('registerUser called with payload:', payload);
+  const response = await apiHelperOne.post<RegisterResponse>('/auth/register', payload);
+  console.log('registerUser full response:', response);
+  console.log('registerUser response.data:', response.data);
+  // Handle multiple response formats
+  if (response.data && response.data.data) {
+    return {
+      success: response.data.success,
+      data: response.data.data,
+      message: response.data.message,
+    };
+  } else if (response.data) {
+    return response.data;
+  }
+  return response as any;
 };
